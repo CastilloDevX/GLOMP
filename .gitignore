@@ -1,0 +1,5 @@
+.env
+*.bak
+game.json.bak*
+.cache/
+tmp/

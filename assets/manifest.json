@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "assets": [
+    {
+      "id": "slime-base-chatgpt-v1",
+      "milestone": 0,
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "file": "assets/slime/base-white-chatgpt-v1.png",
+      "references": [
+        "samples/banner.png",
+        "samples/skins.png"
+      ],
+      "prompt": "Use case: stylized-concept. Asset type: production base sprite for GLOMP!, a local 2D slime-and-food party game. The two input images are STYLE REFERENCES ONLY, do not reproduce the banner or complete costumes. Generate ONE single isolated neutral white tintable jelly slime body, centered on a square transparent canvas, with generous equal transparent padding. Chibi glossy jelly slime, thick soft gray outline, cohesive with the reference images. Rounded squat gumdrop body, tiny integrated rounded feet, no separate arms. Pearly white grayscale body, bright soft white reflections and gentle neutral gray shading, no colored rim light, neutral lighting. Same simple silhouette usable for every player and cosmetic layer. Slight overhead three-quarter camera compatible with a top-down arena while keeping the front readable. BODY ONLY: no eyes, face, mouth, accessory, food, particles, detached droplets, ground shadow, scenery, lettering, watermark, grid, or other objects. Smooth clean silhouette and strong readability at 64 pixels. Actual transparent background.",
+      "width": 1254,
+      "height": 1254,
+      "status": "approved",
+      "sha256": "090679a6b6c6f954eea7db127cbd65df2c230eefe9f7ca019a38ddae7ef02bae",
+      "approval": "Estilo aprobado por el usuario en esta sesión"
+    },
+    {
+      "id": "slime-base-nanobanana-v1",
+      "milestone": 0,
+      "provider": "google",
+      "model": "gemini-3.1-flash-image",
+      "file": "assets/slime/base-white-nanobanana-v1.png",
+      "rawFile": "assets/slime/base-white-nanobanana-v1-magenta.png",
+      "references": [
+        "samples/banner.png",
+        "samples/skins.png",
+        "assets/slime/base-white-chatgpt-v1.png"
+      ],
+      "prompt": "Asset: GLOMP! production base-body sprite. Image 1 and image 2 are style references only. Image 3 is the exact approved-for-prototyping silhouette reference: preserve its simple shape, orientation and proportions. chibi glossy jelly slime, thick soft outline, candy-saturated palette, cohesive with the reference images. Render ONE single pearly WHITE grayscale tintable jelly slime BODY ONLY, squat rounded gumdrop with two small integrated rounded foot bulges. Soft neutral gray outline and shading, bright white specular reflections. Three-quarter slight overhead view compatible with top-down arena. NO eyes, mouth, face, hat, accessory, arms, food, scenery, text, shadow, detached droplets or particles. The entire subject must fit centered inside the middle 65 percent of a square canvas with equal generous padding. The background MUST be perfectly flat pure #FF00FF magenta, including all corners. No gradients or contact shadow on background. Keep all subject pixels grayscale: absolutely no magenta reflection, rim-light, or pink tint. Crisp smooth antialiasing. Single sprite, not a sprite sheet.",
+      "chroma": true,
+      "width": null,
+      "height": null,
+      "status": "blocked_quota",
+      "attempts": [
+        {
+          "model": "gemini-3.1-flash-image",
+          "status": 429,
+          "reason": "FreeTier input tokens, requests/minute and requests/day rejected"
+        }
+      ],
+      "lastError": "HTTP 429: límites FreeTier de tokens y peticiones por minuto/día"
+    },
+    {
+      "id": "slime-base-nanobanana-fallback-v1",
+      "milestone": 0,
+      "provider": "google",
+      "model": "gemini-2.5-flash-image",
+      "file": "assets/slime/base-white-nanobanana-fallback-v1.png",
+      "rawFile": "assets/slime/base-white-nanobanana-fallback-v1-magenta.png",
+      "references": [
+        "samples/banner.png",
+        "samples/skins.png",
+        "assets/slime/base-white-chatgpt-v1.png"
+      ],
+      "prompt": "Asset: GLOMP! production base-body sprite. Image 1 and image 2 are style references only. Image 3 is the exact prototype silhouette reference: preserve its simple shape, orientation and proportions. chibi glossy jelly slime, thick soft outline, candy-saturated palette, cohesive with the reference images. Render ONE single pearly WHITE grayscale tintable jelly slime BODY ONLY, squat rounded gumdrop with two small integrated rounded foot bulges. Soft neutral gray outline and shading, bright white specular reflections. Three-quarter slight overhead view compatible with top-down arena. NO eyes, mouth, face, hat, accessory, arms, food, scenery, text, shadow, detached droplets or particles. The entire subject must fit centered inside the middle 65 percent of a square canvas with equal generous padding. The background MUST be perfectly flat pure #FF00FF magenta, including all corners. No gradients or contact shadow on background. Keep all subject pixels grayscale: absolutely no magenta reflection, rim-light, or pink tint. Crisp smooth antialiasing. Single sprite, not a sprite sheet.",
+      "chroma": true,
+      "width": null,
+      "height": null,
+      "status": "blocked_quota",
+      "lastError": "HTTP 429: límites FreeTier de tokens y peticiones por minuto/día"
+    }
+  ],
+  "artProvider": {
+    "active": "openai-built-in",
+    "reason": "Usuario autorizó ChatGPT temporalmente tras HTTP 429 de Google AI Studio",
+    "googleResume": "Cuando exista cuota disponible, reutilizar tools/gen_assets.js"
+  }
+}

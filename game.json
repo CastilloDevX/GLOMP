@@ -1,0 +1,318 @@
+{
+  "firstLayout": "Boot",
+  "gdVersion": {
+    "build": 283,
+    "major": 5,
+    "minor": 6,
+    "revision": 0
+  },
+  "initialGDVersion": "5.6.283",
+  "properties": {
+    "adaptGameResolutionAtRuntime": true,
+    "antialiasingMode": "MSAA",
+    "antialisingEnabledOnMobile": false,
+    "folderProject": false,
+    "orientation": "landscape",
+    "packageName": "com.glomp.party",
+    "pixelsRounding": false,
+    "projectUuid": "",
+    "scaleMode": "linear",
+    "sizeOnStartupMode": "adaptWidth",
+    "templateSlug": "",
+    "version": "1.0.0",
+    "name": "GLOMP!",
+    "description": "",
+    "author": "",
+    "windowWidth": 1280,
+    "windowHeight": 720,
+    "latestCompilationDirectory": "",
+    "maxFPS": 144,
+    "minFPS": 20,
+    "verticalSync": false,
+    "platformSpecificAssets": {},
+    "loadingScreen": {
+      "backgroundColor": 0,
+      "backgroundFadeInDuration": 0.2,
+      "backgroundImageResourceName": "",
+      "gdevelopLogoStyle": "light",
+      "logoAndProgressFadeInDuration": 0.2,
+      "logoAndProgressLogoFadeInDelay": 0,
+      "minDuration": 1.5,
+      "progressBarColor": 16777215,
+      "progressBarHeight": 20,
+      "progressBarMaxWidth": 200,
+      "progressBarMinWidth": 40,
+      "progressBarWidthPercent": 30,
+      "showGDevelopSplash": true,
+      "showProgressBar": true
+    },
+    "watermark": {
+      "placement": "bottom-left",
+      "showWatermark": true
+    },
+    "authorIds": [],
+    "authorUsernames": [],
+    "categories": [],
+    "playableDevices": [],
+    "extensionProperties": [],
+    "platforms": [
+      {
+        "name": "GDevelop JS platform"
+      }
+    ],
+    "currentPlatform": "GDevelop JS platform"
+  },
+  "resources": {
+    "resources": []
+  },
+  "objects": [],
+  "objectsFolderStructure": {
+    "folderName": "__ROOT"
+  },
+  "objectsGroups": [],
+  "variables": [],
+  "layouts": [
+    {
+      "b": 49,
+      "disableInputWhenNotFocused": true,
+      "mangledName": "Boot",
+      "name": "Boot",
+      "r": 25,
+      "standardSortMethod": true,
+      "stopSoundsOnStartup": true,
+      "title": "",
+      "v": 19,
+      "uiSettings": {},
+      "objectsGroups": [],
+      "variables": [],
+      "instances": [
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "keepRatio": true,
+          "layer": "",
+          "name": "BootTitle",
+          "persistentUuid": "b110f6a5-734f-4714-8902-f42db1d0165b",
+          "width": 0,
+          "x": 88,
+          "y": 80,
+          "zOrder": 0,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "keepRatio": true,
+          "layer": "",
+          "name": "BootStatus",
+          "persistentUuid": "abb65b5b-62c1-4f96-810d-29180c893378",
+          "width": 0,
+          "x": 92,
+          "y": 210,
+          "zOrder": 0,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        },
+        {
+          "angle": 0,
+          "customSize": false,
+          "height": 0,
+          "keepRatio": true,
+          "layer": "",
+          "name": "BootHelp",
+          "persistentUuid": "7d61475a-6b63-4370-80e6-0e7b8a63c688",
+          "width": 0,
+          "x": 92,
+          "y": 310,
+          "zOrder": 0,
+          "numberProperties": [],
+          "stringProperties": [],
+          "initialVariables": []
+        }
+      ],
+      "objects": [
+        {
+          "assetStoreId": "",
+          "bold": true,
+          "italic": false,
+          "name": "BootTitle",
+          "smoothed": true,
+          "type": "TextObject::Text",
+          "underlined": false,
+          "variables": [],
+          "effects": [],
+          "behaviors": [],
+          "string": "",
+          "font": "",
+          "textAlignment": "left",
+          "characterSize": 76,
+          "color": {
+            "r": 207,
+            "g": 255,
+            "b": 103
+          },
+          "content": {
+            "bold": true,
+            "isOutlineEnabled": false,
+            "isShadowEnabled": false,
+            "italic": false,
+            "outlineColor": "255;255;255",
+            "outlineThickness": 2,
+            "shadowAngle": 90,
+            "shadowBlurRadius": 2,
+            "shadowColor": "0;0;0",
+            "shadowDistance": 4,
+            "shadowOpacity": 127,
+            "smoothed": true,
+            "underlined": false,
+            "text": "",
+            "font": "",
+            "textAlignment": "left",
+            "verticalTextAlignment": "top",
+            "characterSize": 76,
+            "lineHeight": 0,
+            "color": "207;255;103"
+          }
+        },
+        {
+          "assetStoreId": "",
+          "bold": false,
+          "italic": false,
+          "name": "BootStatus",
+          "smoothed": true,
+          "type": "TextObject::Text",
+          "underlined": false,
+          "variables": [],
+          "effects": [],
+          "behaviors": [],
+          "string": "",
+          "font": "",
+          "textAlignment": "left",
+          "characterSize": 28,
+          "color": {
+            "r": 255,
+            "g": 255,
+            "b": 255
+          },
+          "content": {
+            "bold": false,
+            "isOutlineEnabled": false,
+            "isShadowEnabled": false,
+            "italic": false,
+            "outlineColor": "255;255;255",
+            "outlineThickness": 2,
+            "shadowAngle": 90,
+            "shadowBlurRadius": 2,
+            "shadowColor": "0;0;0",
+            "shadowDistance": 4,
+            "shadowOpacity": 127,
+            "smoothed": true,
+            "underlined": false,
+            "text": "",
+            "font": "",
+            "textAlignment": "left",
+            "verticalTextAlignment": "top",
+            "characterSize": 28,
+            "lineHeight": 0,
+            "color": "255;255;255"
+          }
+        },
+        {
+          "assetStoreId": "",
+          "bold": false,
+          "italic": false,
+          "name": "BootHelp",
+          "smoothed": true,
+          "type": "TextObject::Text",
+          "underlined": false,
+          "variables": [],
+          "effects": [],
+          "behaviors": [],
+          "string": "",
+          "font": "",
+          "textAlignment": "left",
+          "characterSize": 22,
+          "color": {
+            "r": 209,
+            "g": 200,
+            "b": 232
+          },
+          "content": {
+            "bold": false,
+            "isOutlineEnabled": false,
+            "isShadowEnabled": false,
+            "italic": false,
+            "outlineColor": "255;255;255",
+            "outlineThickness": 2,
+            "shadowAngle": 90,
+            "shadowBlurRadius": 2,
+            "shadowColor": "0;0;0",
+            "shadowDistance": 4,
+            "shadowOpacity": 127,
+            "smoothed": true,
+            "underlined": false,
+            "text": "",
+            "font": "",
+            "textAlignment": "left",
+            "verticalTextAlignment": "top",
+            "characterSize": 22,
+            "lineHeight": 0,
+            "color": "209;200;232"
+          }
+        }
+      ],
+      "objectsFolderStructure": {
+        "folderName": "__ROOT"
+      },
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::JsCode",
+          "inlineCode": "// GLOMP:INJECT scene=Boot\n// Generado por tools/build.js. Editar src/, no este evento.\nglobalThis.GLOMP = globalThis.GLOMP || {};\nif (!GLOMP.__loaded) {\n// Módulo: src/config.js\n// Todos los valores de balance y tiempos viven aquí.\nGLOMP.config = {\n  maxPlayers: 6,\n  arenaSizes: { s: 1400, m: 1700, l: 2000 },\n  slicesToWin: 5,\n  slices: { first: 2, second: 1 },\n  instructionSeconds: 5,\n  telegraphSeconds: 0.8,\n  rouletteSeconds: 3,\n  player: {\n    baseSpeed: 260, scalePerMass: 0.012, maxScale: 3.0, speedPenalty: 0.10,\n    maxAmmo: 3, initialHealth: 100, maxKeyboardPlayers: 2, inactivityLimit: 5,\n  },\n  food: {\n    bite: { mass: 1, throwable: false },\n    plate: { mass: 3, throwable: false },\n    feast: { mass: 10, eatSeconds: 1, throwable: false },\n    tomato: { mass: 1, damage: 25, speed: 700, throwable: true },\n    gum: { mass: 1, damage: 10, speed: 500, puddleSeconds: 3, slowMultiplier: 0.5, throwable: true },\n    melon: { mass: 1, damage: 35, edgeDamage: 20, speed: 400, radius: 90, throwable: true },\n    lettuce: { heal: 25, throwable: false },\n    banana: { speedBoost: 0.25, boostSeconds: 4, throwable: false },\n  },\n  minigames: {\n    eatEm: {\n      minPlayers: 2, maxPlayers: 4, duration: 150, initialMass: 0, spawnImmunity: 3,\n      eatScaleRatio: 1.3, coverSeconds: 0.3, absorbedMassRatio: 0.5, droppedMassRatio: 0.5,\n      respawnSeconds: 2, respawnMassRatio: 0.3, minRespawnMass: 5,\n      botCount: 4, botMass: 5, botRespawnSeconds: 10,\n      sauceStart: 45, sauceInterval: 25, sauceStep: 0.12, sauceMassPerSecond: 4, sauceSpeedMultiplier: 0.7,\n      minBushes: 3, maxBushes: 4, bushScaleLimit: 1.6,\n      dashSpeedBoost: 0.6, dashSeconds: 0.8, dashMassCost: 3, dashCooldown: 1.5,\n    },\n    pom: {\n      minPlayers: 2, maxPlayers: 6, duration: 75, maxBombs: 10, maxCoverage: 0.6, minRouteWidth: 120,\n      bombs: {\n        small: { radius: 110, inflateSeconds: 1.2, availableAt: 0 },\n        wide: { width: 190, height: 100, inflateSeconds: 1.5, availableAt: 20 },\n        tall: { width: 100, height: 260, inflateSeconds: 1.8, availableAt: 35 },\n        mystery: { availableAt: 45 },\n      },\n      frequency: [{ from: 0, interval: 1.6 }, { from: 20, interval: 1.1 }, { from: 45, interval: 0.7 }],\n      puddleSeconds: 2, puddleSpeedMultiplier: 0.5,\n      bananaBoost: 0.3, bananaSeconds: 4, bananaInterval: 15, shrinkStart: 50, arenaFinalRatio: 0.5,\n    },\n    crazy: {\n      minPlayers: 2, maxPlayers: 6, announcementSeconds: 1, spawnInterval: 3, maxFood: 40, antiStallOrders: 3,\n      stages: [{ fromOrder: 1, seconds: 10, types: 6 }, { fromOrder: 4, seconds: 8, types: 9 }, { fromOrder: 7, seconds: 6, types: 12 }, { fromOrder: 10, seconds: 5, types: 14 }],\n    },\n    buffet: {\n      minPlayers: 3, maxPlayers: 6, duration: 120,\n      biteRate: 1.2, maxBites: 60, plateInterval: 3, maxPlates: 10,\n      firstFeastAt: 10, feastInterval: 20, feastEatSeconds: 1,\n      dashDistance: 180, dashSeconds: 0.18, dashCooldown: 3,\n      pushDistance: 120, stunSeconds: 0.6, droppedMassRatio: 0.05, minDroppedMass: 2, maxDroppedMass: 12, hitImmunity: 1.5,\n      finalFeastAt: 100, finalValueMultiplier: 2, finalSpawnMultiplier: 2,\n      bananaBoost: 0.25, bananaSeconds: 4, bananaInterval: 15,\n    },\n    war: {\n      minPlayers: 2, maxPlayers: 6, duration: 120, health: 100, hitImmunity: 0.6, knockback: 80,\n      minCrates: 6, maxCrates: 8, crateInterval: 4,\n      foodWeights: { tomato: 0.45, gum: 0.2, melon: 0.2, lettuce: 0.1, banana: 0.05 },\n      aimArrowLength: 40, fireInterval: 0.35, keyboardAimDirections: 8, aimAssistDegrees: 8,\n      zoneStart: 30, arenaFinalRatio: 0.4, zoneDamage: 15, zoneDamageInterval: 2.5, comebackLettuceMultiplier: 2,\n    },\n  },\n  economy: {\n    roundFirst: 4, roundSecond: 2, matchWin: 15, matchComplete: 5, firstDailyMatch: 10,\n    groupMinPlayers: 4, groupMultiplier: 1.5,\n    prices: { bodyColor: 40, face: 30, accessory: 60, particles: 80, trail: 100, set: 180 },\n    rotatingItems: 6, pieces: { bodies: 8, faces: 6, accessories: 10, particles: 4, trails: 3 }, initialFaces: 3,\n  },\n  diagnostics: { gamepadPollSeconds: 1 },\n};\n\n// Módulo: src/i18n.js\n// Todos los textos visibles, incluidos los diagnósticos del arranque.\nGLOMP.i18n = {\n  es: {\n    bootTitle: 'GLOMP!',\n    bootStatus: 'Base del proyecto lista · Mandos detectados: {count}',\n    bootNoGamepadAPI: 'La API de mandos no está disponible en este navegador.',\n    bootHelp: 'Hito 0 · Prueba de mandos\\n\\nConecta los mandos y pulsa un botón en cada uno.\\nPara confirmar seis jugadores, prueba los seis a la vez.\\n\\nEl menú y los minijuegos se construyen en los siguientes hitos.',\n    gamepadLog: '[GLOMP] Mandos detectados: {count}. Índices: {indices}',\n    gamepadUnavailable: '[GLOMP] La API de mandos no está disponible en este navegador.',\n  },\n  text: function (key, values) {\n    let text = GLOMP.i18n.es[key] || key;\n    Object.keys(values || {}).forEach(function (name) { text = text.split('{' + name + '}').join(String(values[name])); });\n    return text;\n  },\n};\n\n// Módulo: src/boot.js\n// Namespace compartido; los módulos pendientes se implementan en su hito.\nGLOMP.player = GLOMP.player || {};\nGLOMP.match = GLOMP.match || {};\nGLOMP.minigames = GLOMP.minigames || { eatEm: {}, pom: {}, crazy: {}, buffet: {}, war: {} };\nGLOMP.boot = {\n  pollElapsed: 0,\n  gamepadSignature: null,\n  diagnostics: { connectedCount: null, indices: [], apiAvailable: false, sixControllersVerified: false },\n  onStart: function (scene) {\n    if (GLOMP.save && typeof GLOMP.save.load === 'function') GLOMP.save.load();\n    GLOMP.boot.pollElapsed = 0;\n    GLOMP.boot.gamepadSignature = null;\n    scene.getObjects('BootTitle').forEach(function (object) { object.setString(GLOMP.i18n.text('bootTitle')); });\n    scene.getObjects('BootHelp').forEach(function (object) { object.setString(GLOMP.i18n.text('bootHelp')); });\n    GLOMP.boot.scanGamepads(scene);\n  },\n  scanGamepads: function (scene) {\n    let pads = [], available = false;\n    try {\n      available = typeof navigator !== 'undefined' && typeof navigator.getGamepads === 'function';\n      if (available) pads = Array.from(navigator.getGamepads() || []).filter(function (pad) { return pad && pad.connected; });\n    } catch (error) { available = false; }\n    const indices = pads.map(function (pad) { return pad.index; });\n    const signature = String(available) + ':' + indices.join(',');\n    const state = GLOMP.boot.diagnostics;\n    state.connectedCount = pads.length; state.indices = indices; state.apiAvailable = available;\n    if (signature !== GLOMP.boot.gamepadSignature) {\n      GLOMP.boot.gamepadSignature = signature;\n      console.info(GLOMP.i18n.text(available ? 'gamepadLog' : 'gamepadUnavailable', { count: pads.length, indices: indices.join(', ') }));\n      scene.getObjects('BootStatus').forEach(function (object) { object.setString(GLOMP.i18n.text(available ? 'bootStatus' : 'bootNoGamepadAPI', { count: pads.length })); });\n    }\n  },\n  onTick: function (scene, dt) {\n    if (!Number.isFinite(dt) || dt < 0) return;\n    GLOMP.boot.pollElapsed += dt;\n    if (GLOMP.boot.pollElapsed >= GLOMP.config.diagnostics.gamepadPollSeconds) {\n      GLOMP.boot.pollElapsed %= GLOMP.config.diagnostics.gamepadPollSeconds;\n      GLOMP.boot.scanGamepads(scene);\n    }\n  },\n};\nGLOMP.__loaded = true;\n}\nif (!runtimeScene.__glompReady) { GLOMP.boot.onStart(runtimeScene); runtimeScene.__glompReady = true; }\nGLOMP.boot.onTick(runtimeScene, runtimeScene.getTimeManager().getElapsedTime() / 1000);\n",
+          "parameterObjects": "",
+          "useStrict": true,
+          "eventsSheetExpanded": false
+        }
+      ],
+      "layers": [
+        {
+          "ambientLightColorB": 200,
+          "ambientLightColorG": 200,
+          "ambientLightColorR": 200,
+          "camera2DPlaneMaxDrawingDistance": 5000,
+          "camera3DFarPlaneDistance": 10000,
+          "camera3DFieldOfView": 45,
+          "camera3DNearPlaneDistance": 3,
+          "cameraType": "",
+          "followBaseLayerCamera": false,
+          "isLightingLayer": false,
+          "isLocked": false,
+          "name": "",
+          "renderingType": "",
+          "visibility": true,
+          "cameras": [
+            {
+              "defaultSize": true,
+              "defaultViewport": true,
+              "height": 0,
+              "viewportBottom": 1,
+              "viewportLeft": 0,
+              "viewportRight": 1,
+              "viewportTop": 0,
+              "width": 0
+            }
+          ],
+          "effects": []
+        }
+      ],
+      "behaviorsSharedData": []
+    }
+  ],
+  "externalEvents": [],
+  "eventsFunctionsExtensions": [],
+  "externalLayouts": []
+}

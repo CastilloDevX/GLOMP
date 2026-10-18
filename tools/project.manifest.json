@@ -1,0 +1,17 @@
+{
+  "milestone": 0,
+  "project": { "name": "GLOMP!", "windowWidth": 1280, "windowHeight": 720, "maxFPS": 144, "minFPS": 20, "packageName": "com.glomp.party" },
+  "sources": ["src/config.js", "src/i18n.js", "src/boot.js"],
+  "scenes": [
+    {
+      "name": "Boot",
+      "dispatcher": "if (!runtimeScene.__glompReady) { GLOMP.boot.onStart(runtimeScene); runtimeScene.__glompReady = true; }\nGLOMP.boot.onTick(runtimeScene, runtimeScene.getTimeManager().getElapsedTime() / 1000);",
+      "background": { "r": 25, "v": 19, "b": 49 },
+      "texts": [
+        { "name": "BootTitle", "x": 88, "y": 80, "size": 76, "color": [207, 255, 103], "bold": true },
+        { "name": "BootStatus", "x": 92, "y": 210, "size": 28, "color": [255, 255, 255] },
+        { "name": "BootHelp", "x": 92, "y": 310, "size": 22, "color": [209, 200, 232] }
+      ]
+    }
+  ]
+}

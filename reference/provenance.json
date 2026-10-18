@@ -1,0 +1,10 @@
+{
+  "editor": "GDevelop 5.6.283",
+  "method": "Fábrica nativa gd.ProjectHelper.createNewGDJSProject y gd.EventsList.insertNewEvent dentro del editor Electron; guardado mediante gd.Serializer.toJSON",
+  "automated": true,
+  "humanReviewed": false,
+  "files": {
+    "empty.json": "7324b4c029dab37874b37e935f4a33b82dc70e72e3353822faf68b7bedee8286",
+    "templates.json": "da8f27391b1a157f17afc4e209ea402ae3c34120feea71b5fedd1eddd64d4fac"
+  }
+}
