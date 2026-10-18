@@ -3,8 +3,7 @@
 Party game local de slimes y comida, para GDevelop 5 y exportación HTML5.
 La especificación está en AGENTS.md; §11 prevalece sobre sus reglas anteriores.
 
-**Estado: andamio del Hito 0 implementado, pendiente de aceptación humana y de
-prueba física de seis mandos. Todavía no es un juego jugable.**
+**Estado: andamio del Hito 0 y shell de UI del Hito 0.5 (Menú, Sala, Personalizar, Tienda, Ajustes, Créditos, Arena de prueba) conectados y verificados sin render. Pendiente de aceptación humana en GDevelop y de la prueba física de seis mandos. Todavía no hay minijuegos.**
 
 ## Abrir
 

@@ -1,0 +1,16 @@
+{
+  "gdVersion": {
+    "build": 284,
+    "major": 5,
+    "minor": 6,
+    "revision": 0
+  },
+  "resource": {
+    "file": "assets/ui/title-glomp.png",
+    "kind": "image",
+    "metadata": "",
+    "name": "image",
+    "smoothed": true,
+    "userAdded": false
+  }
+}

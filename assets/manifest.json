@@ -16,7 +16,13 @@
       "height": 1254,
       "status": "approved",
       "sha256": "090679a6b6c6f954eea7db127cbd65df2c230eefe9f7ca019a38ddae7ef02bae",
-      "approval": "Estilo aprobado por el usuario en esta sesión"
+      "approval": "Estilo aprobado por el usuario en esta sesión",
+      "bounds": {
+        "x": 241,
+        "y": 312,
+        "width": 776,
+        "height": 633
+      }
     },
     {
       "id": "slime-base-nanobanana-v1",
@@ -62,6 +68,118 @@
       "height": null,
       "status": "blocked_quota",
       "lastError": "HTTP 429: límites FreeTier de tokens y peticiones por minuto/día"
+    },
+    {
+      "id": "title-glomp",
+      "file": "assets/ui/title-glomp.png",
+      "category": "title",
+      "milestone": 0.5,
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "references": [
+        "samples/banner.png"
+      ],
+      "prompt": "Use case: logo-brand. Isolated transparent GLOMP! main-title wordmark matching samples/banner.png lettering: pink G, golden L, lime O with winking face, blue M, purple P, golden !; glossy jelly letters, thick chocolate extrusion and cream outline. Exact text GLOMP! No scenery, other characters or extra words.",
+      "promptNote": "Resumen del brief; el prompt completo se conserva en la conversación de generación.",
+      "width": 1983,
+      "height": 793,
+      "bounds": {
+        "x": 63,
+        "y": 86,
+        "width": 1896,
+        "height": 640
+      },
+      "status": "approved",
+      "approval": "Aprobado por el usuario en esta sesión",
+      "sha256": "dd7e08fed8b784bc273b6d360df8872c055d957cb5e4b4ef9367247e44726792"
+    },
+    {
+      "id": "menu-village",
+      "file": "assets/ui/menu-village.png",
+      "category": "background",
+      "milestone": 0.5,
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "references": [
+        "samples/banner.png"
+      ],
+      "prompt": "Use case: stylized-concept. Widescreen 16:9 GLOMP! menu background matching samples/banner.png. Cheerful food village plaza, cream timber houses at far edges, soft blue sky, distant towers and clouds, warm peach paving; center and upper middle two thirds quiet for a separate logo. No text, characters, slimes or UI.",
+      "promptNote": "Resumen del brief; el prompt completo se conserva en la conversación de generación.",
+      "width": 1672,
+      "height": 941,
+      "bounds": null,
+      "status": "approved",
+      "approval": "Aprobado por el usuario en esta sesión",
+      "sha256": "4ac587d1aad35c0f62fb3c46f960b0311978709997f1d8f7aafb31e0ea2ed8ce"
+    },
+    {
+      "id": "face-happy",
+      "file": "assets/face/happy.png",
+      "category": "face",
+      "milestone": 0.5,
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "references": [
+        "assets/slime/base-white-chatgpt-v1.png",
+        "samples/skins.png"
+      ],
+      "prompt": "Use case: stylized-concept. Separate transparent face overlay for GLOMP! Two cheerful chocolate oval eyes with white glints and small open happy smiling mouth with pink tongue. Body alignment and skins style references supplied. Eyes and mouth only, no body, head, hat, cheeks, scenery or words.",
+      "promptNote": "Resumen del brief; el prompt completo se conserva en la conversación de generación.",
+      "width": 1536,
+      "height": 1024,
+      "bounds": {
+        "x": 389,
+        "y": 330,
+        "width": 756,
+        "height": 406
+      },
+      "status": "approved",
+      "approval": "Aprobado por el usuario en esta sesión",
+      "sha256": "1fa8bdc674f3cb39fcfca2a557631e009f25e157254cec282ab0971b75f22f0a"
+    },
+    {
+      "id": "food-bite",
+      "file": "assets/food/bite.png",
+      "category": "food",
+      "milestone": 1,
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "references": [
+        "samples/banner.png",
+        "samples/map-candy.png"
+      ],
+      "prompt": "Use case: stylized-concept. One GLOMP! collectible basic food bite: small golden cheese puff / round bread bite, rounded triangular pillow, creamy highlights and soft chocolate outline. Glossy game finish, slight top-down view, readable at 24 pixels. No face, plate, packaging, shadow, words or extra objects. Transparent background.",
+      "promptNote": "Resumen del brief; el prompt completo se conserva en la conversación de generación.",
+      "width": 1254,
+      "height": 1254,
+      "bounds": {
+        "x": 274,
+        "y": 299,
+        "width": 714,
+        "height": 668
+      },
+      "status": "approved",
+      "approval": "Aprobado por el usuario en esta sesión",
+      "sha256": "e068b93b8cb47ff714cf6c5cb59c5e433d356a47bde27b58e5eb9e7686d99e11"
+    },
+    {
+      "id": "banner-original",
+      "file": "assets/ui/banner-original.png",
+      "category": "reference-banner",
+      "milestone": 0.5,
+      "provider": "user",
+      "model": null,
+      "references": [
+        "samples/banner.png"
+      ],
+      "prompt": null,
+      "promptNote": "Resumen del brief; el prompt completo se conserva en la conversación de generación.",
+      "width": 1672,
+      "height": 941,
+      "bounds": null,
+      "status": "approved",
+      "approval": "Aprobado por el usuario en esta sesión",
+      "sha256": "12d7880bee225b37e46e6e3a80f59524e93ba7dcdc16674a895359320aca032a"
     }
   ],
   "artProvider": {

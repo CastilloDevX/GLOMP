@@ -41,6 +41,13 @@ function main() {
       Object.assign(instance, { x: spec.x, y: spec.y });
     }
   }
+  const imageResource = readJSON('reference/image-resource.json').resource;
+  for (const file of manifest.resources || []) {
+    assert(fs.existsSync(path.join(root, file)), `Recurso inexistente: ${file}`);
+    let resource = game.resources.resources.find(resource => resource.name === file);
+    if (!resource) { resource = clone(imageResource); game.resources.resources.push(resource); }
+    Object.assign(resource, { name: file, file });
+  }
   validateProject(game, reference, manifest);
   const text = JSON.stringify(game, null, 2) + '\n';
   if (exists && fs.readFileSync(gamePath, 'utf8') === text) { console.log('Scaffold sin cambios'); return; }

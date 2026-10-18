@@ -13,6 +13,7 @@ GLOMP.boot = {
     scene.getObjects('BootTitle').forEach(function (object) { object.setString(GLOMP.i18n.text('bootTitle')); });
     scene.getObjects('BootHelp').forEach(function (object) { object.setString(GLOMP.i18n.text('bootHelp')); });
     GLOMP.boot.scanGamepads(scene);
+    if (scene.getGame && GLOMP.ui) GLOMP.ui.startBoot(scene);
   },
   scanGamepads: function (scene) {
     let pads = [], available = false;
@@ -37,5 +38,6 @@ GLOMP.boot = {
       GLOMP.boot.pollElapsed %= GLOMP.config.diagnostics.gamepadPollSeconds;
       GLOMP.boot.scanGamepads(scene);
     }
+    if (scene.getGame && GLOMP.ui) GLOMP.ui.tickBoot(scene, dt);
   },
 };

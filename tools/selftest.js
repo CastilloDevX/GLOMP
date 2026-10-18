@@ -110,4 +110,54 @@ test('build y scaffold idempotentes', () => {
   for (const script of ['tools/build.js', 'tools/build.js', 'tools/scaffold.js']) child.execFileSync(process.execPath, [script]);
   assert.equal(hash(), before); assert.equal(backups(), previousBackups);
 });
-console.log(`${passed} comprobaciones del Hito 0 superadas. Minijuegos y mandos físicos: pendientes, sin simular aceptación.`);
+function game() {
+  const store = {};
+  const context = vm.createContext({ console, localStorage: { getItem: key => store[key] || null, setItem: (key, value) => { store[key] = value; } }, navigator: { getGamepads: () => [] } });
+  context.globalThis = context;
+  vm.runInContext('globalThis.GLOMP = {};', context);
+  for (const file of manifest.sources) vm.runInContext(fs.readFileSync(file, 'utf8'), context, { filename: file });
+  context.GLOMP.save.load();
+  return context.GLOMP;
+}
+test('todas las claves de i18n usadas por UI y sandbox existen', () => {
+  const G = game(), used = new Set();
+  for (const file of ['src/ui.js', 'src/sandbox.js', 'src/shop.js']) {
+    for (const found of fs.readFileSync(file, 'utf8').matchAll(/\b(?:t|text|notify)\(\s*'([A-Za-z]+)'/g)) used.add(found[1]);
+  }
+  ['lobby', 'customize', 'shop', 'settings', 'credits'].forEach(name => used.add(`${name}Title`));
+  G.config.art.bodyColors.forEach((_, index) => used.add(`color${index}`));
+  G.config.art.faces.forEach((_, index) => used.add(`face${index}`));
+  ['up', 'down', 'left', 'right', 'action'].forEach(key => used.add(key));
+  const missing = [...used].filter(key => !G.i18n.es[key]);
+  assert.deepEqual(missing, []);
+});
+for (const count of [2, 6]) {
+  test(`sandbox con ${count} jugadores: física estable y dentro de la arena`, () => {
+    const G = game();
+    const world = G.sandbox.createWorld(Array.from({ length: count }, (_, index) => ({ source: { kind: index < 2 ? 'keyboard' : 'gamepad', index } })), 99);
+    for (let tick = 0; tick < 60 * 30; tick++) {
+      const controls = world.players.map((_, index) => ({ x: Math.cos(tick / 45 + index), y: Math.sin(tick / 31 + index), connected: true }));
+      G.sandbox.advance(world, 1 / 30, controls);
+      for (const player of world.players) assert(Number.isFinite(player.x) && player.x > 0 && player.x < world.size && player.y > 0 && player.y < world.size);
+    }
+    assert(world.players.every(player => player.mass > 0));
+  });
+}
+test('sandbox idéntico a 30 y a 144 fps', () => {
+  const position = fps => {
+    const G = game(), world = G.sandbox.createWorld([{ source: { kind: 'keyboard', index: 0 } }], 7);
+    for (let frame = 0; frame < fps * 5; frame++) G.sandbox.advance(world, 1 / fps, [{ x: 1, y: 0, connected: true }]);
+    return world.players[0].x.toFixed(1);
+  };
+  assert.equal(position(30), position(144));
+});
+test('la tienda no modifica config y solo equipa lo comprado', () => {
+  const G = game(), before = JSON.stringify(G.config);
+  assert.equal(G.shop.equip('body3', 0), false);
+  G.save.data.coins = 40;
+  assert.equal(G.shop.buy('body3'), true);
+  assert.equal(G.shop.buy('body3'), false);
+  assert.equal(G.shop.equip('body3', 0), true);
+  assert.equal(JSON.stringify(G.config), before);
+});
+console.log(`${passed} comprobaciones superadas (Hitos 0 y 0.5, sin render). Minijuegos y mandos físicos: pendientes, sin simular aceptación.`);

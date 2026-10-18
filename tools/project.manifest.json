@@ -1,17 +1,143 @@
 {
-  "milestone": 0,
-  "project": { "name": "GLOMP!", "windowWidth": 1280, "windowHeight": 720, "maxFPS": 144, "minFPS": 20, "packageName": "com.glomp.party" },
-  "sources": ["src/config.js", "src/i18n.js", "src/boot.js"],
+  "milestone": "0.5",
+  "project": {
+    "name": "GLOMP!",
+    "windowWidth": 1280,
+    "windowHeight": 720,
+    "maxFPS": 144,
+    "minFPS": 20,
+    "packageName": "com.glomp.party"
+  },
+  "sources": [
+    "src/config.js",
+    "src/i18n.js",
+    "src/art.js",
+    "src/save.js",
+    "src/input.js",
+    "src/view.js",
+    "src/player.js",
+    "src/food.js",
+    "src/shop.js",
+    "src/ui.js",
+    "src/sandbox.js",
+    "src/boot.js"
+  ],
   "scenes": [
     {
       "name": "Boot",
       "dispatcher": "if (!runtimeScene.__glompReady) { GLOMP.boot.onStart(runtimeScene); runtimeScene.__glompReady = true; }\nGLOMP.boot.onTick(runtimeScene, runtimeScene.getTimeManager().getElapsedTime() / 1000);",
-      "background": { "r": 25, "v": 19, "b": 49 },
+      "background": {
+        "r": 25,
+        "v": 19,
+        "b": 49
+      },
       "texts": [
-        { "name": "BootTitle", "x": 88, "y": 80, "size": 76, "color": [207, 255, 103], "bold": true },
-        { "name": "BootStatus", "x": 92, "y": 210, "size": 28, "color": [255, 255, 255] },
-        { "name": "BootHelp", "x": 92, "y": 310, "size": 22, "color": [209, 200, 232] }
+        {
+          "name": "BootTitle",
+          "x": 88,
+          "y": 80,
+          "size": 76,
+          "color": [
+            207,
+            255,
+            103
+          ],
+          "bold": true
+        },
+        {
+          "name": "BootStatus",
+          "x": 92,
+          "y": 210,
+          "size": 28,
+          "color": [
+            255,
+            255,
+            255
+          ]
+        },
+        {
+          "name": "BootHelp",
+          "x": 92,
+          "y": 310,
+          "size": 22,
+          "color": [
+            209,
+            200,
+            232
+          ]
+        }
       ]
+    },
+    {
+      "name": "Menu",
+      "dispatcher": "if (!runtimeScene.__glompReady) { GLOMP.ui.onStart(runtimeScene); runtimeScene.__glompReady = true; }\nGLOMP.ui.onTick(runtimeScene, runtimeScene.getTimeManager().getElapsedTime() / 1000);",
+      "background": {
+        "r": 25,
+        "v": 19,
+        "b": 49
+      }
+    },
+    {
+      "name": "Lobby",
+      "dispatcher": "if (!runtimeScene.__glompReady) { GLOMP.ui.onStart(runtimeScene); runtimeScene.__glompReady = true; }\nGLOMP.ui.onTick(runtimeScene, runtimeScene.getTimeManager().getElapsedTime() / 1000);",
+      "background": {
+        "r": 25,
+        "v": 19,
+        "b": 49
+      }
+    },
+    {
+      "name": "Customize",
+      "dispatcher": "if (!runtimeScene.__glompReady) { GLOMP.ui.onStart(runtimeScene); runtimeScene.__glompReady = true; }\nGLOMP.ui.onTick(runtimeScene, runtimeScene.getTimeManager().getElapsedTime() / 1000);",
+      "background": {
+        "r": 25,
+        "v": 19,
+        "b": 49
+      }
+    },
+    {
+      "name": "Shop",
+      "dispatcher": "if (!runtimeScene.__glompReady) { GLOMP.ui.onStart(runtimeScene); runtimeScene.__glompReady = true; }\nGLOMP.ui.onTick(runtimeScene, runtimeScene.getTimeManager().getElapsedTime() / 1000);",
+      "background": {
+        "r": 25,
+        "v": 19,
+        "b": 49
+      }
+    },
+    {
+      "name": "Settings",
+      "dispatcher": "if (!runtimeScene.__glompReady) { GLOMP.ui.onStart(runtimeScene); runtimeScene.__glompReady = true; }\nGLOMP.ui.onTick(runtimeScene, runtimeScene.getTimeManager().getElapsedTime() / 1000);",
+      "background": {
+        "r": 25,
+        "v": 19,
+        "b": 49
+      }
+    },
+    {
+      "name": "Credits",
+      "dispatcher": "if (!runtimeScene.__glompReady) { GLOMP.ui.onStart(runtimeScene); runtimeScene.__glompReady = true; }\nGLOMP.ui.onTick(runtimeScene, runtimeScene.getTimeManager().getElapsedTime() / 1000);",
+      "background": {
+        "r": 25,
+        "v": 19,
+        "b": 49
+      }
+    },
+    {
+      "name": "Sandbox",
+      "dispatcher": "if (!runtimeScene.__glompReady) { GLOMP.sandbox.onStart(runtimeScene); runtimeScene.__glompReady = true; }\nGLOMP.sandbox.onTick(runtimeScene, runtimeScene.getTimeManager().getElapsedTime() / 1000);",
+      "background": {
+        "r": 25,
+        "v": 19,
+        "b": 49
+      }
     }
+  ],
+  "resources": [
+    "assets/slime/base-white-chatgpt-v1.png",
+    "assets/ui/title-glomp.png",
+    "assets/ui/menu-village.png",
+    "assets/face/happy.png",
+    "assets/food/bite.png",
+    "assets/ui/banner-original.png"
   ]
 }

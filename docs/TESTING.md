@@ -52,3 +52,23 @@ invariantes de juego no se han ejecutado ni se presentan como aprobadas.
   modifican configuración ni mecánicas.
 - H6/H7: rondas completas con los números de jugadores compatibles.
 - H8: Chrome/Firefox de otra persona, rendimiento y pruebas de diversión.
+
+## Hito 0.5 y base del Hito 1 (verificación automática)
+
+- `node tools/selftest.js`: 18 comprobaciones. Añade: claves de i18n completas,
+  sandbox con 2 y 6 jugadores (30 s simulados, sin salir de la arena ni NaN),
+  resultado idéntico a 30 y 144 fps, y tienda que no altera `GLOMP.config`.
+- El código real de `view.js`, `ui.js` y `sandbox.js` se ejecutó en Chromium sin
+  interfaz con PIXI 7.4.2 (el mismo de GDevelop 5.6.284) y un escenario simulado.
+  Menú, Sala (2 jugadores de teclado listos), Personalizar (compra y vista previa),
+  Ajustes y Arena se dibujaron sin errores de consola y la navegación pidió
+  la escena correcta. Esto NO sustituye abrir el proyecto en GDevelop.
+
+## Pendiente humano (no se declara cerrado ningún hito)
+
+1. H0: abrir `game.json`, Preview, exportar a web, probar seis mandos físicos.
+2. H0.5: recorrer Menú → Sala → Personalizar → Arena con mando y con teclado;
+   B vuelve; el foco nunca se pierde; comprar y equipar un color conserva el
+   cambio tras recargar la página.
+3. H1: mover el slime en Práctica 5 minutos y decir si se siente bien.
+   Si se ve pequeño en la arena de 1400 px, decidir si se reduce el margen de cámara.

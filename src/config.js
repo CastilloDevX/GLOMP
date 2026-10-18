@@ -71,4 +71,35 @@ GLOMP.config = {
     rotatingItems: 6, pieces: { bodies: 8, faces: 6, accessories: 10, particles: 4, trails: 3 }, initialFaces: 3,
   },
   diagnostics: { gamepadPollSeconds: 1 },
+  input: {
+    deadZone: 0.18, responsePower: 1.4, menuAxisThreshold: 0.55,
+    confirmButton: 0, backButton: 1, menuRepeatDelay: 0.35, menuRepeatInterval: 0.13,
+    keyboard: [
+      { up: 'KeyW', down: 'KeyS', left: 'KeyA', right: 'KeyD', action: 'KeyE' },
+      { up: 'ArrowUp', down: 'ArrowDown', left: 'ArrowLeft', right: 'ArrowRight', action: 'ShiftRight' },
+    ],
+  },
+  physics: {
+    fixedStep: 1 / 120, maxFrameSeconds: 0.25, baseRadius: 40, foodRadius: 18,
+    acceleration: 2400, friction: 3200, lateralRetention: 0.7, separationDamping: 0.6,
+    stretchAmount: 0.18, brakeSquash: 0.85, brakeSeconds: 0.09, springK: 180, springC: 14,
+    gulpScale: 1.12, gulpSeconds: 0.12, gulpParticles: 4, growLerp: 8,
+    immuneOpacity: 0.55, immuneHz: 8, nearlyEqualImpulse: 180, nearlyEqualSeconds: 0.15,
+  },
+  sandbox: {
+    initialFood: 45, maxFood: 60, foodInterval: 0.4, spawnPadding: 110, foodSpacing: 85,
+    wallPadding: 55, obstacleGrid: 50, particleSeconds: 0.45, particleSpeed: 130,
+    botTurnSeconds: 1.2, cameraMargin: 110, minPlayers: 1,
+    spawnAttempts: 100, testSeed: 2026, foodBobPixels: 4, foodBobRate: 2,
+  },
+  art: {
+    bodyColors: [0x7ED321, 0xFF4FA3, 0xFFC933, 0x2FA8FF, 0x8E4DFF, 0xFF8A2B, 0x40DBBA, 0xFFFFFF],
+    markerColors: [0xFF4FA3, 0xFFC933, 0x7ED321, 0x2FA8FF, 0x8E4DFF, 0xFF8A2B],
+    markerIcons: ['●', '■', '▲', '★', '◆', '⬢'], faces: ['face-happy'],
+  },
+  ui: {
+    width: 1600, height: 900, buttonHeight: 96, toastSeconds: 2.5, bootSeconds: 0.2,
+    volumeStep: 0.1, decorationBob: 9, decorationRate: 1.6,
+    colors: { chocolate: 0x5A3A24, cream: 0xFFF4DC, ink: 0x36233D, green: 0x7ED321, yellow: 0xFFC933, pink: 0xFF4FA3, blue: 0x2FA8FF, purple: 0x8E4DFF, orange: 0xFF8A2B, red: 0xE8312F, muted: 0xABA9B1, dark: 0x211A35 },
+  },
 };
