@@ -1,28 +1,47 @@
-# Runbook para Codex — GLOMP!
+# Runbook operativo — GLOMP!
 
-Lee primero `AGENTS.md` completo (incluida §11 Enmiendas).
+## Antes de trabajar
 
-## Generación de imágenes (Nano Banana / Gemini)
-- Clave: variable de entorno `GOOGLE_AI_STUDIO` (archivo `.env`, ignorado por git). No la muestres ni la escribas en ningún archivo.
-- Modelos (verificados con la clave):
-  - `gemini-3-pro-image` (Nano Banana Pro): banner, logo, mapas, hoja de skins.
-  - `gemini-3.1-flash-image` (Nano Banana 2): sprites en lote, comida, UI.
-  - `gemini-2.5-flash-image`: respaldo.
-- Endpoint REST: `POST https://generativelanguage.googleapis.com/v1beta/models/<modelo>:generateContent?key=$GOOGLE_AI_STUDIO` con `contents[].parts[]` = texto + `inline_data` (imágenes de referencia en base64). La imagen sale en `candidates[0].content.parts[].inlineData.data`.
-- Referencias de estilo OBLIGATORIAS en cada llamada: `samples/banner.png`, `samples/skins.png` (slimes/UI) o `samples/map-*.png` (mapas).
-- Prompt base fijo: "chibi glossy jelly slime, thick soft outline, candy-saturated palette, cohesive with the reference images". Mapas: "top-down Brawl-Stars-style arena, symmetric layout, flat checkered floor, tileable obstacles".
-- Transparencia: Gemini no da alfa. Pide fondo plano `#FF00FF` y recorta con `tools/chroma.js` (sin halo en bordes). Revisa cada muestra.
-- Todo se registra en `assets/manifest.json` (id, prompt, modelo, referencias, tamaño, estado). El generador (`tools/gen_assets.js`) es idempotente: no regenera lo ya hecho; soporta `--dry-run`.
-- Nombres: `assets/<categoria>/<id>.png` (`slime/`, `body/`, `face/`, `accessory/`, `particles/`, `trail/`, `food/`, `map/`, `ui/`).
-- Genera solo los assets que necesita el hito actual.
+1. Leer AGENTS.md / CLAUDE.md, incluida §12; ambos deben permanecer idénticos.
+2. Revisar cambios de otras sesiones sin descartarlos. Proyecto canónico para
+   build/scaffold: `game.json`. No sobrescribir ni borrar `GLOMP!.json` si aparece
+   como copia del editor; comparar antes de una futura unificación.
+3. Tomar la siguiente tarea pendiente de [PLAN_MAESTRO.md](PLAN_MAESTRO.md) y los
+   contratos visuales de [DISENO_JUEGO.md](DISENO_JUEGO.md).
+4. El esquema real permanece en [GDEVELOP_NOTES.md](GDEVELOP_NOTES.md). Si difiere,
+   detener la escritura y verificarlo en el editor.
 
-## Lote de assets (31 piezas §5.8 + resto)
-slime base blanco tintable (idle, squash, stretch, comer, muerte) · 8 cuerpos · 6 caras · 10 accesorios · 4 partículas · 3 rastros · 8 comidas (§5.3) · obstáculos · 3 mapas (candy, cooking, slime) con arena cuadrada 1400/1700/2000 · logo, botones, paneles, iconos de marcador ⬤ ■ ▲ ★ ◆ ⬢, tarjetas, fondos de menú/lobby.
+## Imágenes
 
-## Modelo de trabajo
-- Un hito por sesión. Al terminar: `node tools/build.js && node tools/check.js`, resumen, y esperar confirmación.
-- Un humano abre GDevelop al cierre de cada hito para confirmar "sin avisos" y jugar (§8 no marca hito cerrado sin esto).
-- Mensaje de arranque: "Lee AGENTS.md y docs/CODEX_RUNBOOK.md. Haz el Hito 0. Cuando termines, dime qué encontraste y espera."
+Proveedor activo autorizado: **ChatGPT**. Usar [ASSETS_CHATGPT.md](ASSETS_CHATGPT.md)
+para los briefs, referencias, rutas y orden. Una imagen por solicitud. Las
+herramientas de Google existentes son una alternativa suspendida por cuota; no
+hace falta configurarlas ni repetir peticiones para continuar el plan activo.
 
-## Pendiente humano (única vez)
-Crear en GDevelop 5 un proyecto vacío con una escena `Boot` que tenga un evento "Código JavaScript" y guardarlo como `reference/empty.json` (Archivo > Guardar como `.json`/carpeta del proyecto).
+- Generar muestra, inspeccionar alfa, dimensiones y estilo; aprobar antes del lote.
+- Registrar prompt completo, proveedor, referencias, dimensiones reales, estado,
+  anclajes y archivo en `assets/manifest.json`. Un resumen no sustituye el prompt.
+- Conservar originales y versiones. No sobrescribir una muestra aprobada al
+  preparar una variante. El índice `src/art.js` y el manifiesto del proyecto se
+  actualizan durante la integración, cuando exista el PNG.
+- Sprites: alfa real. El pipeline chroma existente solo se usa cuando haga falta.
+- Full HD: comprobar tamaño nativo; no etiquetar como alta resolución un reescalado.
+- No pedir a la IA colisiones, letras de botones ni un fotograma por cada tick.
+
+La clave `GOOGLE_AI_STUDIO` sigue exclusivamente en `.env` o en el entorno: no se
+imprime ni se añade a prompts, assets, exportación o commits. Si se recupera cuota,
+revisar `tools/gen_assets.js` y obtener autorización para cambiar la categoría de
+proveedor; no reemplazar silenciosamente el arte aprobado.
+
+## Implementación y cierre de una tarea
+
+- JavaScript ES2020, sin dependencias añadidas; lógica en src, balance en config,
+  textos en i18n. Recursos y escenas mediante scaffold; eventos solo por build.
+- Después de cambios de código/recursos: `node tools/scaffold.js` cuando aplique,
+  luego `node tools/build.js && node tools/check.js` y selftest pertinente.
+- Verificar render y controles en GDevelop. Registrar por separado pruebas
+  simuladas, pruebas reales y aceptación humana; no intercambiarlas.
+- Commit por tarea, en español. No incluir claves, copias del editor ni temporales.
+- Al aceptar una tarea, retirarla del plan de pendientes. Mantener esquema,
+  decisiones vigentes y pruebas todavía necesarias. Si solo cambian documentos,
+  revisar enlaces, coherencia y diff; no regenerar el juego por rutina.

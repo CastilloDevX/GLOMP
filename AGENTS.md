@@ -210,6 +210,7 @@ Flujo: `Menu → Lobby (entras pulsando A) → Personalizar → Ruleta → Instr
 Están **en orden de prioridad**. Si el calendario aprieta, se corta por el final.
 
 #### 1) Eat it, Eat them — 2–4 + bots · 2:30 · `src/minigames/eat_em.js`
+
 Come para crecer y devora a los más pequeños. **Gana el que tenga más masa a 0:00** (no "el último vivo": aquí nadie queda fuera).
 
 - Todos empiezan con masa 0 en el borde + 3 s de inmunidad.
@@ -224,6 +225,7 @@ Come para crecer y devora a los más pequeños. **Gana el que tenga más masa a 
 - Casos límite: dos grandes sobre el mismo pequeño → se lo come quien lo cubra primero. Tamaños casi iguales → rebote suave, nunca "a medias".
 
 #### 2) Bubble POM! — 2–6 · 1:15 · `src/minigames/pom.js`
+
 Caen bombas de chicle. **Un golpe y estás fuera.** Gana el último en pie.
 
 | Bomba | Zona | Infla | Desde |
@@ -241,6 +243,7 @@ Caen bombas de chicle. **Un golpe y estás fuera.** Gana el último en pie.
 - **Acción no hace nada en este modo.** Es intencional. Si en las pruebas la gente lo pulsa por instinto, se añade un Rebote (150 px, enfr. 2.5 s) — pero no lo implementes hasta que alguien lo pida.
 
 #### 3) Crazy Ingredients — 2–6 · ≈1:30 · `src/minigames/crazy.js`
+
 El suelo está cubierto de comida revuelta. Se pide un alimento: **tócalo con el cuerpo** antes de que acabe la cuenta. **Sin botón de acción.**
 
 - Se anuncia el pedido **1 s antes** de arrancar el reloj. Al tocarlo aparece un ✓ sobre tu cabeza y estás a salvo.
@@ -254,6 +257,7 @@ El suelo está cubierto de comida revuelta. Se pide un alimento: **tócalo con e
 - Termina cuando queda uno: **sin límite de tiempo fijo**.
 
 #### 4) Buffet Blitz — 3–6 · 2:00 · `src/minigames/buffet.js`
+
 Come más que nadie. **Gana el más grande a 0:00.**
 
 - Bocadito +1 (1.2/s, máx. 60) · Plato +3 (cada 3 s, máx. 10) · **Manjar +10** (cada 20 s, el 1.º a los 10 s, **nace lejos del líder**, 1.0 s encima; si te empujan se cancela).
@@ -264,6 +268,7 @@ Come más que nadie. **Gana el más grande a 0:00.**
 - Casos límite: comida simultánea → el centro más cercano. Si creces contra una pared, el motor te empuja hacia dentro (**nunca te atascas**). Zampada contra pared se detiene. Empate → más Manjares comidos.
 
 #### 5) Guerra de Comida — 2–6 · máx. 2:00 · `src/minigames/war.js`
+
 Apunta y lanza comida. La zona se cierra. Gana el último en pie; a 2:00, el de más vida.
 
 - **Vida 100**, barra sobre el slime. Inmunidad 0.6 s tras cada impacto. Retroceso 80 px.
@@ -316,36 +321,45 @@ En la demo: 8 cuerpos, 6 caras, 10 accesorios, 4 partículas, 3 rastros = **31 p
 Cada hito termina en algo **jugable**, no en "código avanzado". No empieces un hito sin cerrar el anterior.
 
 ### Hito 0 — Andamio (medio día)
+
 `tools/build.js`, `tools/check.js`, `src/config.js`, escena `Boot` con el namespace, y la **prueba de los 6 mandos**.
 ✅ *Aceptación:* `node tools/build.js && node tools/check.js` pasa, GDevelop abre el proyecto sin avisos, y la consola imprime cuántos mandos detecta.
 
 ### Hito 1 — Que moverse y comer se sienta rico (semana 1)
+
 Objeto Jugador con **squash & stretch**, movimiento, comer, crecer, escala y penalización de velocidad.
 ✅ *Aceptación:* un humano mueve un slime, come, lo ve crecer y **dice que se siente bien**. Esto es el juego entero: si falla aquí, no se arregla después. No sigas sin pasarlo.
 
 ### Hito 2 — Eat it, Eat them jugable (semana 1)
+
 Devorar, auras, reaparición, bots grises, Salsa, arbustos, Chispazo.
 ✅ *Aceptación:* 2 personas juegan una ronda completa de 2:30 y cada una devora o es devorada al menos 2 veces.
 
 ### Hito 3 — La partida existe (semana 1)
+
 Lobby, ruleta, rebanadas, reparto, pantalla de resultados, Glomps, guardado.
 ✅ *Aceptación:* una partida completa a 5 rebanadas con un solo minijuego, de principio a fin, sin errores, con 4 personas.
 
 ### Hito 4 — Bubble POM! + Crazy Ingredients (semana 2)
+
 Los dos más baratos. Con ellos la ruleta ya tiene sentido.
 ✅ *Aceptación:* las garantías del generador de bombas (§5.6) se cumplen en 50 rondas automáticas de prueba, y la regla antibloqueo de Crazy Ingredients dispara correctamente.
 
 ### Hito 5 — Personalización y tienda (semana 2)
+
 Capas, pantalla de personalización, tienda, vista previa, `localStorage`.
 ✅ *Aceptación:* se compra un accesorio, se equipa, se cierra el navegador, se vuelve a abrir y **sigue puesto**.
 
 ### Hito 6 — Buffet Blitz (semana 3)
+
 Reutiliza casi todo el núcleo de Eat it, Eat them.
 
 ### Hito 7 — Guerra de Comida (semana 3)
+
 **Es la primera que se corta si algo se retrasó.** No la empieces si el hito 5 no está cerrado.
 
 ### Hito 8 — Congelación (últimos 3 días)
+
 **Cero funciones nuevas.** Solo errores, audio, feedback y la prueba de export a web en el navegador de otra persona.
 
 ---
@@ -427,3 +441,30 @@ esquema de eventos y cuántos mandos detecta, y espera mi confirmación.
 3. **Hito 0.5 — Shell de UI** (antes del Hito 1): escenas `Menu`, `Lobby` (estilo Brawl: 6 tarjetas, "pulsa A para unirte", listo), `Settings` (volumen, pantalla completa, remapeo de teclado, `maxPlayers`), `Customize/Shop`; navegación por mando y teclado (foco, A = aceptar, B = volver). Código en `src/ui.js` y `src/i18n.js` (este último obligatorio por §4).
 4. **Imágenes con Nano Banana (Gemini) vía conector MCP.** Ver `docs/CODEX_RUNBOOK.md`. La clave está en `.env` (`GOOGLE_AI_STUDIO`); nunca se imprime, se pega en prompts ni se commitea. Referencias de estilo: `samples/`.
 5. **Audio** no se genera con IA de imagen: placeholders silenciosos anotados en `docs/EDITOR_TODO.md` hasta el Hito 8.
+
+## 12. Dirección aprobada del menú y las rondas (18 de octubre de 2026)
+
+Estas indicaciones del usuario prevalecen sobre el lobby separado, la arena
+cuadrada y el HUD situado fuera de la arena descritos arriba. Son requisitos por
+implementar; esta sección no declara terminadas las funciones ni sus pruebas.
+
+- El menú sigue la composición de la captura de Brawl Stars aportada por el
+  usuario, con identidad propia de GLOMP!: slime central, accesos laterales,
+  perfil y moneda arriba, Práctica y JUGAR abajo. Fondo obligatorio:
+  `assets/ui/menu-village.png`. Los títulos conservan el estilo aprobado del banner.
+- La incorporación local ocurre en el propio menú mediante botones `[+]` a ambos
+  lados del grupo. El alta por teclado exige revisar y confirmar controles antes
+  de ocupar una plaza. Por ahora solo teclado: máximo dos jugadores, uno con
+  `WASD` y otro con flechas. Se confirma también su única tecla de Acción.
+- Resolución objetivo de interfaz, canvas y gráficos: 1920×1080. En una pantalla
+  Full HD 16:9, el mapa rectangular completo ocupa todo el área de juego, sin
+  marco exterior ni deformación. El HUD se superpone de forma compacta en bordes
+  reservados. La cámara permanece fija durante el minijuego.
+- Cada ronda presenta el mapa mediante una cinemática breve con explicación,
+  seguida de `3`, `2`, `1`, `GLOMP!`. La simulación comienza después de esa secuencia.
+- Al terminar una ronda aparecen estadísticas y reparto; la siguiente comienza
+  automáticamente. Al alcanzar la condición de victoria se muestran los resultados
+  de la partida completa, en lugar de iniciar otra ronda de esa misma partida.
+- Los planes operativos vigentes son `docs/PLAN_MAESTRO.md`,
+  `docs/DISENO_JUEGO.md` y `docs/ASSETS_CHATGPT.md`. El proveedor visual activo es
+  ChatGPT, autorizado por el usuario tras los errores de cuota de Google.

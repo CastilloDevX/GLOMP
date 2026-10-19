@@ -1,74 +1,87 @@
-# Pruebas y estado de aceptación
+# Criterios de prueba pendientes
 
-## Hito 0
+Las comprobaciones de esta lista son criterios para la próxima implementación,
+no resultados ya aprobados. La base existente dispone de selftest; las pruebas
+simuladas no equivalen a validación física ni a aceptación humana.
 
-Entorno probado: Node.js 26.8.1 y GDevelop 5.6.283 para Linux.
+## Herramientas durante implementación
 
 ```sh
 node tools/scaffold.js
 node tools/build.js && node tools/check.js
 node tools/selftest.js
-node tools/gen_assets.js --milestone 0 --dry-run
 ```
 
-Resultados automáticos:
+Ejecutar scaffold cuando cambien recursos/escenas. En revisiones exclusivamente
+documentales comprobar enlaces, coherencia y diff; no regenerar game.json.
 
-- Build y check pasan. Build comprueba sintaxis antes de escribir.
-- Build y scaffold mantienen idéntico SHA-256 y no crean backups adicionales
-  cuando no hay cambios. Antes de escrituras reales crean copia del proyecto.
-- Selftest: 13 comprobaciones de esquema, rechazo de eventos no permitidos,
-  mandos simulados 2/6, índices dispersos, conexión/desconexión, API ausente o que
-  falla, acumuladores a 30/144 fps, inicialización única, CRC/lectura PNG y chroma.
-- El dry-run no envía peticiones ni necesita la clave. El generador conserva
-  archivos existentes y permite reutilizar originales sin volver a cobrarlos.
+## Menú, incorporación y controles
 
-Prueba de integración real: abrir game.json en GDevelop → Preview → pantalla Boot
-con título, estado e instrucciones. Se capturó pantalla y se verificó el log de
-arranque tras recargar, sin excepciones ni mensajes de error de consola.
-La evidencia temporal está ignorada en `.cache/`, no forma parte del juego.
+| Caso | Resultado exigido |
+|---|---|
+| Abrir con teclado | Fondo elegido y slime central; ningún invitado ficticio |
+| Ambos [+] | Mismo flujo y reglas; no altas duplicadas al pulsar rápido |
+| Cancelar modal | Ninguna plaza/tecla consumida; foco al botón de origen |
+| Host sin configurar | JUGAR pide confirmar controles, no inicia con fuente implícita |
+| Confirmar WASD y flechas | Dos fuentes lógicas independientes; cada Acción afecta solo a su jugador |
+| Repetir preset o Acción ocupada | Rechazo visible, sin sobrescribir al otro jugador |
+| Tercer perfil de teclado | No se admite, aunque se use el otro [+] |
+| Editar/quitar invitado | Cancelar conserva controles anteriores; quitar libera el preset |
+| JUGAR con plaza pendiente | Inicio deshabilitado; no relleno con bots |
+| Navegación | Ratón, teclado y mando cuando esté conectado; foco visible y B/Esc vuelven |
+| Volver de tienda/ajustes | Grupo, controles y equipo conservados |
 
-El contador mostró 0 y la API de mandos estaba disponible. No se conectaron mandos
-físicos. El caso de API no disponible también está cubierto por selftest y muestra
-un aviso explícito, sin confundirlo con ausencia de dispositivos.
+## Full HD, física y render
 
-## Pendiente para aceptar H0
+- Canvas y composición objetivo 1920×1080. Texturas de fondo con dimensiones
+  nativas comprobadas. Ningún asset ausente se registra como final.
+- Mapa entero en 16:9, de borde a borde y sin deformación; otra proporción conserva
+  todo el mapa. Círculos siguen siendo círculos, también tras entrar/salir de fullscreen.
+- No spawns ni objetivos necesarios detrás del HUD. Un jugador o peligro cubierto
+  sigue siendo visible por la política de transparencia.
+- Crecimiento contra paredes/esquinas no atrapa al slime. Cosméticos no cambian
+  hitbox, velocidad, masa, daño ni config. Misma geometría en los tres temas.
+- 30 y 144 fps con entradas equivalentes: resultado de simulación consistente,
+  sin NaN, posiciones fuera de límites ni temporizadores duplicados.
+- Prueba real de teclas simultáneas y de pantalla completa desde un gesto del usuario.
 
-1. Revisión humana de la referencia y apertura del proyecto sin avisos.
-2. Exportación web y prueba física de seis mandos simultáneos.
-3. Registrar resultados de esa prueba y confirmar el cierre del hito.
+## Máquina de estados de la partida
 
-No hay partidas ni minijuegos implementados. Las 50 rondas de POM y las demás
-invariantes de juego no se han ejecutado ni se presentan como aprobadas.
+1. Seleccionar modo/mapa/semilla una vez. Omitir la intro conserva esa selección.
+2. Intro muestra el mapa real, objetivo y controles; no avanzan simulación,
+   duración del modo, spawns peligrosos ni consumo de Acción.
+3. Orden exacto 3, 2, 1, GLOMP!, juego; una pulsación retenida no salta todos los
+   estados ni dispara el primer Chispazo/proyectil accidentalmente.
+4. Reloj empieza una sola vez. Pausa/pérdida de foco detienen todos los acumuladores.
+5. Fin simultáneo de condiciones entrega un solo resultado y paga una sola vez.
+6. Estadísticas incluyen todos los participantes, empate correcto y cifras reales.
+7. Agotada la espera, nueva ronda automática; ningún botón es obligatorio.
+8. Victoria a cinco pasa a resultados finales; no ronda extra ni segundo premio.
+9. Desconexión mantiene identidad y equipo; reconexión recupera el mismo jugador.
+10. Partida completada siempre paga Glomps. Guardado conserva compras/equipo tras recargar.
 
-## Comprobaciones de los siguientes hitos
+## Aceptación por modo
 
-- H0.5: navegación completa con teclado y con mando, volver, listo y foco.
-- H1: persona mueve, come, crece y aprueba la sensación de control.
-- H2: dos personas completan 2:30 y cada una devora o es devorada dos veces.
-- H3: cuatro personas completan una partida a cinco rebanadas.
-- H4: 50 rondas de POM verifican aviso, cobertura y ruta; Crazy termina y activa
-  el antibloqueo. Implementar simulación de esos modos cuando existan.
-- H5: comprar, equipar, cerrar y abrir conserva el accesorio; cosméticos no
-  modifican configuración ni mecánicas.
-- H6/H7: rondas completas con los números de jugadores compatibles.
-- H8: Chrome/Firefox de otra persona, rendimiento y pruebas de diversión.
+| Fase | Prueba necesaria |
+|---|---|
+| H1 | Persona mueve, come, crece y aprueba sensación |
+| Eat it Eat them | 2 personas, 2:30; cada una devora o es devorada al menos dos veces |
+| Partida H3 | 4 personas alcanzan cinco rebanadas con flujo íntegro, premios y guardado; resolver antes la política de un solo modo |
+| POM | 50 rondas automáticas: aviso ≥0,8 s, cobertura ≤60 %, ruta libre ≥120 px en cada estado relevante, incluido encogimiento |
+| Crazy | 1000 rondas: antibloqueo limita suministro total del pedido, hay progreso y final; resolver eliminación simultánea de todos |
+| Tienda H5 | Compra/equipo persisten; 31 piezas y mezcla de capas sin cambio mecánico |
+| Buffet | Rondas con 3–6; liderazgo, Manjar, empujes y casos contra pared |
+| Guerra | Rondas con 2 y 4; inventario limita decisiones, zona cierra y nadie vivo queda sin actuar más de 5 s |
 
-## Hito 0.5 y base del Hito 1 (verificación automática)
+Probar 2 y 6 participantes en los modos compatibles; verificar que la selección
+excluye Eat it Eat them para 5–6 y Buffet para 2. Los tests de reglas deben comprobar
+invariantes a lo largo de la simulación, no únicamente el estado final.
 
-- `node tools/selftest.js`: 18 comprobaciones. Añade: claves de i18n completas,
-  sandbox con 2 y 6 jugadores (30 s simulados, sin salir de la arena ni NaN),
-  resultado idéntico a 30 y 144 fps, y tienda que no altera `GLOMP.config`.
-- El código real de `view.js`, `ui.js` y `sandbox.js` se ejecutó en Chromium sin
-  interfaz con PIXI 7.4.2 (el mismo de GDevelop 5.6.284) y un escenario simulado.
-  Menú, Sala (2 jugadores de teclado listos), Personalizar (compra y vista previa),
-  Ajustes y Arena se dibujaron sin errores de consola y la navegación pidió
-  la escena correcta. Esto NO sustituye abrir el proyecto en GDevelop.
+## Cierre y diversión
 
-## Pendiente humano (no se declara cerrado ningún hito)
-
-1. H0: abrir `game.json`, Preview, exportar a web, probar seis mandos físicos.
-2. H0.5: recorrer Menú → Sala → Personalizar → Arena con mando y con teclado;
-   B vuelve; el foco nunca se pierde; comprar y equipar un color conserva el
-   cambio tras recargar la página.
-3. H1: mover el slime en Práctica 5 minutos y decir si se siente bien.
-   Si se ve pequeño en la arena de 1400 px, decidir si se reduce el margen de cámara.
+Exportar a Chrome y Firefox de otra persona. Verificar seis jugadores y carga
+representativa de objetos en el equipo objetivo, sin errores de consola ni
+recortes. Medir comprensión en diez segundos, revancha ≥70 %, remontada del
+último ≥20 % y una ronda ganada por alguien nuevo. Si falla, revisar el diseño.
+Registrar fecha, entorno, evidencia y resultado cuando se ejecute; mientras tanto
+estos criterios permanecen pendientes.

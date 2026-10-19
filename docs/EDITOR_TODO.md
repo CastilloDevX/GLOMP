@@ -1,54 +1,46 @@
-# Pendientes del editor y validación humana
+# Validaciones humanas y trabajo de editor pendientes
 
-## Hito 0 — antes de avanzar al shell
+Solo tareas todavía necesarias. Los assets aprobados y el andamio existente no
+se vuelven a crear. La implementación prevista está en PLAN_MAESTRO.md.
 
-- Abrir `/home/castillo/Gdevelop/GLOMP/reference/empty.json` en GDevelop 5 y revisar
-  que Boot contiene exactamente un evento Código JavaScript con su marcador.
-  La referencia fue obtenida automáticamente con el motor del editor; falta la
-  revisión humana exigida en AGENTS.md §11.
-- Abrir `/home/castillo/Gdevelop/GLOMP/game.json`. Confirmar que no hay avisos de
-  compatibilidad o recursos. Pulsar Preview: deben verse el título, el contador
-  de mandos y las instrucciones. Ya se ejecutó automáticamente en GDevelop,
-  pero la aceptación de una persona permanece pendiente.
-- Exportar a web desde el editor y abrir la exportación en el navegador de destino.
-- Conectar seis mandos, pulsar un botón en cada uno y verificar los seis índices
-  simultáneos en la consola y el contador. Registrar navegador, sistema y mandos
-  usados en GDEVELOP_NOTES.md. No interpretar 0 conectados como un límite técnico.
-- Si se demuestra un límite de cuatro, modificar únicamente `maxPlayers` y
-  documentarlo; después ejecutar build y check.
+## Base existente
 
-H0 no está cerrado. No hay todavía menú, lobby ni minijuegos implementados.
+- Revisar `reference/empty.json` y confirmar su único evento JsCode. Su procedencia
+  fue automatizada con el serializador del editor; falta la revisión humana.
+- Abrir `game.json` en GDevelop y verificar Boot → Menu, recursos disponibles,
+  cambios de escena sin texturas descargadas y ausencia de avisos. Si existe
+  `GLOMP!.json`, conservarlo y comparar antes de unificar copias.
+- Probar exportación web en un navegador de destino. Registrar versión real del
+  editor/navegador, resultado y consola; no asumir que una prueba simulada la cubre.
 
-## Arte
+## Tras implementar menú integrado y Full HD
 
-- Estilo del cuerpo base blanco aprobado por el usuario.
-- Uso temporal de ChatGPT aprobado tras errores HTTP 429 de Google AI Studio.
-- El PNG aprobado está en `assets/slime/base-white-chatgpt-v1.png`; conserva alfa.
-- El manifiesto registra prompts, referencias, proveedor y estado de revisión.
-- Nano Banana principal y respaldo rechazaron la generación por cuotas FreeTier.
-  Retomar su pipeline cuando haya cuota; no se obtuvo ninguna imagen de Google.
-- No lanzar el lote de los siguientes hitos ni considerarlo terminado durante H0.
-  Antes de producir las capas, fijar y revisar anclajes comunes del cuerpo, cara y
-  accesorios. Las imágenes de `samples/` siguen siendo referencias de estilo.
+- Probar ambos `[+]`: abrir modal, cancelar, elegir WASD/flechas, revisar Acción,
+  confirmar, editar y quitar invitado. Con teclado no puede aparecer un tercero.
+- Probar dos personas simultáneamente: WASD + E y flechas + Shift derecho, y otra
+  Acción confirmada sin colisión. Revisar combinaciones que el teclado físico
+  pueda omitir por ghosting y ofrecer otra Acción cuando sea necesario.
+- Verificar foco al abrir/cerrar modal; navegar sin ratón; volver con Esc/B.
+- En Full HD 1920×1080, revisar fondo, bordes del mapa, UI y HUD sin recortes;
+  comprobar ventana y pantalla completa, y salida/entrada de ese modo.
+- Jugar Práctica, comer y crecer contra esquinas y muros. Registrar sensación y
+  problemas concretos; no cerrar H1 solo por que el código se ejecuta.
 
-## Audio — Hito 8
+## Tras implementar la ronda
 
-No hay audio generado ni referencias a archivos inexistentes. El arranque es
-silencioso. Sustituir los placeholders silenciosos por música y efectos con
-licencia documentada durante H8, según el runbook.
+- Comprobar mapa real y explicación, 3 → 2 → 1 → GLOMP!, y que antes de jugar no
+  haya movimiento, consumo de Acción ni daño.
+- Completar una ronda, revisar estadísticas/premios y esperar la siguiente sin
+  pulsar botones. Pausar y volver a enfocar no deben saltar estados.
+- Terminar una partida: resultados finales, recompensa única y revancha con el
+  mismo grupo. Probar los criterios humanos de cada modo según TESTING.md.
 
-## Cierre de H0 y H0.5 — checklist exacta para una persona
+## Mandos y audio
 
-1. Abrir `game.json` en GDevelop 5.6.284 sin avisos de compatibilidad ni de recursos.
-   Deben existir 8 escenas: Boot, Menu, Lobby, Customize, Shop, Settings, Credits, Sandbox.
-2. Pulsar Preview en Boot. Tras la carga (≈0,2 s) debe pasar sola a Menu.
-   Si se queda en "Cargando" o aparece el aviso de imágenes: anotar el error de consola.
-   Vigilar que las texturas sigan válidas al cambiar de escena (GDevelop podría
-   descargar recursos no usados por objetos; si pasa, hay que pasarlos a recursos globales).
-3. Conectar mandos, pulsar A en cada uno en la Sala; probar con 6 a la vez.
-   Registrar el resultado en `docs/GDEVELOP_NOTES.md` (sección Mandos).
-4. Exportar a web y repetir 2-3 en Chrome o Firefox.
-5. Si todo pasa: marcar H0 y H0.5 como aceptados en `docs/TESTING.md`.
-
-Arte pendiente de Google (cuota 429): solo existe la cara `happy`, el bocadito y el
-cuerpo base (ChatGPT). Faltan las caras 2-6, accesorios, partículas y rastros (H5).
+- Cuando haya hardware, conectar seis mandos y activar cada uno; registrar los
+  índices simultáneos. Cero conectados no demuestra un límite. Si se demuestra
+  un máximo de cuatro, actualizar config y notas, sin rediseñar el proyecto.
+- Probar desconexión/reconexión durante menú, cuenta y juego; el bot sustituto no
+  crea otro participante ni recibe premios como una identidad nueva.
+- En H8, incorporar música/efectos con licencia y registrar origen y permisos.
+  Los placeholders actuales son silenciosos; la IA de imagen no produce audio.

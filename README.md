@@ -1,19 +1,24 @@
 # GLOMP!
 
-Party game local de slimes y comida, para GDevelop 5 y exportación HTML5.
-La especificación está en AGENTS.md; §11 prevalece sobre sus reglas anteriores.
+Party game local de slimes y comida para GDevelop 5 y exportación HTML5.
 
-**Estado: andamio del Hito 0 y shell de UI del Hito 0.5 (Menú, Sala, Personalizar, Tienda, Ajustes, Créditos, Arena de prueba) conectados y verificados sin render. Pendiente de aceptación humana en GDevelop y de la prueba física de seis mandos. Todavía no hay minijuegos.**
+Existe el andamio, un shell de ocho escenas y una arena de práctica. Todavía no
+hay minijuegos completos ni ciclo automático de partida. La nueva dirección de
+menú integrado y Full HD está planificada; no se presenta como implementada.
 
-## Abrir
+## Documentación vigente
 
-Abrir `game.json` con GDevelop 5.6.283 y pulsar Preview. Boot muestra el diagnóstico
-de mandos. Para detectar un mando puede ser necesario pulsar un botón en él.
+- [AGENTS.md](AGENTS.md) / [CLAUDE.md](CLAUDE.md): especificación; §12 recoge la dirección actual.
+- [Plan de pendientes](docs/PLAN_MAESTRO.md): orden, módulos y aceptación.
+- [Diseño](docs/DISENO_JUEGO.md): menú con [+], controles, Full HD y flujo de ronda.
+- [Assets para ChatGPT](docs/ASSETS_CHATGPT.md): prompts individuales y producción por prioridad.
+- [Pruebas](docs/TESTING.md) y [validación humana](docs/EDITOR_TODO.md).
+- [Contrato de GDevelop](docs/GDEVELOP_NOTES.md) y [runbook](docs/CODEX_RUNBOOK.md).
 
-## Reconstruir
+## Abrir y reconstruir
 
-Requiere Node.js 22 o superior para las herramientas; no se instala ninguna
-dependencia. El código del juego usa JavaScript ES2020.
+Abrir `game.json` en GDevelop 5 y pulsar Preview. Las herramientas requieren
+Node.js 22 o superior; el juego usa ES2020 y no añade dependencias.
 
 ```sh
 node tools/scaffold.js
@@ -21,38 +26,10 @@ node tools/build.js && node tools/check.js
 node tools/selftest.js
 ```
 
-Editar lógica en `src/`, textos en `src/i18n.js` y balance en `src/config.js`.
-No editar los eventos de `game.json`. El manifiesto de scaffolding vive en
-`tools/project.manifest.json`. Las herramientas conservan backups ignorados por Git.
+Lógica en src, balance en config, textos en i18n y recursos/escenas en el
+manifiesto. No editar eventos a mano. No sustituir el proyecto canónico por una
+copia del editor sin compararla primero.
 
-## Arte
-
-`assets/slime/base-white-chatgpt-v1.png` es el cuerpo blanco tintable aprobado.
-Se generó con la herramienta de imagen de ChatGPT, con transparencia real.
-Prompts y procedencia están en `assets/manifest.json`.
-
-Google AI Studio respondió HTTP 429 por cuota tanto para Nano Banana 2 como
-para el respaldo. El usuario autorizó usar ChatGPT temporalmente. No hay assets
-de Google generados todavía.
-
-Para revisar el pipeline sin consumir cuota:
-
-```sh
-node tools/gen_assets.js --milestone 0 --dry-run
-```
-
-Cuando exista cuota, el generador REST usa `GOOGLE_AI_STUDIO` desde `.env` o el
-entorno. Nunca copia la clave al juego, a prompts ni al manifiesto:
-
-```sh
-node tools/gen_assets.js --id slime-base-nanobanana-v1
-```
-
-La implementación sigue la [API oficial de generación de imágenes de Google](https://ai.google.dev/gemini-api/docs/generate-content/image-generation).
-Los originales con fondo magenta se conservan. `tools/chroma.js entrada.png
-salida.png` crea PNG RGBA sin dependencias; todo recorte requiere revisión visual.
-
-## Siguiente validación
-
-Consultar `docs/EDITOR_TODO.md`, `docs/GDEVELOP_NOTES.md` y `docs/TESTING.md`.
-No se declara cerrado ningún hito por pasar únicamente las pruebas automáticas.
+Arte activo: ChatGPT, autorizado por el usuario; Nano Banana queda suspendido
+por cuota. Reutilizar los PNG aprobados. La clave de Google permanece en `.env`
+y no forma parte del juego ni de Git. Ningún hito se acepta solo por pasar selftest.
