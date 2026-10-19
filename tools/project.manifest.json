@@ -1,9 +1,9 @@
 {
-  "milestone": "0.5",
+  "milestone": "rework-pixel",
   "project": {
     "name": "GLOMP!",
-    "windowWidth": 1280,
-    "windowHeight": 720,
+    "windowWidth": 1920,
+    "windowHeight": 1080,
     "maxFPS": 144,
     "minFPS": 20,
     "packageName": "com.glomp.party"
@@ -17,6 +17,14 @@
     "src/view.js",
     "src/player.js",
     "src/food.js",
+    "src/maps.js",
+    "src/minigames/eat_em.js",
+    "src/minigames/pom.js",
+    "src/minigames/crazy.js",
+    "src/minigames/buffet.js",
+    "src/minigames/war.js",
+    "src/match.js",
+    "src/hud.js",
     "src/shop.js",
     "src/ui.js",
     "src/sandbox.js",
@@ -130,6 +138,15 @@
         "v": 19,
         "b": 49
       }
+    },
+    {
+      "name": "Arena",
+      "dispatcher": "if (!runtimeScene.__glompReady) { GLOMP.match.onStart(runtimeScene); runtimeScene.__glompReady = true; }\nGLOMP.match.onTick(runtimeScene, runtimeScene.getTimeManager().getElapsedTime() / 1000);",
+      "background": {
+        "r": 25,
+        "v": 19,
+        "b": 49
+      }
     }
   ],
   "resources": [
@@ -138,6 +155,41 @@
     "assets/ui/menu-village.png",
     "assets/face/happy.png",
     "assets/food/bite.png",
-    "assets/ui/banner-original.png"
+    "assets/ui/banner-original.png",
+    "assets/pixel/slime/small.png",
+    "assets/pixel/slime/medium.png",
+    "assets/pixel/slime/large.png",
+    "assets/pixel/candy/floor.png",
+    "assets/pixel/candy/wall.png",
+    "assets/pixel/candy/obstacle.png",
+    "assets/pixel/candy/bush.png",
+    "assets/pixel/candy/center.png",
+    "assets/pixel/cooking/floor.png",
+    "assets/pixel/cooking/wall.png",
+    "assets/pixel/cooking/obstacle.png",
+    "assets/pixel/cooking/bush.png",
+    "assets/pixel/cooking/center.png",
+    "assets/pixel/slimegarden/floor.png",
+    "assets/pixel/slimegarden/wall.png",
+    "assets/pixel/slimegarden/obstacle.png",
+    "assets/pixel/slimegarden/bush.png",
+    "assets/pixel/slimegarden/center.png",
+    "assets/pixel/food/bite.png",
+    "assets/pixel/food/ingredient1.png",
+    "assets/pixel/food/ingredient2.png",
+    "assets/pixel/food/ingredient3.png",
+    "assets/pixel/food/ingredient4.png",
+    "assets/pixel/food/ingredient5.png",
+    "assets/pixel/food/ingredient6.png",
+    "assets/pixel/food/ingredient7.png",
+    "assets/pixel/food/ingredient8.png",
+    "assets/pixel/food/ingredient9.png",
+    "assets/pixel/food/ingredient10.png",
+    "assets/pixel/food/ingredient11.png",
+    "assets/pixel/food/ingredient12.png",
+    "assets/pixel/food/ingredient13.png",
+    "assets/pixel/food/banana.png",
+    "assets/pixel/food/gum.png",
+    "assets/pixel/food/melon.png"
   ]
 }

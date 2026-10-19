@@ -468,3 +468,19 @@ implementar; esta sección no declara terminadas las funciones ni sus pruebas.
 - Los planes operativos vigentes son `docs/PLAN_MAESTRO.md`,
   `docs/DISENO_JUEGO.md` y `docs/ASSETS_CHATGPT.md`. El proveedor visual activo es
   ChatGPT, autorizado por el usuario tras los errores de cuota de Google.
+
+## 13. Rework pixel art solicitada por el usuario
+
+Prevalece sobre el arte ilustrado del gameplay y las instrucciones antiguas del
+lobby: la sala principal exige color y confirmación por participante; JUGAR abre
+Arena, Práctica abre Sandbox. Mapas por piezas inspirados en samples/maps, pixel
+art y tres PNG de slime por detalle visible. Gameplay Full HD sin logo persistente,
+HUD alternado izquierda/derecha y filas hacia abajo. Presentación del mapa real,
+cuenta y GLOMP! antes de simular. Máximo 180 s por ronda, también Crazy; resultados
+y siguiente modo distinto automáticamente. Colores de identificación libres en
+la sala; no alteran mecánicas. Los hitos siguen pendientes de aceptación humana.
+
+Implementado y pendientes: docs/DISENO_JUEGO.md, docs/PLAN_MAESTRO.md y
+docs/ASSETS_CHATGPT.md. No reconstruir funciones ya implementadas por leer una
+lista anterior. Las variantes small/medium/large son PNG originales con niveles
+de detalle distintos; no afirmar que sus lienzos físicos sean 48/96/192.

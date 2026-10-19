@@ -27,4 +27,4 @@ function main() {
   console.log(`Build: ${manifest.sources.length} módulos, ${manifest.scenes.length} escena(s); copia de seguridad creada`);
 }
 if (require.main === module) { try { main(); } catch (error) { console.error(error.message); process.exitCode = 1; } }
-module.exports = { compose };
+module.exports = { compose, main };

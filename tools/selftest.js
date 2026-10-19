@@ -4,7 +4,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
 const crypto = require('node:crypto');
-const child = require('node:child_process');
+
 const { root, readJSON, clone, loadReference, validateProject } = require('./schema.js');
 const png = require('./png.js');
 const { removeBackground } = require('./chroma.js');
@@ -107,7 +107,7 @@ test('build y scaffold idempotentes', () => {
   const before = hash();
   const backups = () => fs.readdirSync(root).filter(file => file.startsWith('game.json.bak.')).length;
   const previousBackups = backups();
-  for (const script of ['tools/build.js', 'tools/build.js', 'tools/scaffold.js']) child.execFileSync(process.execPath, [script]);
+  require('./build.js').main(); require('./build.js').main(); require('./scaffold.js').main();
   assert.equal(hash(), before); assert.equal(backups(), previousBackups);
 });
 function game() {
@@ -122,7 +122,7 @@ function game() {
 test('todas las claves de i18n usadas por UI y sandbox existen', () => {
   const G = game(), used = new Set();
   for (const file of ['src/ui.js', 'src/sandbox.js', 'src/shop.js']) {
-    for (const found of fs.readFileSync(file, 'utf8').matchAll(/\b(?:t|text|notify)\(\s*'([A-Za-z]+)'/g)) used.add(found[1]);
+    for (const found of fs.readFileSync(file, 'utf8').matchAll(/\b(?:t|text|notify)\(\s*'([A-Za-z]+)'\s*(?:\)|,)/g)) used.add(found[1]);
   }
   ['lobby', 'customize', 'shop', 'settings', 'credits'].forEach(name => used.add(`${name}Title`));
   G.config.art.bodyColors.forEach((_, index) => used.add(`color${index}`));
@@ -160,4 +160,142 @@ test('la tienda no modifica config y solo equipa lo comprado', () => {
   assert.equal(G.shop.equip('body3', 0), true);
   assert.equal(JSON.stringify(G.config), before);
 });
-console.log(`${passed} comprobaciones superadas (Hitos 0 y 0.5, sin render). Minijuegos y mandos físicos: pendientes, sin simular aceptación.`);
+console.log(`${passed} comprobaciones de infraestructura y física superadas.`);
+// Regresiones de la sala y del ciclo real de rondas.
+function participants(count) { return Array.from({length:count},(_,index)=>({source:{kind:'gamepad',index},color:index % 8})); }
+function stationary(count) { return Array.from({length:count},()=>({x:0,y:0,connected:true,action:false})); }
+function forceMode(G,mode,count,seed=51) {
+  const w=G.maps.create(participants(count),'candy',seed);w.mode=mode;G.minigames[mode].start(w);return w;
+}
+test('cada teclado confirma controles antes de ocupar una plaza y confirma su color',()=>{
+  const G=game();G.ui.join({kind:'keyboard',index:0});assert.equal(G.ui.lobby.length,0);assert.equal(G.ui.pendingSource.index,0);
+  G.ui.join({kind:'keyboard',index:0},true);G.ui.join({kind:'keyboard',index:1},true);
+  assert.equal(G.ui.canStart(),false);G.ui.lobby.forEach(p=>{p.ready=true;p.colorConfirmed=true;});assert.equal(G.ui.canStart(),true);
+  G.ui.changeColor(G.ui.lobby[1],1);assert.equal(G.ui.canStart(),false);assert.equal(G.ui.lobby[0].ready,true);
+  G.ui.join({kind:'gamepad',index:0});assert.equal(G.ui.lobby.length,2);
+});
+test('el color de cada participante se conserva en cada ronda sin alterar mecánicas',()=>{
+  const G=game(), before=JSON.stringify(G.config), ps=participants(2);ps[0].color=2;ps[1].color=5;
+  const m=G.match.create(ps,12);
+  for(let n=0;n<8;n++){assert.equal(m.world.players[0].bodyColor,'body2');assert.equal(m.world.players[1].bodyColor,'body5');G.match.next(m);}
+  assert.equal(JSON.stringify(G.config),before);
+  const a=G.player.create(0,ps[0].source,300,300),b=G.player.create(1,ps[1].source,600,300);a.bodyColor='body2';b.bodyColor='body5';G.player.refresh(a);G.player.refresh(b);assert.equal(a.radius,b.radius);assert.equal(a.speed,b.speed);
+});
+test('cámara de presentación y bloqueo de simulación hasta GLOMP',()=>{
+  const G=game(),m=G.match.create(participants(2),12),p=m.world.players[0],x=p.x,y=p.y;
+  const start=G.hud.camera(m);m.phaseElapsed=G.config.round.cinematicSeconds;const end=G.hud.camera(m);assert(start.scale>end.scale);assert.equal(end.x,0);assert.equal(end.y,0);m.phaseElapsed=0;
+  const controls=[{x:1,y:1,connected:true,action:true},{x:-1,y:-1,connected:true}];let steps=0;
+  while(m.phase!=='playing'&&steps++<1000){G.match.advance(m,1/60,controls);assert.equal(m.world.elapsed,0);assert.equal(p.x,x);assert.equal(p.y,y);}
+  assert.equal(m.phase,'playing');G.match.advance(m,1/60,controls);assert.notEqual(p.x,x);
+});
+test('reparto se aplica una sola vez y la siguiente ronda cambia de modo y de mapa',()=>{
+  const G=game(),m=G.match.create(participants(2),70),previous=m.world.mode,theme=m.world.theme;
+  const before=G.save.data.coins;G.match.finishRound(m);const after=G.save.data.coins;assert(after>before);G.match.finishRound(m);assert.equal(G.save.data.coins,after);
+  for(let i=0;i<600&&m.round===1;i++)G.match.advance(m,1/60,stationary(2));assert.equal(m.round,2);assert.notEqual(m.world.mode,previous);assert.notEqual(m.world.theme,theme);assert.equal(m.phase,'intro');
+});
+test('primero en cinco rebanadas termina la copa y todos reciben Glomps',()=>{
+  const G=game(),m=G.match.create(participants(6),4);m.participants[0].slices=4;G.match.finishRound(m);assert(m.winners.length>0);assert(m.participants.every(p=>p.coins>=G.config.economy.matchComplete));
+  const paid=G.save.data.coins;G.match.payComplete(m);assert.equal(G.save.data.coins,paid);
+  for(let i=0;i<600;i++)G.match.advance(m,1/60,stationary(6));assert.equal(m.phase,'final');assert.equal(m.round,1);
+});
+for(const count of [2,6]) {
+  test(`ruleta con ${count} participantes nunca repite minijuego`,()=>{
+    const G=game(),m=G.match.create(participants(count),2026);let previous=m.world.mode;
+    for(let round=0;round<30;round++){G.match.next(m);assert.notEqual(m.world.mode,previous);assert(G.match.compatible(count).includes(m.world.mode));previous=m.world.mode;}
+  });
+  test(`Crazy Ingredients con ${count}: antibloqueo y terminación incluso con jugadores perfectos`,()=>{
+    const G=game(),w=forceMode(G,'crazy',count);let cycles=0;
+    while(!w.over&&cycles++<30){
+      const supply=w.food.filter(f=>f.ingredient===w.requested);assert(supply.length<=w.supply);
+      if(w.limited)assert(w.supply<=G.maps.alive(w).length-1);
+      G.maps.alive(w).forEach((p,i)=>{p.safe=i<supply.length;});
+      const before=w.food.filter(f=>f.ingredient===w.requested).length;
+      w.orderElapsed=w.stage.seconds+G.config.minigames.crazy.announcementSeconds;w.elapsed+=w.orderElapsed;
+      G.minigames.crazy.step(w,G.config.physics.fixedStep,stationary(count));
+      assert(before>=0);
+    }
+    assert(w.over);assert(G.maps.alive(w).length<=1);assert(cycles<=count*(G.config.minigames.crazy.antiStallOrders+1));
+  });
+}
+test('50 rondas del generador POM: aviso mínimo, cobertura y ruta continua de 120 px',()=>{
+  const G=game(),c=G.config.minigames.pom;let generated=0,mysteries=0;
+  for(let round=1;round<=50;round++){
+    const w=forceMode(G,'pom',6,round);w.bombHistory=[];
+    for(let frame=0;frame<c.duration*10;frame++){
+      w.elapsed=frame/10;w.zone=frame/10<c.shrinkStart?0:Math.min(1,(frame/10-c.shrinkStart)/c.shrinkSeconds)*(1-c.arenaFinalRatio)/2;
+      w.bombs.forEach(b=>{b.age+=0.1;});w.bombs=w.bombs.filter(b=>b.age<b.seconds);
+      if(frame%7===0)G.minigames.pom.spawn(w);
+      for(const b of w.bombs){
+        assert(b.seconds>=G.config.telegraphSeconds);assert(Math.abs(b.x-w.width/2)-b.maxRx>=c.minRouteWidth/2);assert(Math.abs(b.y-w.height/2)-b.maxRy>=c.minRouteWidth/2);
+        if(b.kind==='mystery'){mysteries++;assert(b.maxRx>=b.rx&&b.maxRy>=b.ry);}
+      }
+    }
+    generated+=w.bombHistory.length;assert(w.bombHistory.every(b=>b.coverage<=c.maxCoverage));assert(w.bombHistory.length>0);
+    // Los obstáculos dejan libre toda la cruz reservada: no basta comprobar solo las bombas.
+    w.obstacles.forEach(r=>{assert(r.x+r.width<w.width/2-c.minRouteWidth/2||r.x>w.width/2+c.minRouteWidth/2);assert(r.y+r.height<w.height/2-c.minRouteWidth/2||r.y>w.height/2+c.minRouteWidth/2);});
+  }
+  assert(generated>500);assert(mysteries>0);
+});
+test('comida simultánea: gana el centro más cercano y solo se recoge una vez',()=>{
+  const G=game(),w=forceMode(G,'crazy',2);w.orderElapsed=2;const f=w.food.find(f=>f.ingredient===w.requested);w.players[0].x=f.x;w.players[0].y=f.y;w.players[1].x=f.x+20;w.players[1].y=f.y;
+  // Se comprueba el árbitro antes de la separación física.
+  assert.equal(G.maps.nearest(w,f).playerId,0);
+  w.players[1].x=w.width-100;G.minigames.crazy.step(w,1/120,stationary(2));assert(w.players[0].safe);assert(!w.food.some(q=>q.id===f.id));
+});
+test('EatEm devora, reparte masa, reaparece y la Salsa nunca mata a masa cero',()=>{
+  const G=game(),w=forceMode(G,'eatEm',2),c=G.config.minigames.eatEm,a=w.players[0],b=w.players[1];
+  w.food=[];a.mass=150;b.mass=10;a.immune=0;b.immune=0;a.x=b.x=w.width/2;a.y=b.y=w.height/2;G.player.refresh(a);G.player.refresh(b);
+  for(let t=0;t<60;t++){w.elapsed+=1/120;G.minigames.eatEm.step(w,1/120,stationary(w.players.length));}
+  assert.equal(b.alive,false);assert.equal(a.stats.devoured,1);
+  a.x=200;a.y=300;for(let t=0;t<300;t++){w.elapsed+=1/120;G.minigames.eatEm.step(w,1/120,stationary(w.players.length));}
+  assert(b.alive);assert(b.immune>0);assert(b.mass>=c.minRespawnMass);
+  w.elapsed=120;b.mass=0;b.x=90;b.y=300;G.minigames.eatEm.step(w,1/120,stationary(w.players.length));assert(b.alive);assert(b.mass>=0);
+});
+test('límite absoluto de tres minutos y todas las rondas reales terminan con 2 y 6',()=>{
+  for(const count of [2,6])for(const mode of ['eatEm','pom','crazy']){
+    const G=game();if(!G.match.compatible(count).includes(mode))continue;
+    const m=G.match.create(participants(count),5);m.world=forceMode(G,mode,count,5);m.phase='playing';
+    let frames=0;while(m.phase==='playing'&&frames++<G.config.round.maxSeconds*30+2){G.match.advance(m,1/30,stationary(m.world.players.length));}
+    assert.equal(m.phase,'results');assert(m.world.elapsed<=G.config.round.maxSeconds+G.config.physics.fixedStep);
+  }
+});
+
+console.log(`${passed} comprobaciones totales superadas. Aceptación humana y mandos físicos pendientes.`);
+test('Buffet: Zampada suelta masa, aturde y no recoge inmediatamente sus propias migas',()=>{
+  const G=game(),w=forceMode(G,'buffet',3),a=w.players[0],b=w.players[1];w.food=[];a.x=400;a.y=540;b.x=490;b.y=540;b.mass=100;G.player.refresh(b);
+  const controls=stationary(3);controls[0]={x:1,y:0,action:true,connected:true};w.elapsed=1;G.minigames.buffet.step(w,1/120,controls);
+  assert(b.stun>0);assert(b.immune>0);assert(b.mass<100);const dropped=w.food.find(f=>f.blockedPlayerId===1);assert(dropped);assert.notEqual(G.maps.nearest(w,dropped)?.playerId,1);
+});
+test('Buffet: Manjar exige un segundo continuo, última comilona y desempate por Manjares',()=>{
+  const G=game(),w=forceMode(G,'buffet',3),p=w.players[0];w.food=[{id:500,type:'feast',x:p.x,y:p.y}];w.elapsed=100;
+  for(let i=0;i<100;i++)G.minigames.buffet.step(w,1/120,stationary(3));assert.equal(p.stats.feasts,0);
+  for(let i=0;i<25;i++)G.minigames.buffet.step(w,1/120,stationary(3));assert.equal(p.stats.feasts,1);assert(p.mass>=20);assert(w.finalFeast);
+  w.players.forEach(q=>{q.mass=50;});p.stats.feasts=2;w.players[1].stats.feasts=1;const rows=G.match.rank(w);assert.equal(rows[0].player.playerId,0);assert.equal(rows[1].place,2);
+});
+test('Guerra: máximo tres alimentos, curarse gasta un hueco y no cambia el balance',()=>{
+  const G=game(),before=JSON.stringify(G.config),w=forceMode(G,'war',2),p=w.players[0];p.health=40;p.ammo=['lettuce','tomato','gum'];
+  const controls=stationary(2);controls[0].action=true;G.minigames.war.step(w,1/120,controls);assert.equal(p.health,65);assert.equal(p.ammo.length,2);assert.equal(JSON.stringify(G.config),before);
+  p.ammo=['tomato','gum','melon'];w.food=[{id:1,type:'lettuce',x:p.x,y:p.y}];controls[0].action=false;G.minigames.war.step(w,1/120,controls);assert.equal(p.ammo.length,3);assert(w.food.some(f=>f.id===1));
+});
+test('Guerra: proyectil avisa 0.8 s, el impacto da inmunidad y el cuerpo a cuerpo no daña',()=>{
+  const G=game(),w=forceMode(G,'war',2),a=w.players[0],b=w.players[1];a.x=600;a.y=540;b.x=710;b.y=540;a.ammo=['tomato'];const controls=stationary(2);controls[0].action=true;
+  G.minigames.war.step(w,1/120,controls);controls[0].action=false;assert.equal(w.projectiles[0].delay>0,true);
+  for(let i=0;i<90;i++)G.minigames.war.step(w,1/120,controls);assert.equal(b.health,100);
+  for(let i=0;i<40;i++)G.minigames.war.step(w,1/120,controls);assert.equal(b.health,75);assert(b.immune>0);
+  const hp=b.health;a.x=b.x;a.y=b.y;G.minigames.war.step(w,1/120,controls);assert.equal(b.health,hp);
+});
+test('todos los minijuegos compatibles terminan dentro de tres minutos con 2 y 6 jugadores',()=>{
+  for(const count of [2,6]){
+    const G=game();for(const mode of G.match.compatible(count)){
+      const m=G.match.create(participants(count),5);m.world=forceMode(G,mode,count,5);m.phase='playing';let frames=0;
+      while(m.phase==='playing'&&frames++<G.config.round.maxSeconds*20+2){G.match.advance(m,1/20,stationary(m.world.players.length));}
+      assert.equal(m.phase,'results',mode);assert(m.world.elapsed<=G.config.round.maxSeconds+G.config.physics.fixedStep);
+    }
+  }
+});
+console.log(`${passed} comprobaciones finales superadas.`);
+
+test('Acción breve entre dos frames no se pierde ni se repite al mantenerla',()=>{
+  const G=game();G.input.press('KeyE');G.input.release('KeyE');G.input.update(1/20);assert(G.input.edges.KeyE);G.input.update(1/20);assert(!G.input.edges.KeyE);G.input.press('KeyE');G.input.update(1/20);assert(G.input.edges.KeyE);G.input.press('KeyE');G.input.update(1/20);assert(!G.input.edges.KeyE);
+});
+console.log(`${passed} comprobaciones finales superadas.`);

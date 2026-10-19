@@ -1,87 +1,67 @@
-# Criterios de prueba pendientes
+# Pruebas de la rework
 
-Las comprobaciones de esta lista son criterios para la próxima implementación,
-no resultados ya aprobados. La base existente dispone de selftest; las pruebas
-simuladas no equivalen a validación física ni a aceptación humana.
+## Verificación automática ejecutada
 
-## Herramientas durante implementación
+En esta sesión: `node tools/build.js && node tools/check.js` y
+`node tools/selftest.js`. 37 comprobaciones: formato nativo, rechazo de eventos
+no permitidos, idempotencia, PNG, diagnóstico simulado de mandos, física 30/144,
+colisiones/límites, tienda sin mutación de config, confirmación de teclado y color,
+conservación de colores, cámara y congelación antes del inicio, premios únicos,
+fin de copa, rotación sin repeticiones y límites de todos los modos con 2/6.
 
-```sh
-node tools/scaffold.js
-node tools/build.js && node tools/check.js
-node tools/selftest.js
-```
+POM se audita durante 50 rondas del generador: aviso ≥0.8 s, cobertura conservadora
+≤60%, zona máxima de Misteriosa y pasillos continuos ≥120 px libres también de
+obstáculos. Crazy prueba incluso jugadores perfectos y activa el suministro
+vivos−1 hasta terminar. EatEm prueba devorar/reaparecer y Salsa a masa cero.
+Buffet prueba empujón, inmunidad, migas sin recogida inmediata por el dueño,
+Manjar continuo, multiplicador final y desempate. Guerra prueba tres huecos,
+curación con coste, preparación de proyectil e inmunidad sin daño por contacto.
 
-Ejecutar scaffold cuando cambien recursos/escenas. En revisiones exclusivamente
-documentales comprobar enlaces, coherencia y diff; no regenerar game.json.
+Esto no mide diversión, ghosting, seis mandos físicos ni aceptación de hitos.
 
-## Menú, incorporación y controles
+## Navegador y editor
 
-| Caso | Resultado exigido |
-|---|---|
-| Abrir con teclado | Fondo elegido y slime central; ningún invitado ficticio |
-| Ambos [+] | Mismo flujo y reglas; no altas duplicadas al pulsar rápido |
-| Cancelar modal | Ninguna plaza/tecla consumida; foco al botón de origen |
-| Host sin configurar | JUGAR pide confirmar controles, no inicia con fuente implícita |
-| Confirmar WASD y flechas | Dos fuentes lógicas independientes; cada Acción afecta solo a su jugador |
-| Repetir preset o Acción ocupada | Rechazo visible, sin sobrescribir al otro jugador |
-| Tercer perfil de teclado | No se admite, aunque se use el otro [+] |
-| Editar/quitar invitado | Cancelar conserva controles anteriores; quitar libera el preset |
-| JUGAR con plaza pendiente | Inicio deshabilitado; no relleno con bots |
-| Navegación | Ratón, teclado y mando cuando esté conectado; foco visible y B/Esc vuelven |
-| Volver de tienda/ajustes | Grupo, controles y equipo conservados |
+GDevelop instalado: 5.6.284. Proyecto de referencia: esquema 5.6.283. Se abrió
+`game.json` y se ejecutó su Preview nativa, no un renderizador de prueba alterno.
+La carga de los 41 recursos quedó lista y sin error. Capturas de QA fuera del
+repositorio, en /tmp; no constituyen assets del juego.
 
-## Full HD, física y render
+Recorrido ejercitado mediante eventos CDP reales de teclado/puntero:
 
-- Canvas y composición objetivo 1920×1080. Texturas de fondo con dimensiones
-  nativas comprobadas. Ningún asset ausente se registra como final.
-- Mapa entero en 16:9, de borde a borde y sin deformación; otra proporción conserva
-  todo el mapa. Círculos siguen siendo círculos, también tras entrar/salir de fullscreen.
-- No spawns ni objetivos necesarios detrás del HUD. Un jugador o peligro cubierto
-  sigue siendo visible por la política de transparencia.
-- Crecimiento contra paredes/esquinas no atrapa al slime. Cosméticos no cambian
-  hitbox, velocidad, masa, daño ni config. Misma geometría en los tres temas.
-- 30 y 144 fps con entradas equivalentes: resultado de simulación consistente,
-  sin NaN, posiciones fuera de límites ni temporizadores duplicados.
-- Prueba real de teclas simultáneas y de pantalla completa desde un gesto del usuario.
+1. [+] → confirmar controles → J1 cambia color y confirma.
+2. Shift derecho → confirmar controles → J2 cambia color y confirma.
+3. Ambos listos → Enter → Arena; conserva los dos colores.
+4. Ronda de Guerra → estadísticas → Bubble POM! automáticamente en Cocina.
+5. Mapa entero a 1920×1080 y tarjetas arriba izquierda/derecha.
 
-## Máquina de estados de la partida
+El tiempo de algunas rondas se adelantó por pasos de simulación para revisar
+límites y reparto. No se presenta como una partida jugada por dos personas.
+Se detectó y corrigió un fallo de propagación de eventos PIXI: los botones ahora
+hacen hit testing DOM con las coordenadas del canvas y respetan el modal activo.
 
-1. Seleccionar modo/mapa/semilla una vez. Omitir la intro conserva esa selección.
-2. Intro muestra el mapa real, objetivo y controles; no avanzan simulación,
-   duración del modo, spawns peligrosos ni consumo de Acción.
-3. Orden exacto 3, 2, 1, GLOMP!, juego; una pulsación retenida no salta todos los
-   estados ni dispara el primer Chispazo/proyectil accidentalmente.
-4. Reloj empieza una sola vez. Pausa/pérdida de foco detienen todos los acumuladores.
-5. Fin simultáneo de condiciones entrega un solo resultado y paga una sola vez.
-6. Estadísticas incluyen todos los participantes, empate correcto y cifras reales.
-7. Agotada la espera, nueva ronda automática; ningún botón es obligatorio.
-8. Victoria a cinco pasa a resultados finales; no ronda extra ni segundo premio.
-9. Desconexión mantiene identidad y equipo; reconexión recupera el mismo jugador.
-10. Partida completada siempre paga Glomps. Guardado conserva compras/equipo tras recargar.
+## Aceptación humana pendiente
 
-## Aceptación por modo
+- Dos personas simultáneas con teclado, incluida Acción remapeada sin colisiones;
+  verificar ghosting, cancelación, retirada de plazas y navegación sin ratón.
+- Pantalla completa Full HD y otra proporción; legibilidad de sprites pequeños,
+  cambio de nivel de detalle, HUD con 6 y nombres detrás/delante de obstáculos.
+- Come y crece: 2:30 con al menos dos devoradas por persona; sensación al comer,
+  crecer, frenar y girar. Revisar auras y legibilidad dentro de arbustos.
+- POM: aviso comprensible y rutas de escape. Medir si el pasillo central fijo
+  favorece demasiado esperar quieto; no cambiar las pruebas para ocultarlo.
+- Crazy: objetivo entendido en 10 s, recogida exclusiva y antibloqueo legible.
+- Buffet: corona visible, Manjar interrumpible, remontadas y Zampada contra muros.
+- Guerra: puntería con ratón, stick derecho y ocho direcciones de J2; munición,
+  charcos, sandía, zona, proyectiles opuestos y eliminación simultánea.
+- Copa a cinco rebanadas, empate, monedas/primera partida diaria una sola vez,
+  guardado al cerrar navegador y revancha con el mismo grupo.
+- Seis mandos físicos, desconexión/reconexión y exportación en otro PC.
+- Externos: ≥70% pide revancha, último puesto remonta ≥20%, una persona nueva gana.
+- Audio pendiente: comprobar volumen cuando existan pistas y efectos con licencia.
 
-| Fase | Prueba necesaria |
-|---|---|
-| H1 | Persona mueve, come, crece y aprueba sensación |
-| Eat it Eat them | 2 personas, 2:30; cada una devora o es devorada al menos dos veces |
-| Partida H3 | 4 personas alcanzan cinco rebanadas con flujo íntegro, premios y guardado; resolver antes la política de un solo modo |
-| POM | 50 rondas automáticas: aviso ≥0,8 s, cobertura ≤60 %, ruta libre ≥120 px en cada estado relevante, incluido encogimiento |
-| Crazy | 1000 rondas: antibloqueo limita suministro total del pedido, hay progreso y final; resolver eliminación simultánea de todos |
-| Tienda H5 | Compra/equipo persisten; 31 piezas y mezcla de capas sin cambio mecánico |
-| Buffet | Rondas con 3–6; liderazgo, Manjar, empujes y casos contra pared |
-| Guerra | Rondas con 2 y 4; inventario limita decisiones, zona cierra y nadie vivo queda sin actuar más de 5 s |
-
-Probar 2 y 6 participantes en los modos compatibles; verificar que la selección
-excluye Eat it Eat them para 5–6 y Buffet para 2. Los tests de reglas deben comprobar
-invariantes a lo largo de la simulación, no únicamente el estado final.
-
-## Cierre y diversión
-
-Exportar a Chrome y Firefox de otra persona. Verificar seis jugadores y carga
-representativa de objetos en el equipo objetivo, sin errores de consola ni
-recortes. Medir comprensión en diez segundos, revancha ≥70 %, remontada del
-último ≥20 % y una ronda ganada por alguien nuevo. Si falla, revisar el diseño.
-Registrar fecha, entorno, evidencia y resultado cuando se ejecute; mientras tanto
-estos criterios permanecen pendientes.
+También se probó la exportación HTML5 nativa en Chromium independiente desde
+http://127.0.0.1:8080, con perfil limpio: 41 recursos cargados, controles E y
+Shift derecho, selección individual y Arena. Se inspeccionaron los tres temas,
+los niveles pequeño/grande y el caso visual de 6 plazas con hardware simulado.
+Se corrigieron etiquetas recortadas y se atenúa el HUD si tapa a un personaje.
+La prueba 37 conserva pulsaciones de Acción que empiezan y terminan entre frames.

@@ -55,3 +55,15 @@ No demuestra límite de cuatro. Los casos 2/6 de selftest son simulados.
 Conservar maxPlayers en 6 hasta la prueba real. Registrar navegador, sistema,
 modelos e índices al probar seis a la vez; solo si se demuestra límite de cuatro
 se baja config a 4. Exportación y prueba física siguen pendientes.
+
+## Rework de octubre de 2026
+
+Nueve escenas; Arena despacha GLOMP.match y Sandbox solo práctica. Recursos pixel
+con smoothed=false y texturas PIXI nearest. El mapa se dibuja mediante el PIXI 7
+incluido en GDevelop, sin dependencias añadidas. Capas por altura para obstáculos,
+personajes y HUD. El root personalizado no participa en los eventos federados de
+PIXI: los botones usan hit testing DOM, coordenadas lógicas y foco bajo GLOMP.
+Esto evita «Cannot find propagation path to disconnected target» en Preview.
+
+Build y scaffold exponen main para probar idempotencia sin procesos hijos. No se
+ha relajado la validación del esquema ni se han modificado hashes de referencia.

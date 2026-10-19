@@ -24,6 +24,7 @@ function main() {
       game.layouts.push(scene);
     }
     Object.assign(scene, specification.background);
+    scene.title = manifest.project.name;
     for (const spec of specification.texts || []) {
       const template = templates.objects.find(object => object.type === 'TextObject::Text');
       assert(template, 'Falta plantilla de texto obtenida del editor');
@@ -47,6 +48,7 @@ function main() {
     let resource = game.resources.resources.find(resource => resource.name === file);
     if (!resource) { resource = clone(imageResource); game.resources.resources.push(resource); }
     Object.assign(resource, { name: file, file });
+    if (file.startsWith('assets/pixel/')) resource.smoothed = false;
   }
   validateProject(game, reference, manifest);
   const text = JSON.stringify(game, null, 2) + '\n';
@@ -55,4 +57,5 @@ function main() {
   fs.writeFileSync(`${gamePath}.tmp`, text); fs.renameSync(`${gamePath}.tmp`, gamePath);
   console.log(`Scaffold: ${manifest.scenes.length} escena(s), hito ${manifest.milestone}`);
 }
-try { main(); } catch (error) { console.error(error.message); process.exitCode = 1; }
+if (require.main === module) { try { main(); } catch (error) { console.error(error.message); process.exitCode = 1; } }
+module.exports = { main };

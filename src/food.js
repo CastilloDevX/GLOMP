@@ -6,11 +6,11 @@ GLOMP.food = {
   },
   spawn: function (world, type) {
     const config = GLOMP.config.sandbox;
-    if (world.food.length >= config.maxFood) return false;
+    if (world.food.length >= (world.maxFood || config.maxFood)) return false;
     for (let attempt = 0; attempt < config.spawnAttempts; attempt++) {
-      const x = config.spawnPadding + GLOMP.food.random(world) * (world.size - config.spawnPadding * 2);
-      const y = config.spawnPadding + GLOMP.food.random(world) * (world.size - config.spawnPadding * 2);
-      if (world.food.some(function (food) { return Math.hypot(food.x - x, food.y - y) < config.foodSpacing; })) continue;
+      const x = config.spawnPadding + GLOMP.food.random(world) * ((world.width || world.size) - config.spawnPadding * 2);
+      const y = config.spawnPadding + GLOMP.food.random(world) * ((world.height || world.size) - config.spawnPadding * 2);
+      if (world.food.some(function (food) { return Math.hypot(food.x - x, food.y - y) < (world.foodSpacing || config.foodSpacing); })) continue;
       if (world.obstacles.some(function (rectangle) { const r = GLOMP.config.physics.foodRadius; return x + r > rectangle.x && x - r < rectangle.x + rectangle.width && y + r > rectangle.y && y - r < rectangle.y + rectangle.height; })) continue;
       world.food.push({ id: world.nextFoodId++, type: type, x: x, y: y }); return true;
     }

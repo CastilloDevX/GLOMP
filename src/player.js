@@ -20,7 +20,8 @@ GLOMP.player = {
     if (!player.alive) return;
     const config = GLOMP.config.physics;
     GLOMP.player.refresh(player);
-    let targetX = control.x * player.speed, targetY = control.y * player.speed;
+    const multiplier = player.speedMultiplier === undefined ? 1 : player.speedMultiplier;
+    let targetX = control.x * player.speed * multiplier, targetY = control.y * player.speed * multiplier;
     if (player.state === 'stunned' || player.state === 'stuck') { targetX = 0; targetY = 0; }
     const before = Math.hypot(player.vx, player.vy);
     const changing = targetX * player.vx + targetY * player.vy < 0;
@@ -53,11 +54,12 @@ GLOMP.player = {
     player.previousSpeed = speed;
   },
   resolveBounds: function (player, arena) {
-    const margin = GLOMP.config.sandbox.wallPadding + player.radius;
+    const margin = (arena.wall === undefined ? GLOMP.config.sandbox.wallPadding : arena.wall) + player.radius;
+    const width = arena.width || arena.size, height = arena.height || arena.size;
     if (player.x < margin) { player.x = margin; player.vx = Math.max(0, player.vx); }
-    if (player.x > arena.size - margin) { player.x = arena.size - margin; player.vx = Math.min(0, player.vx); }
+    if (player.x > width - margin) { player.x = width - margin; player.vx = Math.min(0, player.vx); }
     if (player.y < margin) { player.y = margin; player.vy = Math.max(0, player.vy); }
-    if (player.y > arena.size - margin) { player.y = arena.size - margin; player.vy = Math.min(0, player.vy); }
+    if (player.y > height - margin) { player.y = height - margin; player.vy = Math.min(0, player.vy); }
   },
   resolveRectangle: function (player, rectangle) {
     const x = Math.max(rectangle.x, Math.min(rectangle.x + rectangle.width, player.x));

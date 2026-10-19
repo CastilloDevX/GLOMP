@@ -32,7 +32,18 @@ function main() {
   vm.runInContext('globalThis.GLOMP = {};', context);
   for (const file of manifest.sources) vm.runInContext(fs.readFileSync(path.join(root, file), 'utf8'), context, { filename: file });
   assert(context.GLOMP.config.maxPlayers >= 2 && context.GLOMP.config.maxPlayers <= 6, 'maxPlayers fuera de rango');
-  for (const asset of readJSON('assets/manifest.json').assets) {
+  const allAssets = readJSON('assets/manifest.json').assets;
+  for (const [id,asset] of Object.entries(context.GLOMP.art)) {
+    const resource = game.resources.resources.find(resource => resource.name === asset.file);
+    assert(resource, 'Asset sin registrar en GDevelop: ' + id);
+    if (asset.pixel) assert(resource.smoothed === false, 'Pixel art con suavizado: ' + id);
+    if (asset.bounds) {
+      const recorded = allAssets.find(recorded => recorded.file === asset.file), b = asset.bounds;
+      assert(recorded && b.width > 0 && b.height > 0 && b.x >= 0 && b.y >= 0 && b.x + b.width <= recorded.width && b.y + b.height <= recorded.height, 'Recorte de asset inválido: ' + id);
+    }
+  }
+  assert(game.properties.windowWidth === context.GLOMP.config.ui.width && game.properties.windowHeight === context.GLOMP.config.ui.height, 'Resolución desincronizada entre proyecto y UI');
+  for (const asset of allAssets) {
     const file = path.join(root, asset.file);
     if (['planned', 'blocked_quota', 'blocked_provider'].includes(asset.status)) continue;
     assert(fs.existsSync(file), `Falta asset generado: ${asset.id}`);

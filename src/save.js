@@ -13,6 +13,7 @@ GLOMP.save = {
     let stored;
     try { stored = JSON.parse(localStorage.getItem('glomp.save.v1') || 'null'); } catch (error) { GLOMP.save.storageAvailable = false; }
     if (stored && stored.version === defaults.version) {
+      defaults.lastDailyMatch = typeof stored.lastDailyMatch === 'string' ? stored.lastDailyMatch : null;
       defaults.coins = Number.isSafeInteger(stored.coins) && stored.coins >= 0 ? stored.coins : 0;
       defaults.owned = Array.from(new Set(defaults.owned.concat(Array.isArray(stored.owned) ? stored.owned.filter(function (id) { return typeof id === 'string'; }) : [])));
       if (stored.equipped && typeof stored.equipped === 'object') defaults.equipped = stored.equipped;

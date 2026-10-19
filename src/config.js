@@ -98,8 +98,54 @@ GLOMP.config = {
     markerIcons: ['●', '■', '▲', '★', '◆', '⬢'], faces: ['face-happy'],
   },
   ui: {
-    width: 1600, height: 900, buttonHeight: 96, toastSeconds: 2.5, bootSeconds: 0.2,
+    width: 1920, height: 1080, buttonHeight: 86, toastSeconds: 2.5, bootSeconds: 0.2,
     volumeStep: 0.1, decorationBob: 9, decorationRate: 1.6,
     colors: { chocolate: 0x5A3A24, cream: 0xFFF4DC, ink: 0x36233D, green: 0x7ED321, yellow: 0xFFC933, pink: 0xFF4FA3, blue: 0x2FA8FF, purple: 0x8E4DFF, orange: 0xFF8A2B, red: 0xE8312F, muted: 0xABA9B1, dark: 0x211A35 },
   },
 };
+// Dirección de la rework: mapa rectangular completo y rondas de hasta tres minutos.
+GLOMP.config.arena = {
+  width: 1920, height: 1080, largeMultiplier: 1.2, wall: 42,
+  floorTile: 256, wallTile: 128, obstacleWidth: 176, obstacleHeight: 86,
+  bushWidth: 208, bushHeight: 114, centerSize: 146,
+  obstacles: [[0.26,0.30],[0.74,0.30],[0.26,0.70],[0.74,0.70]],
+  bushes: [[0.16,0.48],[0.84,0.52],[0.40,0.78],[0.60,0.22]],
+  spawns: [[0.16,0.24],[0.84,0.76],[0.84,0.24],[0.16,0.76],[0.50,0.36],[0.50,0.64]],
+  themes: ['candy','cooking','slimegarden'],
+};
+GLOMP.config.round = {
+  maxSeconds: 180, cinematicSeconds: 5, countdownSeconds: 3, launchSeconds: 0.65,
+  resultsSeconds: 8, initialFood: 42, foodInterval: 0.6, foodSpacing: 62,
+  cameraZoom: 1.24, cameraPan: 0.06, endZoom: 1,
+  resultRows: 6, botSteerSeconds: 1.2, maxDrops: 40,
+  maxSpeedMultiplier: 2, tiePrecision: 1000,
+};
+GLOMP.config.art.pixelTiers = ['pixel-slime-small','pixel-slime-medium','pixel-slime-large'];
+GLOMP.config.art.tierThresholds = [110,210];
+GLOMP.config.art.foodColors = [0xFFC933,0xF25B67,0x85D55B,0xB88BF2,0xFF9B45,0x60C9EF,0xE4B783,0xED8EBD,0x91C9A2,0xD6A1F0,0xFFDD8C,0x81BEDF,0xDC8C5C,0xB8D873];
+GLOMP.config.minigames.crazy.duration = GLOMP.config.round.maxSeconds;
+GLOMP.config.minigames.crazy.initialFood = 32;
+GLOMP.config.minigames.pom.spawnAttempts = 120;
+GLOMP.config.minigames.pom.shrinkSeconds = 15;
+GLOMP.config.minigames.pom.blastSeconds = 0.22;
+GLOMP.config.minigames.pom.routeInset = 12;
+GLOMP.config.minigames.eatEm.maxSauceFraction = 0.48;
+GLOMP.config.minigames.eatEm.botRespawnImmunity = 1;
+GLOMP.config.arena.layouts = {
+  candy: { obstacles: [[0.22,0.30],[0.33,0.30],[0.78,0.30],[0.22,0.70],[0.67,0.70],[0.78,0.70]], bushes: [[0.17,0.48],[0.83,0.52],[0.42,0.78],[0.58,0.22]] },
+  cooking: { obstacles: [[0.24,0.26],[0.35,0.26],[0.76,0.26],[0.24,0.74],[0.65,0.74],[0.76,0.74]], bushes: [[0.14,0.50],[0.86,0.50],[0.36,0.78],[0.64,0.22]] },
+  slimegarden: { obstacles: [[0.23,0.28],[0.36,0.28],[0.77,0.28],[0.23,0.72],[0.64,0.72],[0.77,0.72]], bushes: [[0.16,0.48],[0.84,0.52],[0.37,0.78],[0.63,0.22]] },
+};
+GLOMP.config.minigames.buffet.maxFood = 76;
+GLOMP.config.minigames.buffet.feastSpawnAttempts = 12;
+GLOMP.config.minigames.buffet.feastRadius = 28;
+GLOMP.config.minigames.war.projectileRadius = 12;
+GLOMP.config.minigames.war.zoneSeconds = 60;
+GLOMP.config.minigames.war.projectileLifetime = 4;
+GLOMP.config.minigames.war.impactParticles = 6;
+GLOMP.config.minigames.war.crates = [[0.16,0.18],[0.84,0.82],[0.84,0.18],[0.16,0.82],[0.50,0.30],[0.50,0.70],[0.12,0.50],[0.88,0.50]];
+GLOMP.config.minigames.war.ammoColors = {tomato:0xFF5E68,gum:0xF6A4E0,melon:0x88D760,lettuce:0xA4E75D,banana:0xFFE76A};
+GLOMP.config.round.dropOwnerGraceSeconds = 0.45;
+GLOMP.config.food.gum.radius = 90;
+
+GLOMP.config.art.botColor = 0x969DAE;

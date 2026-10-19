@@ -7,6 +7,7 @@ GLOMP.boot = {
   gamepadSignature: null,
   diagnostics: { connectedCount: null, indices: [], apiAvailable: false, sixControllersVerified: false },
   onStart: function (scene) {
+    if (typeof document !== 'undefined') document.title = GLOMP.i18n.text('bootTitle');
     if (GLOMP.save && typeof GLOMP.save.load === 'function') GLOMP.save.load();
     GLOMP.boot.pollElapsed = 0;
     GLOMP.boot.gamepadSignature = null;

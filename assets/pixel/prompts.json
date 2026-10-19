@@ -1,0 +1,97 @@
+[
+  {
+    "id": "slime/small",
+    "prompt": "Use case: stylized-concept. Asset type: GLOMP local party game SMALL slime sprite, pixel art, transparent PNG. Create ONE adorable round white slime with two black shiny eyes, tiny happy pink mouth, small rounded puddle feet, neutral white and light gray body for runtime color tinting. Front view slightly top-down, full silhouette centered with generous transparent margins. Strict polished 16-bit pixel art, visible crisp square pixels, dark purple stair-step outline, 3 shades, tiny white pixel highlights, no smooth gradients or antialiasing. Design on a logical 48x48 pixel grid enlarged sharply, character occupies 80% canvas, no text, no background, no checkerboard, no cast shadow outside silhouette. This is size tier small, simple readable face. One character only, no sheet.",
+    "path": "assets/pixel/slime/small.png"
+  },
+  {
+    "id": "slime/medium",
+    "path": "assets/pixel/slime/medium.png",
+    "prompt": "Use case: stylized-concept. Asset type: GLOMP 2D party arena standalone pixel art asset. Primary request: ONE medium size white slime sprite, round pear-shaped puddle body with two black shiny eyes and tiny happy pink mouth, front slightly top-down view. White and light gray tintable body, dark purple outline. Match the small tier silhouette and face; logical 96x96 pixel grid with richer stepped highlights, NOT an enlarged copy. Full silhouette centered, occupies 80% canvas, transparent margins. Style: premium crisp 16-bit pixel art, deliberate visible square pixels, clustered shading, stair-step dark purple outlines, cheerful vivid palette, lighting from upper left, consistent slightly top-down camera, no antialiasing, no gradients, no text, no logo, no watermark, NOT 3D render, NOT a sprite sheet."
+  },
+  {
+    "id": "slime/large",
+    "path": "assets/pixel/slime/large.png",
+    "prompt": "Use case: stylized-concept. Asset type: GLOMP 2D party arena standalone pixel art asset. Primary request: ONE large size white slime sprite, round pear-shaped puddle body with two black shiny eyes and tiny happy pink mouth, front slightly top-down view. White and light gray tintable body, dark purple outline. Match small and medium tier identity; logical 192x192 pixel grid with more crisp pixel highlight detail, NOT an enlarged copy. Full silhouette centered, occupies 80% canvas, transparent margins. Style: premium crisp 16-bit pixel art, deliberate visible square pixels, clustered shading, stair-step dark purple outlines, cheerful vivid palette, lighting from upper left, consistent slightly top-down camera, no antialiasing, no gradients, no text, no logo, no watermark, NOT 3D render, NOT a sprite sheet."
+  },
+  {
+    "id": "candy/floor",
+    "path": "assets/pixel/candy/floor.png",
+    "prompt": "Use case: stylized-concept. Asset type: GLOMP 2D party arena standalone pixel art asset. Primary request: ONE seamless square repeating ground tile, completely flat overhead, fill every edge with continuous texture, NO borders, NO objects, NO perspective. warm peach biscuit floor with subtle pale checker squares and tiny sugar specks. Restrained low contrast so characters read over it. Style: premium crisp 16-bit pixel art, deliberate visible square pixels, clustered shading, stair-step dark purple outlines, cheerful vivid palette, lighting from upper left, consistent slightly top-down camera, no antialiasing, no gradients, no text, no logo, no watermark, NOT 3D render, NOT a sprite sheet."
+  },
+  {
+    "id": "candy/wall",
+    "path": "assets/pixel/candy/wall.png",
+    "prompt": "Use case: stylized-concept. Asset type: GLOMP 2D party arena standalone pixel art asset. Primary request: ONE isolated short rectangular chocolate wafer wall segment with pink icing along top, chunky visible depth. Top-down 3/4 overhead party arena game prop, full object centered, generous transparent padding, no surrounding scene or text. Style: premium crisp 16-bit pixel art, deliberate visible square pixels, clustered shading, stair-step dark purple outlines, cheerful vivid palette, lighting from upper left, consistent slightly top-down camera, no antialiasing, no gradients, no text, no logo, no watermark, NOT 3D render, NOT a sprite sheet."
+  },
+  {
+    "id": "candy/obstacle",
+    "path": "assets/pixel/candy/obstacle.png",
+    "prompt": "Use case: stylized-concept. Asset type: GLOMP 2D party arena standalone pixel art asset. Primary request: ONE isolated single square chocolate wafer crate with pink frosting and striped wafer edges. Top-down 3/4 overhead party arena game prop, full object centered, generous transparent padding, no surrounding scene or text. Style: premium crisp 16-bit pixel art, deliberate visible square pixels, clustered shading, stair-step dark purple outlines, cheerful vivid palette, lighting from upper left, consistent slightly top-down camera, no antialiasing, no gradients, no text, no logo, no watermark, NOT 3D render, NOT a sprite sheet."
+  },
+  {
+    "id": "candy/bush",
+    "path": "assets/pixel/candy/bush.png",
+    "prompt": "Use case: stylized-concept. Asset type: GLOMP 2D party arena standalone pixel art asset. Primary request: ONE isolated one dense cluster of pink cotton candy bushes, top-down with slightly visible front, opaque silhouette. Top-down 3/4 overhead party arena game prop, full object centered, generous transparent padding, no surrounding scene or text. Style: premium crisp 16-bit pixel art, deliberate visible square pixels, clustered shading, stair-step dark purple outlines, cheerful vivid palette, lighting from upper left, consistent slightly top-down camera, no antialiasing, no gradients, no text, no logo, no watermark, NOT 3D render, NOT a sprite sheet."
+  },
+  {
+    "id": "candy/center",
+    "path": "assets/pixel/candy/center.png",
+    "prompt": "Use case: stylized-concept. Asset type: GLOMP 2D party arena standalone pixel art asset. Primary request: ONE isolated one large pink glazed donut fountain centerpiece with rainbow sprinkles and a biscuit pedestal. Top-down 3/4 overhead party arena game prop, full object centered, generous transparent padding, no surrounding scene or text. Style: premium crisp 16-bit pixel art, deliberate visible square pixels, clustered shading, stair-step dark purple outlines, cheerful vivid palette, lighting from upper left, consistent slightly top-down camera, no antialiasing, no gradients, no text, no logo, no watermark, NOT 3D render, NOT a sprite sheet."
+  },
+  {
+    "id": "cooking/floor",
+    "path": "assets/pixel/cooking/floor.png",
+    "prompt": "Use case: stylized-concept. Asset type: GLOMP 2D party arena standalone pixel art asset. Primary request: ONE seamless square repeating ground tile, completely flat overhead, fill every edge with continuous texture, NO borders, NO objects, NO perspective. pale cream kitchen floor with subtle ivory checker tiles and sparse tiny crumbs. Restrained low contrast so characters read over it. Style: premium crisp 16-bit pixel art, deliberate visible square pixels, clustered shading, stair-step dark purple outlines, cheerful vivid palette, lighting from upper left, consistent slightly top-down camera, no antialiasing, no gradients, no text, no logo, no watermark, NOT 3D render, NOT a sprite sheet."
+  },
+  {
+    "id": "cooking/wall",
+    "path": "assets/pixel/cooking/wall.png",
+    "prompt": "Use case: stylized-concept. Asset type: GLOMP 2D party arena standalone pixel art asset. Primary request: ONE isolated short rectangular warm wooden kitchen counter wall with metal rim, top-down and slightly visible front. Top-down 3/4 overhead party arena game prop, full object centered, generous transparent padding, no surrounding scene or text. Style: premium crisp 16-bit pixel art, deliberate visible square pixels, clustered shading, stair-step dark purple outlines, cheerful vivid palette, lighting from upper left, consistent slightly top-down camera, no antialiasing, no gradients, no text, no logo, no watermark, NOT 3D render, NOT a sprite sheet."
+  },
+  {
+    "id": "cooking/obstacle",
+    "path": "assets/pixel/cooking/obstacle.png",
+    "prompt": "Use case: stylized-concept. Asset type: GLOMP 2D party arena standalone pixel art asset. Primary request: ONE isolated one square wooden kitchen counter crate with red and white tablecloth top and warm wood front. Top-down 3/4 overhead party arena game prop, full object centered, generous transparent padding, no surrounding scene or text. Style: premium crisp 16-bit pixel art, deliberate visible square pixels, clustered shading, stair-step dark purple outlines, cheerful vivid palette, lighting from upper left, consistent slightly top-down camera, no antialiasing, no gradients, no text, no logo, no watermark, NOT 3D render, NOT a sprite sheet."
+  },
+  {
+    "id": "cooking/bush",
+    "path": "assets/pixel/cooking/bush.png",
+    "prompt": "Use case: stylized-concept. Asset type: GLOMP 2D party arena standalone pixel art asset. Primary request: ONE isolated one dense bush of vivid green culinary herbs basil and parsley, opaque silhouette. Top-down 3/4 overhead party arena game prop, full object centered, generous transparent padding, no surrounding scene or text. Style: premium crisp 16-bit pixel art, deliberate visible square pixels, clustered shading, stair-step dark purple outlines, cheerful vivid palette, lighting from upper left, consistent slightly top-down camera, no antialiasing, no gradients, no text, no logo, no watermark, NOT 3D render, NOT a sprite sheet."
+  },
+  {
+    "id": "cooking/center",
+    "path": "assets/pixel/cooking/center.png",
+    "prompt": "Use case: stylized-concept. Asset type: GLOMP 2D party arena standalone pixel art asset. Primary request: ONE isolated one large round soup cooking pot on a low kitchen pedestal with warm orange soup, small green herbs, subtle steam. Top-down 3/4 overhead party arena game prop, full object centered, generous transparent padding, no surrounding scene or text. Style: premium crisp 16-bit pixel art, deliberate visible square pixels, clustered shading, stair-step dark purple outlines, cheerful vivid palette, lighting from upper left, consistent slightly top-down camera, no antialiasing, no gradients, no text, no logo, no watermark, NOT 3D render, NOT a sprite sheet."
+  },
+  {
+    "id": "slimegarden/floor",
+    "path": "assets/pixel/slimegarden/floor.png",
+    "prompt": "Use case: stylized-concept. Asset type: GLOMP 2D party arena standalone pixel art asset. Primary request: ONE seamless square repeating ground tile, completely flat overhead, fill every edge with continuous texture, NO borders, NO objects, NO perspective. muted olive green grass and warm ochre dirt floor, subtle tiled patches with sparse tiny moss flecks. Restrained low contrast so characters read over it. Style: premium crisp 16-bit pixel art, deliberate visible square pixels, clustered shading, stair-step dark purple outlines, cheerful vivid palette, lighting from upper left, consistent slightly top-down camera, no antialiasing, no gradients, no text, no logo, no watermark, NOT 3D render, NOT a sprite sheet."
+  },
+  {
+    "id": "slimegarden/wall",
+    "path": "assets/pixel/slimegarden/wall.png",
+    "prompt": "Use case: stylized-concept. Asset type: GLOMP 2D party arena standalone pixel art asset. Primary request: ONE isolated short rectangular mossy stone wall segment, gray green block stones with bright moss on top. Top-down 3/4 overhead party arena game prop, full object centered, generous transparent padding, no surrounding scene or text. Style: premium crisp 16-bit pixel art, deliberate visible square pixels, clustered shading, stair-step dark purple outlines, cheerful vivid palette, lighting from upper left, consistent slightly top-down camera, no antialiasing, no gradients, no text, no logo, no watermark, NOT 3D render, NOT a sprite sheet."
+  },
+  {
+    "id": "slimegarden/obstacle",
+    "path": "assets/pixel/slimegarden/obstacle.png",
+    "prompt": "Use case: stylized-concept. Asset type: GLOMP 2D party arena standalone pixel art asset. Primary request: ONE isolated one square mossy stone block with tiny teal slime drips, top-down slightly visible front. Top-down 3/4 overhead party arena game prop, full object centered, generous transparent padding, no surrounding scene or text. Style: premium crisp 16-bit pixel art, deliberate visible square pixels, clustered shading, stair-step dark purple outlines, cheerful vivid palette, lighting from upper left, consistent slightly top-down camera, no antialiasing, no gradients, no text, no logo, no watermark, NOT 3D render, NOT a sprite sheet."
+  },
+  {
+    "id": "slimegarden/bush",
+    "path": "assets/pixel/slimegarden/bush.png",
+    "prompt": "Use case: stylized-concept. Asset type: GLOMP 2D party arena standalone pixel art asset. Primary request: ONE isolated one dense teal grass bush with bright lime tips, opaque silhouette. Top-down 3/4 overhead party arena game prop, full object centered, generous transparent padding, no surrounding scene or text. Style: premium crisp 16-bit pixel art, deliberate visible square pixels, clustered shading, stair-step dark purple outlines, cheerful vivid palette, lighting from upper left, consistent slightly top-down camera, no antialiasing, no gradients, no text, no logo, no watermark, NOT 3D render, NOT a sprite sheet."
+  },
+  {
+    "id": "slimegarden/center",
+    "path": "assets/pixel/slimegarden/center.png",
+    "prompt": "Use case: stylized-concept. Asset type: GLOMP 2D party arena standalone pixel art asset. Primary request: ONE isolated one round low stone fountain filled with bright mint green slime, small purple crystal centerpiece. Top-down 3/4 overhead party arena game prop, full object centered, generous transparent padding, no surrounding scene or text. Style: premium crisp 16-bit pixel art, deliberate visible square pixels, clustered shading, stair-step dark purple outlines, cheerful vivid palette, lighting from upper left, consistent slightly top-down camera, no antialiasing, no gradients, no text, no logo, no watermark, NOT 3D render, NOT a sprite sheet."
+  },
+  {
+    "id": "food/bite",
+    "path": "assets/pixel/food/bite.png",
+    "prompt": "Use case: stylized-concept. Asset type: GLOMP 2D party arena standalone pixel art asset. Primary request: ONE small golden triangular cheese food bite with tiny melted cheese pixels, dark amber pixel outline, top-down game pickup, full object centered with transparent margins. Style: premium crisp 16-bit pixel art, deliberate visible square pixels, clustered shading, stair-step dark purple outlines, cheerful vivid palette, lighting from upper left, consistent slightly top-down camera, no antialiasing, no gradients, no text, no logo, no watermark, NOT 3D render, NOT a sprite sheet."
+  }
+]

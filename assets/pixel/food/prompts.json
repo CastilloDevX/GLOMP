@@ -1,0 +1,72 @@
+[
+  {
+    "id": "ingredient1",
+    "path": "assets/pixel/food/ingredient1.png",
+    "prompt": "Use case: stylized-concept. Asset type: ONE standalone food pickup sprite for GLOMP top-down 2D party game. Subject: red tomato with tiny green calyx. Strict crisp polished 16-bit pixel art, chunky visible square pixels, logical 32x32 pixel grid enlarged sharply, dark purple stepped outline, three clustered highlight/shadow shades, upper-left light. Top-down slightly front-visible, centered full silhouette occupying 75% of canvas, true transparent background, no text, no surrounding scene, no shadow outside silhouette, no gradients, no antialiasing, not a sheet. Must remain recognizable at 32 screen pixels."
+  },
+  {
+    "id": "ingredient2",
+    "path": "assets/pixel/food/ingredient2.png",
+    "prompt": "Use case: stylized-concept. Asset type: ONE standalone food pickup sprite for GLOMP top-down 2D party game. Subject: crisp green lettuce head. Strict crisp polished 16-bit pixel art, chunky visible square pixels, logical 32x32 pixel grid enlarged sharply, dark purple stepped outline, three clustered highlight/shadow shades, upper-left light. Top-down slightly front-visible, centered full silhouette occupying 75% of canvas, true transparent background, no text, no surrounding scene, no shadow outside silhouette, no gradients, no antialiasing, not a sheet. Must remain recognizable at 32 screen pixels."
+  },
+  {
+    "id": "ingredient3",
+    "path": "assets/pixel/food/ingredient3.png",
+    "prompt": "Use case: stylized-concept. Asset type: ONE standalone food pickup sprite for GLOMP top-down 2D party game. Subject: small bunch of purple grapes. Strict crisp polished 16-bit pixel art, chunky visible square pixels, logical 32x32 pixel grid enlarged sharply, dark purple stepped outline, three clustered highlight/shadow shades, upper-left light. Top-down slightly front-visible, centered full silhouette occupying 75% of canvas, true transparent background, no text, no surrounding scene, no shadow outside silhouette, no gradients, no antialiasing, not a sheet. Must remain recognizable at 32 screen pixels."
+  },
+  {
+    "id": "ingredient4",
+    "path": "assets/pixel/food/ingredient4.png",
+    "prompt": "Use case: stylized-concept. Asset type: ONE standalone food pickup sprite for GLOMP top-down 2D party game. Subject: orange carrot with green leaves. Strict crisp polished 16-bit pixel art, chunky visible square pixels, logical 32x32 pixel grid enlarged sharply, dark purple stepped outline, three clustered highlight/shadow shades, upper-left light. Top-down slightly front-visible, centered full silhouette occupying 75% of canvas, true transparent background, no text, no surrounding scene, no shadow outside silhouette, no gradients, no antialiasing, not a sheet. Must remain recognizable at 32 screen pixels."
+  },
+  {
+    "id": "ingredient5",
+    "path": "assets/pixel/food/ingredient5.png",
+    "prompt": "Use case: stylized-concept. Asset type: ONE standalone food pickup sprite for GLOMP top-down 2D party game. Subject: three round blue blueberries. Strict crisp polished 16-bit pixel art, chunky visible square pixels, logical 32x32 pixel grid enlarged sharply, dark purple stepped outline, three clustered highlight/shadow shades, upper-left light. Top-down slightly front-visible, centered full silhouette occupying 75% of canvas, true transparent background, no text, no surrounding scene, no shadow outside silhouette, no gradients, no antialiasing, not a sheet. Must remain recognizable at 32 screen pixels."
+  },
+  {
+    "id": "ingredient6",
+    "path": "assets/pixel/food/ingredient6.png",
+    "prompt": "Use case: stylized-concept. Asset type: ONE standalone food pickup sprite for GLOMP top-down 2D party game. Subject: golden bread loaf. Strict crisp polished 16-bit pixel art, chunky visible square pixels, logical 32x32 pixel grid enlarged sharply, dark purple stepped outline, three clustered highlight/shadow shades, upper-left light. Top-down slightly front-visible, centered full silhouette occupying 75% of canvas, true transparent background, no text, no surrounding scene, no shadow outside silhouette, no gradients, no antialiasing, not a sheet. Must remain recognizable at 32 screen pixels."
+  },
+  {
+    "id": "ingredient7",
+    "path": "assets/pixel/food/ingredient7.png",
+    "prompt": "Use case: stylized-concept. Asset type: ONE standalone food pickup sprite for GLOMP top-down 2D party game. Subject: red strawberry with green crown. Strict crisp polished 16-bit pixel art, chunky visible square pixels, logical 32x32 pixel grid enlarged sharply, dark purple stepped outline, three clustered highlight/shadow shades, upper-left light. Top-down slightly front-visible, centered full silhouette occupying 75% of canvas, true transparent background, no text, no surrounding scene, no shadow outside silhouette, no gradients, no antialiasing, not a sheet. Must remain recognizable at 32 screen pixels."
+  },
+  {
+    "id": "ingredient8",
+    "path": "assets/pixel/food/ingredient8.png",
+    "prompt": "Use case: stylized-concept. Asset type: ONE standalone food pickup sprite for GLOMP top-down 2D party game. Subject: green apple with one leaf. Strict crisp polished 16-bit pixel art, chunky visible square pixels, logical 32x32 pixel grid enlarged sharply, dark purple stepped outline, three clustered highlight/shadow shades, upper-left light. Top-down slightly front-visible, centered full silhouette occupying 75% of canvas, true transparent background, no text, no surrounding scene, no shadow outside silhouette, no gradients, no antialiasing, not a sheet. Must remain recognizable at 32 screen pixels."
+  },
+  {
+    "id": "ingredient9",
+    "path": "assets/pixel/food/ingredient9.png",
+    "prompt": "Use case: stylized-concept. Asset type: ONE standalone food pickup sprite for GLOMP top-down 2D party game. Subject: purple eggplant with green calyx. Strict crisp polished 16-bit pixel art, chunky visible square pixels, logical 32x32 pixel grid enlarged sharply, dark purple stepped outline, three clustered highlight/shadow shades, upper-left light. Top-down slightly front-visible, centered full silhouette occupying 75% of canvas, true transparent background, no text, no surrounding scene, no shadow outside silhouette, no gradients, no antialiasing, not a sheet. Must remain recognizable at 32 screen pixels."
+  },
+  {
+    "id": "ingredient10",
+    "path": "assets/pixel/food/ingredient10.png",
+    "prompt": "Use case: stylized-concept. Asset type: ONE standalone food pickup sprite for GLOMP top-down 2D party game. Subject: yellow ear of corn with green husk. Strict crisp polished 16-bit pixel art, chunky visible square pixels, logical 32x32 pixel grid enlarged sharply, dark purple stepped outline, three clustered highlight/shadow shades, upper-left light. Top-down slightly front-visible, centered full silhouette occupying 75% of canvas, true transparent background, no text, no surrounding scene, no shadow outside silhouette, no gradients, no antialiasing, not a sheet. Must remain recognizable at 32 screen pixels."
+  },
+  {
+    "id": "ingredient11",
+    "path": "assets/pixel/food/ingredient11.png",
+    "prompt": "Use case: stylized-concept. Asset type: ONE standalone food pickup sprite for GLOMP top-down 2D party game. Subject: small blue fish food icon. Strict crisp polished 16-bit pixel art, chunky visible square pixels, logical 32x32 pixel grid enlarged sharply, dark purple stepped outline, three clustered highlight/shadow shades, upper-left light. Top-down slightly front-visible, centered full silhouette occupying 75% of canvas, true transparent background, no text, no surrounding scene, no shadow outside silhouette, no gradients, no antialiasing, not a sheet. Must remain recognizable at 32 screen pixels."
+  },
+  {
+    "id": "ingredient12",
+    "path": "assets/pixel/food/ingredient12.png",
+    "prompt": "Use case: stylized-concept. Asset type: ONE standalone food pickup sprite for GLOMP top-down 2D party game. Subject: round chocolate chip cookie. Strict crisp polished 16-bit pixel art, chunky visible square pixels, logical 32x32 pixel grid enlarged sharply, dark purple stepped outline, three clustered highlight/shadow shades, upper-left light. Top-down slightly front-visible, centered full silhouette occupying 75% of canvas, true transparent background, no text, no surrounding scene, no shadow outside silhouette, no gradients, no antialiasing, not a sheet. Must remain recognizable at 32 screen pixels."
+  },
+  {
+    "id": "ingredient13",
+    "path": "assets/pixel/food/ingredient13.png",
+    "prompt": "Use case: stylized-concept. Asset type: ONE standalone food pickup sprite for GLOMP top-down 2D party game. Subject: light green pear. Strict crisp polished 16-bit pixel art, chunky visible square pixels, logical 32x32 pixel grid enlarged sharply, dark purple stepped outline, three clustered highlight/shadow shades, upper-left light. Top-down slightly front-visible, centered full silhouette occupying 75% of canvas, true transparent background, no text, no surrounding scene, no shadow outside silhouette, no gradients, no antialiasing, not a sheet. Must remain recognizable at 32 screen pixels."
+  },
+  {
+    "id": "banana",
+    "path": "assets/pixel/food/banana.png",
+    "prompt": "Use case: stylized-concept. Asset type: ONE standalone food pickup sprite for GLOMP top-down 2D party game. Subject: curved yellow banana with dark stem. Strict crisp polished 16-bit pixel art, chunky visible square pixels, logical 32x32 pixel grid enlarged sharply, dark purple stepped outline, three clustered highlight/shadow shades, upper-left light. Top-down slightly front-visible, centered full silhouette occupying 75% of canvas, true transparent background, no text, no surrounding scene, no shadow outside silhouette, no gradients, no antialiasing, not a sheet. Must remain recognizable at 32 screen pixels."
+  }
+]
