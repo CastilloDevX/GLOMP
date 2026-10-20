@@ -1,0 +1,10 @@
+{
+  "resource": {
+    "file": "assets/fonts/LilitaOne-Regular.ttf",
+    "kind": "font",
+    "metadata": "",
+    "name": "assets/fonts/LilitaOne-Regular.ttf",
+    "userAdded": false
+  },
+  "verifiedWith": "GDevelop 5.6.284 FontResource + Project serializer, 2026-10-19"
+}

@@ -1,0 +1,114 @@
+[
+  {
+    "id": "accessory0",
+    "name": "party",
+    "path": "assets/illustrated/accessories/party.png",
+    "prompt": "Use case: stylized-concept. Production standalone PNG asset for GLOMP cute smooth jelly party game. Premium smooth 2D/2.5D candy illustration, controlled dark plum edges, glossy soft volumes, light upper left. NO pixel art, NO text, NO watermark, NO sheet, NO character or face, NO scenery. ONE asset only centered with generous transparent padding. Transparent background. A single small cheerful PARTY CONE HAT, coral pink and yellow stripes, turquoise pompom. Front view slight overhead, horizontal opening at bottom to sit atop a rounded slime head.",
+    "transparent": true
+  },
+  {
+    "id": "accessory1",
+    "name": "crown",
+    "path": "assets/illustrated/accessories/crown.png",
+    "prompt": "Use case: stylized-concept. Production standalone PNG asset for GLOMP cute smooth jelly party game. Premium smooth 2D/2.5D candy illustration, controlled dark plum edges, glossy soft volumes, light upper left. NO pixel art, NO text, NO watermark, NO sheet, NO character or face, NO scenery. ONE asset only centered with generous transparent padding. Transparent background. A single golden rounded ROYAL CROWN with three soft points and purple candy gems. Horizontal opening at bottom, front view slight overhead, fits round slime head.",
+    "transparent": true
+  },
+  {
+    "id": "accessory2",
+    "name": "chef",
+    "path": "assets/illustrated/accessories/chef.png",
+    "prompt": "Use case: stylized-concept. Production standalone PNG asset for GLOMP cute smooth jelly party game. Premium smooth 2D/2.5D candy illustration, controlled dark plum edges, glossy soft volumes, light upper left. NO pixel art, NO text, NO watermark, NO sheet, NO character or face, NO scenery. ONE asset only centered with generous transparent padding. Transparent background. A single white puffy CHEF HAT with lavender neutral shadows and white band at bottom, front view slightly overhead.",
+    "transparent": true
+  },
+  {
+    "id": "accessory3",
+    "name": "pirate",
+    "path": "assets/illustrated/accessories/pirate.png",
+    "prompt": "Use case: stylized-concept. Production standalone PNG asset for GLOMP cute smooth jelly party game. Premium smooth 2D/2.5D candy illustration, controlled dark plum edges, glossy soft volumes, light upper left. NO pixel art, NO text, NO watermark, NO sheet, NO character or face, NO scenery. ONE asset only centered with generous transparent padding. Transparent background. A single friendly dark plum PIRATE TRICORN HAT with a golden cookie emblem, no skull, horizontal brim, front view slightly overhead.",
+    "transparent": true
+  },
+  {
+    "id": "accessory4",
+    "name": "bow",
+    "path": "assets/illustrated/accessories/bow.png",
+    "prompt": "Use case: stylized-concept. Production standalone PNG asset for GLOMP cute smooth jelly party game. Premium smooth 2D/2.5D candy illustration, controlled dark plum edges, glossy soft volumes, light upper left. NO pixel art, NO text, NO watermark, NO sheet, NO character or face, NO scenery. ONE asset only centered with generous transparent padding. Transparent background. A single bright coral pink SATIN BOW with yellow center, compact symmetrical front-facing bow to wear on top of a slime head.",
+    "transparent": true
+  },
+  {
+    "id": "accessory5",
+    "name": "sprout",
+    "path": "assets/illustrated/accessories/sprout.png",
+    "prompt": "Use case: stylized-concept. Production standalone PNG asset for GLOMP cute smooth jelly party game. Premium smooth 2D/2.5D candy illustration, controlled dark plum edges, glossy soft volumes, light upper left. NO pixel art, NO text, NO watermark, NO sheet, NO character or face, NO scenery. ONE asset only centered with generous transparent padding. Transparent background. A single mint green TWO LEAF SPROUT with short curved stem, to wear above a rounded slime head, front view.",
+    "transparent": true
+  },
+  {
+    "id": "accessory6",
+    "name": "cap",
+    "path": "assets/illustrated/accessories/cap.png",
+    "prompt": "Use case: stylized-concept. Production standalone PNG asset for GLOMP cute smooth jelly party game. Premium smooth 2D/2.5D candy illustration, controlled dark plum edges, glossy soft volumes, light upper left. NO pixel art, NO text, NO watermark, NO sheet, NO character or face, NO scenery. ONE asset only centered with generous transparent padding. Transparent background. A single turquoise and golden sporty BASEBALL CAP tilted slightly right, short rounded brim, no logo or letters, front view slightly overhead.",
+    "transparent": true
+  },
+  {
+    "id": "accessory7",
+    "name": "halo",
+    "path": "assets/illustrated/accessories/halo.png",
+    "prompt": "Use case: stylized-concept. Production standalone PNG asset for GLOMP cute smooth jelly party game. Premium smooth 2D/2.5D candy illustration, controlled dark plum edges, glossy soft volumes, light upper left. NO pixel art, NO text, NO watermark, NO sheet, NO character or face, NO scenery. ONE asset only centered with generous transparent padding. Transparent background. A single golden floating HALO RING seen from slightly above as a horizontal ellipse, soft cream center hole transparent, restrained shine.",
+    "transparent": true
+  },
+  {
+    "id": "accessory8",
+    "name": "flower",
+    "path": "assets/illustrated/accessories/flower.png",
+    "prompt": "Use case: stylized-concept. Production standalone PNG asset for GLOMP cute smooth jelly party game. Premium smooth 2D/2.5D candy illustration, controlled dark plum edges, glossy soft volumes, light upper left. NO pixel art, NO text, NO watermark, NO sheet, NO character or face, NO scenery. ONE asset only centered with generous transparent padding. Transparent background. A single large cheerful white DAISY FLOWER with golden yellow round center and five soft petals, front facing, wearable head decoration.",
+    "transparent": true
+  },
+  {
+    "id": "accessory9",
+    "name": "astronaut",
+    "path": "assets/illustrated/accessories/astronaut.png",
+    "prompt": "Use case: stylized-concept. Production standalone PNG asset for GLOMP cute smooth jelly party game. Premium smooth 2D/2.5D candy illustration, controlled dark plum edges, glossy soft volumes, light upper left. NO pixel art, NO text, NO watermark, NO sheet, NO character or face, NO scenery. ONE asset only centered with generous transparent padding. Transparent background. A single futuristic purple ASTRO HEADBAND with two short antennas ending in pastel blue candy stars, open underneath, horizontal curved band, front view slightly overhead.",
+    "transparent": true
+  },
+  {
+    "id": "particles0",
+    "path": "assets/illustrated/particles/style0.png",
+    "prompt": "Use case: stylized-concept. Production standalone PNG asset for GLOMP cute smooth jelly party game. Premium smooth 2D/2.5D candy illustration, controlled dark plum edges, glossy soft volumes, light upper left. NO pixel art, NO text, NO watermark, NO sheet, NO character or face, NO scenery. ONE asset only centered with generous transparent padding. Transparent background. One tiny golden five-point rounded candy STAR sparkle, simple readable silhouette.",
+    "transparent": true
+  },
+  {
+    "id": "particles1",
+    "path": "assets/illustrated/particles/style1.png",
+    "prompt": "Use case: stylized-concept. Production standalone PNG asset for GLOMP cute smooth jelly party game. Premium smooth 2D/2.5D candy illustration, controlled dark plum edges, glossy soft volumes, light upper left. NO pixel art, NO text, NO watermark, NO sheet, NO character or face, NO scenery. ONE asset only centered with generous transparent padding. Transparent background. One tiny coral pink HEART candy with white glossy highlight, front view.",
+    "transparent": true
+  },
+  {
+    "id": "particles2",
+    "path": "assets/illustrated/particles/style2.png",
+    "prompt": "Use case: stylized-concept. Production standalone PNG asset for GLOMP cute smooth jelly party game. Premium smooth 2D/2.5D candy illustration, controlled dark plum edges, glossy soft volumes, light upper left. NO pixel art, NO text, NO watermark, NO sheet, NO character or face, NO scenery. ONE asset only centered with generous transparent padding. Transparent background. One tiny iridescent mint SOAP BUBBLE ring with transparent center and soft blue/pink reflections.",
+    "transparent": true
+  },
+  {
+    "id": "particles3",
+    "path": "assets/illustrated/particles/style3.png",
+    "prompt": "Use case: stylized-concept. Production standalone PNG asset for GLOMP cute smooth jelly party game. Premium smooth 2D/2.5D candy illustration, controlled dark plum edges, glossy soft volumes, light upper left. NO pixel art, NO text, NO watermark, NO sheet, NO character or face, NO scenery. ONE asset only centered with generous transparent padding. Transparent background. One tiny purple-yellow diamond CONFETTI candy sparkle, simple silhouette.",
+    "transparent": true
+  },
+  {
+    "id": "trail0",
+    "path": "assets/illustrated/trails/style0.png",
+    "prompt": "Use case: stylized-concept. Production standalone PNG asset for GLOMP cute smooth jelly party game. Premium smooth 2D/2.5D candy illustration, controlled dark plum edges, glossy soft volumes, light upper left. NO pixel art, NO text, NO watermark, NO sheet, NO character or face, NO scenery. ONE asset only centered with generous transparent padding. Transparent background. One small glossy mint green JELLY PAWPRINT style puddle, single rounded drop with white highlight, viewed from above.",
+    "transparent": true
+  },
+  {
+    "id": "trail1",
+    "path": "assets/illustrated/trails/style1.png",
+    "prompt": "Use case: stylized-concept. Production standalone PNG asset for GLOMP cute smooth jelly party game. Premium smooth 2D/2.5D candy illustration, controlled dark plum edges, glossy soft volumes, light upper left. NO pixel art, NO text, NO watermark, NO sheet, NO character or face, NO scenery. ONE asset only centered with generous transparent padding. Transparent background. One small pastel RAINBOW curved ribbon swash, pink yellow mint blue, viewed from above, simple rounded tail.",
+    "transparent": true
+  },
+  {
+    "id": "trail2",
+    "path": "assets/illustrated/trails/style2.png",
+    "prompt": "Use case: stylized-concept. Production standalone PNG asset for GLOMP cute smooth jelly party game. Premium smooth 2D/2.5D candy illustration, controlled dark plum edges, glossy soft volumes, light upper left. NO pixel art, NO text, NO watermark, NO sheet, NO character or face, NO scenery. ONE asset only centered with generous transparent padding. Transparent background. One small golden sugar crescent comet STREAK, single golden swoosh with a tiny star tip, viewed from above.",
+    "transparent": true
+  }
+]

@@ -34,7 +34,9 @@ GLOMP.save = {
   equipment: function (playerId) {
     const data = GLOMP.save.data;
     const saved = data.equipped[playerId] || {};
-    return { body: data.owned.includes(saved.body) ? saved.body : 'body0', face: data.owned.includes(saved.face) ? saved.face : 'face0' };
+    const equipment={body:'body0',face:'face0',accessory:null,particles:null,trail:null};
+    Object.keys(equipment).forEach(function(category){if(typeof saved[category]==='string'&&saved[category].startsWith(category)&&data.owned.includes(saved[category]))equipment[category]=saved[category];});
+    return equipment;
   },
   reset: function () { GLOMP.save.data = GLOMP.save.defaults(); GLOMP.save.write(); },
 };

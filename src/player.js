@@ -4,10 +4,10 @@ GLOMP.player = {
     const equipment = GLOMP.save.equipment(playerId);
     return {
       playerId: playerId, source: source, x: x, y: y, vx: 0, vy: 0,
-      bodyColor: equipment.body, face: equipment.face, accessory: null, particles: null, trail: null,
+      bodyColor: equipment.body, face: equipment.face, accessory: equipment.accessory, particles: equipment.particles, trail: equipment.trail, trailPoints: [], trailElapsed: 0,
       slices: 0, mass: 0, scale: 1, visualScale: 1, health: GLOMP.config.player.initialHealth,
       ammo: [], actionCooldown: 0, state: 'normal', alive: true, gulp: 0,
-      stretch: 1, stretchVelocity: 0, brake: 0, previousSpeed: 0, bot: false,
+      knockX: 0, knockY: 0, facingX: 1, facingY: 0, animationTime: 0, expression: 'smile', stretch: 1, stretchVelocity: 0, brake: 0, previousSpeed: 0, bot: false,
     };
   },
   refresh: function (player) {
@@ -38,9 +38,22 @@ GLOMP.player = {
     const difference = Math.hypot(dx, dy), acceleration = (targetX || targetY) ? config.acceleration : config.friction;
     const fraction = difference ? Math.min(1, acceleration * dt / difference) : 0;
     player.vx += dx * fraction; player.vy += dy * fraction;
-    player.x += player.vx * dt; player.y += player.vy * dt;
+    const heading = Math.hypot(control.x || 0, control.y || 0);
+    if (heading) { player.facingX = control.x / heading; player.facingY = control.y / heading; }
+    player.animationTime += dt;
+    const visual=GLOMP.config.animation.cosmetics;
+    player.trailPoints.forEach(function(point){point.life-=dt;});player.trailPoints=player.trailPoints.filter(function(point){return point.life>0;});
+    player.trailElapsed+=dt;
+    if(player.trail&&player.trailElapsed>=visual.trailInterval&&before>visual.trailMinSpeed) {
+      player.trailElapsed%=visual.trailInterval;player.trailPoints.push({x:player.x,y:player.y,life:visual.trailSeconds});
+      if(player.trailPoints.length>visual.trailMax)player.trailPoints.shift();
+    }
+    player.x += (player.vx + player.knockX) * dt; player.y += (player.vy + player.knockY) * dt;
+    const drag = Math.exp(-config.knockbackDrag * dt);
+    player.knockX *= drag; player.knockY *= drag;
     GLOMP.player.resolveBounds(player, arena);
     arena.obstacles.forEach(function (rectangle) { GLOMP.player.resolveRectangle(player, rectangle); });
+    (arena.circles || []).forEach(function (circle) { GLOMP.player.resolveCircle(player, circle); });
     const speed = Math.hypot(player.vx, player.vy);
     if (before > 0 && speed === 0) player.brake = config.brakeSeconds;
     player.brake = Math.max(0, player.brake - dt);
@@ -50,10 +63,12 @@ GLOMP.player = {
     player.stretch += player.stretchVelocity * dt;
     player.visualScale += (player.scale - player.visualScale) * (1 - Math.exp(-config.growLerp * dt));
     player.gulp = Math.max(0, player.gulp - dt);
+    player.gesture = Math.max(0,(player.gesture || 0)-dt);
     player.actionCooldown = Math.max(0, player.actionCooldown - dt);
     player.previousSpeed = speed;
   },
   resolveBounds: function (player, arena) {
+    if (arena.unbounded) return;
     const margin = (arena.wall === undefined ? GLOMP.config.sandbox.wallPadding : arena.wall) + player.radius;
     const width = arena.width || arena.size, height = arena.height || arena.size;
     if (player.x < margin) { player.x = margin; player.vx = Math.max(0, player.vx); }
@@ -81,6 +96,15 @@ GLOMP.player = {
     const normalVelocity = player.vx * nx + player.vy * ny;
     if (normalVelocity < 0) { player.vx -= normalVelocity * nx; player.vy -= normalVelocity * ny; }
   },
+  impulse: function (player, x, y, strength) {
+    const length = Math.hypot(x,y) || 1;
+    player.knockX += x / length * strength; player.knockY += y / length * strength;
+  },
+  resolveCircle: function (player, circle) {
+    const dx = player.x-circle.x, dy = player.y-circle.y, distance = Math.hypot(dx,dy);
+    const overlap = player.radius + circle.radius - distance;
+    if (overlap > 0) { const nx = distance ? dx/distance : 1, ny = distance ? dy/distance : 0; player.x += nx*overlap; player.y += ny*overlap; }
+  },
   separate: function (players, arena) {
     for (let i = 0; i < players.length; i++) for (let j = i + 1; j < players.length; j++) {
       const a = players[i], b = players[j];
@@ -94,6 +118,7 @@ GLOMP.player = {
       a.x -= nx * correction * aShare; a.y -= ny * correction * aShare;
       b.x += nx * correction * bShare; b.y += ny * correction * bShare;
       GLOMP.player.resolveBounds(a, arena); GLOMP.player.resolveBounds(b, arena);
+      [a,b].forEach(function(p){ arena.obstacles.forEach(function(r){GLOMP.player.resolveRectangle(p,r);}); (arena.circles || []).forEach(function(r){GLOMP.player.resolveCircle(p,r);}); });
     }
   },
   eat: function (player, mass) {

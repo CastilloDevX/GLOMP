@@ -26,6 +26,10 @@ function main() {
     if (!resource.file) continue;
     assert(resource.file.startsWith('assets/') && !resource.file.includes('..'), `Ruta de recurso inválida: ${resource.name}`);
     assert(fs.existsSync(path.join(root, resource.file)), `Recurso inexistente: ${resource.file}`);
+    if(resource.kind==='font') {
+      const template=readJSON('reference/font-resource.json').resource;
+      for(const key of Object.keys(template))assert(Object.hasOwn(resource,key)&&typeof resource[key]===typeof template[key],`Formato de fuente distinto: ${key}`);
+    }
   }
   const context = vm.createContext({ globalThis: {} });
   context.globalThis = context;

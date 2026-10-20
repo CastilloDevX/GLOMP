@@ -48,7 +48,7 @@ GLOMP.input = {
     });
     input.previousPads = {};
     input.pads.forEach(function (pad) { input.previousPads[pad.index] = pad.buttons; });
-    input.confirm = !!(input.edges.Enter || input.edges.Space || input.edges.KeyE || input.pads.some(function (pad) { return pad.edges[config.confirmButton]; }));
+    input.confirm = !!(input.edges.Enter || input.edges.Space || (GLOMP.save.data ? GLOMP.save.data.settings.keys : config.keyboard).some(function(keys){return input.edges[keys.action];}) || input.pads.some(function (pad) { return pad.edges[config.confirmButton]; }));
     input.back = !!(input.edges.Escape || input.pads.some(function (pad) { return pad.edges[config.backButton]; }));
     let direction = '';
     if (input.keys.ArrowUp || input.keys.KeyW) direction = 'up';

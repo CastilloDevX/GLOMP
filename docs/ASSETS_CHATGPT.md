@@ -1,47 +1,38 @@
-# GLOMP! — Assets de la rework y producción restante
+# GLOMP! — Arte ilustrado
 
-Proveedor utilizado: herramienta integrada de ChatGPT imagegen. Google/Nano
-Banana sigue suspendido por cuota. No exponer ni trasladar claves de .env.
+Proveedor activo autorizado: ChatGPT `imagegen`. Google/Nano Banana permanece
+suspendido por cuota. No leer, imprimir ni trasladar claves de `.env`.
 
-## Entrega integrada
+## Contrato vigente
 
-35 PNG nuevos en assets/pixel, registrados con dimensiones y límites de alfa en
-assets/manifest.json y src/art.js. No se usan las imágenes de samples como mapas
-horneados: cada arena se monta con piezas independientes.
+Un único cuerpo blanco aprobado en `assets/slime/base-white-chatgpt-v1.png` para
+todos los tamaños, con deformación de malla. Cara por piezas y sin tinte; cuerpo
+con color. Curvas suaves y luz superior izquierda, sin pixel art ni sprites de
+slime alternativos que cambien la silueta. Accesorios anclados sobre la misma
+coronilla, partículas y rastros sin efectos mecánicos.
 
-| Carpeta | PNG | Uso |
-|---|---:|---|
-| slime | 3 | small, medium, large; cuerpo blanco tintable con rostro legible |
-| candy | 5 | floor, wall, obstacle, bush, center |
-| cooking | 5 | floor, wall, obstacle, bush, center |
-| slimegarden | 5 | floor, wall, obstacle, bush, center |
-| food | 17 | bocadito, 13 ingredientes, banana, chicle y sandía |
+Los mapas de Dulcería, Cocina y Jardín reutilizan los originales exactos de
+`samples/maps`; las copias activas están en `assets/illustrated/maps`. Lava es una
+ilustración nueva con plataforma libre. Las dimensiones reales y huellas están
+registradas: no presentar los PNG como lienzos 3072×1728 si el proveedor entregó
+otras medidas. El canvas Full HD es independiente de la resolución fuente.
 
-Los prompts exactos por archivo están en:
+## Recursos y procedencia
 
-- assets/pixel/prompts.json
-- assets/pixel/food/prompts.json
-- assets/pixel/food/projectile-prompts.json
+- `assets/illustrated/prompts.json`: 28 prompts exactos, una imagen por solicitud:
+  ojo, cuatro bocas, plataforma, botón, cinta, panel, lava y 18 comidas.
+- `assets/illustrated/cosmetic-prompts.json`: 17 prompts, diez sombreros, cuatro
+  partículas y tres rastros, todos independientes y con alfa.
+- `assets/manifest.json`: archivo, proveedor, prompt, estado, dimensiones, límites
+  alfa y SHA-256. Los nuevos PNG están generados/integrados, no declarados aprobados
+  por el usuario sin una revisión suya.
+- `tools/register-illustrated.js`: calcula metadatos e índice, sin editar píxeles;
+  `src/art.js` enumera únicamente el arte activo. Recursos anteriores conservados
+  como historial, sin pixel art activo en el juego.
+- `assets/fonts/LilitaOne-Regular.ttf` y OFL.txt: fuente local y licencia. Fuente
+  oficial: https://github.com/google/fonts/tree/main/ofl/lilitaone .
 
-Todas las piezas de personajes/objetos tienen transparencia; los suelos son
-opacos y repetibles. Nearest en recursos y texturas. Los umbrales de detalle del
-slime viven en config.art.tierThresholds. Los PNG fuente son grandes; las cuadrículas
-lógicas solicitadas en los prompts describen detalle visual, no dimensiones reales.
-Se conservan el banner/título aprobados y menu-village como fondo de la sala.
-
-## Trabajo visual restante
-
-1. Validar con el usuario el resultado dentro del juego, con movimiento y escala.
-   Si una pieza falla, corregir esa pieza conservando perspectiva, paleta y pivote.
-2. Crear caras, accesorios, partículas y rastros para completar las 31 piezas
-   cosméticas. Cada pieza debe ser un PNG separado compatible con los tres cuerpos;
-   si requiere deformación, validar sus puntos de anclaje en los tres tamaños.
-3. Los fondos de otras plazas y variaciones de clima son opcionales posteriores a
-   la demo. No regenerar los tres mapas ni el menú como requisito pendiente.
-
-Prompt base para próximas piezas: «Sprite independiente de GLOMP!, pixel art
-16-bit con píxeles cuadrados visibles, contorno escalonado morado oscuro, sombras
-agrupadas, luz superior izquierda, vista cenital ligeramente frontal. Una sola
-pieza centrada, sin texto ni marca, transparencia real, sin antialiasing. Mantener
-escala y anclaje del cuerpo de referencia». Añadir tema, pieza y tamaño lógico.
-No generar audio con herramientas de imagen.
+Títulos y textos se dibujan con fuente real, no se hornean dentro de los botones.
+Mantener el logo/título y menu-village aprobados. Para próximas revisiones usar la
+imagen actual como referencia, cambiar una pieza por llamada y revisar el
+resultado a escala de juego antes de incorporarlo. No generar audio con imagen.

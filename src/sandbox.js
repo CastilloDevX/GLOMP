@@ -4,7 +4,7 @@ GLOMP.sandbox = {
   createWorld: function (participants,seed) {
     const w = GLOMP.maps.create(participants,'candy',seed); w.mode = 'practice';
     for (let i = 0; i < GLOMP.config.round.initialFood; i++) GLOMP.food.spawn(w,'bite');
-    return w;
+    GLOMP.camera.update(w,0);return w;
   },
   step: function (w,dt,controls) {
     w.elapsed += dt; GLOMP.maps.move(w,dt,controls); GLOMP.player.separate(w.players,w); GLOMP.food.collect(w);
@@ -17,15 +17,16 @@ GLOMP.sandbox = {
     w.accumulator += Math.min(dt,GLOMP.config.physics.maxFrameSeconds);
     const step = GLOMP.config.physics.fixedStep;
     while (w.accumulator + Number.EPSILON >= step) { GLOMP.sandbox.step(w,step,controls); w.accumulator = Math.max(0,w.accumulator - step); }
+    GLOMP.camera.update(w,dt);
   },
   onStart: function (scene) {
-    const participants = GLOMP.ui.lobby.length ? GLOMP.ui.lobby : [{source:{kind:'keyboard',index:0},color:0}];
+    const participants = GLOMP.ui.lobby.length ? GLOMP.ui.lobby : [{source:{kind:'keyboard',index:0},color:Number(GLOMP.save.equipment(0).body.slice(4))}];
     GLOMP.sandbox.world = GLOMP.sandbox.createWorld(participants,Date.now() >>> 0);
     GLOMP.input.bind(); GLOMP.view.attach(scene);
   },
   onTick: function (scene,dt) {
     const input = GLOMP.input,w = GLOMP.sandbox.world;
-    input.update(dt); if (input.back) { GLOMP.ui.go(scene,'Menu'); return; }
+    GLOMP.ui.elapsed+=dt;input.update(dt); if (input.back) { GLOMP.ui.go(scene,'Menu'); return; }
     GLOMP.sandbox.advance(w,dt,w.players.map(function (p) { return input.read(p.source); }));
     GLOMP.hud.render(scene,{world:w,phase:'playing',phaseElapsed:0,participants:w.players.map(function () { return {slices:0}; }),round:0});
   },

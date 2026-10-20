@@ -67,3 +67,18 @@ Esto evita «Cannot find propagation path to disconnected target» en Preview.
 
 Build y scaffold exponen main para probar idempotencia sin procesos hijos. No se
 ha relajado la validación del esquema ni se han modificado hashes de referencia.
+
+## Dirección vigente del 19 de octubre
+
+El apartado pixel art anterior documenta la versión sustituida. Arte activo:
+mapas originales completos, un cuerpo tintable y cara separada. PIXI 7 incluido
+expone SimplePlane y NineSlicePlane: ambos se comprobaron en Preview nativa.
+La malla usa aVertexPosition y actualiza su buffer desde onTick; no se añade
+requestAnimationFrame ni motor externo. Cámara propia compartida bajo GLOMP.
+
+Se creó una FontResource mediante la API nativa de GDevelop 5.6.284 y se serializó
+con Project, sin adivinar campos. Plantilla: reference/font-resource.json. Contiene
+file, kind="font", metadata, name y userAdded. Scaffold la clona para el TTF;
+FontManager.loadResource/getFontFamily y document.fonts.load esperan su carga.
+La exportación conserva el nombre del recurso aunque aplane la ruta del archivo.
+Los hashes y el esquema original de eventos permanecen sin modificar.

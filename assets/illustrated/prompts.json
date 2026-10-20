@@ -1,0 +1,170 @@
+[
+  {
+    "id": "face/eye",
+    "path": "assets/illustrated/face/eye.png",
+    "prompt": "Use case: stylized-concept. Asset type: production PNG for GLOMP local party game. Primary request: ONE isolated glossy near-black oval cartoon eye for a friendly slime, two small sharp white reflections at upper left, deep purple subtle rim, no iris white, no skin, no eyelashes, no other eye, no eyebrow. Front facing, oval vertical, full silhouette centered. Style: premium smooth illustrated 2D/2.5D candy party game, soft glossy painted volumes, controlled dark plum edging, clean antialiased curves, vivid friendly colors. NO pixel art, NO stepped pixels, NO dithering, NO watermark, NO text, NO backdrop, NO sheet. Transparent background with no glow outside the object. ONE asset only.",
+    "transparent": true
+  },
+  {
+    "id": "face/mouth-smile",
+    "path": "assets/illustrated/face/mouth-smile.png",
+    "prompt": "Use case: stylized-concept. Asset type: production PNG for GLOMP local party game. Primary request: ONE isolated cute friendly open smiling mouth for a jelly slime. Wide soft curved dark plum outline, bright coral pink tongue, subtle dark warm interior. Front facing, no lips, no teeth, no skin, no eyes, full silhouette centered. Style: premium smooth illustrated 2D/2.5D candy party game, soft glossy painted volumes, controlled dark plum edging, clean antialiased curves, vivid friendly colors. NO pixel art, NO stepped pixels, NO dithering, NO watermark, NO text, NO backdrop, NO sheet. Transparent background with no glow outside the object. ONE asset only.",
+    "transparent": true
+  },
+  {
+    "id": "face/mouth-gasp",
+    "path": "assets/illustrated/face/mouth-gasp.png",
+    "prompt": "Use case: stylized-concept. Asset type: production PNG for GLOMP local party game. Primary request: ONE isolated cute surprised small O-shaped open cartoon mouth for a jelly slime, dark plum oval interior, little pink tongue at bottom, no skin, no eyes, full silhouette centered. Style: premium smooth illustrated 2D/2.5D candy party game, soft glossy painted volumes, controlled dark plum edging, clean antialiased curves, vivid friendly colors. NO pixel art, NO stepped pixels, NO dithering, NO watermark, NO text, NO backdrop, NO sheet. Transparent background with no glow outside the object. ONE asset only.",
+    "transparent": true
+  },
+  {
+    "id": "face/mouth-grit",
+    "path": "assets/illustrated/face/mouth-grit.png",
+    "prompt": "Use case: stylized-concept. Asset type: production PNG for GLOMP local party game. Primary request: ONE isolated cute determined competitive cartoon mouth, small horizontal grin of clenched cream-white teeth, dark plum rounded outline, no skin, no eyes, no face, full silhouette centered. Style: premium smooth illustrated 2D/2.5D candy party game, soft glossy painted volumes, controlled dark plum edging, clean antialiased curves, vivid friendly colors. NO pixel art, NO stepped pixels, NO dithering, NO watermark, NO text, NO backdrop, NO sheet. Transparent background with no glow outside the object. ONE asset only.",
+    "transparent": true
+  },
+  {
+    "id": "face/mouth-cheer",
+    "path": "assets/illustrated/face/mouth-cheer.png",
+    "prompt": "Use case: stylized-concept. Asset type: production PNG for GLOMP local party game. Primary request: ONE isolated cheerful laughing cartoon mouth, broad curved open smile with two tiny cream-white top teeth and coral tongue, dark plum rim, no skin, no eyes, full silhouette centered. Style: premium smooth illustrated 2D/2.5D candy party game, soft glossy painted volumes, controlled dark plum edging, clean antialiased curves, vivid friendly colors. NO pixel art, NO stepped pixels, NO dithering, NO watermark, NO text, NO backdrop, NO sheet. Transparent background with no glow outside the object. ONE asset only.",
+    "transparent": true
+  },
+  {
+    "id": "ui/podium",
+    "path": "assets/illustrated/ui/podium.png",
+    "prompt": "Use case: stylized-concept. Asset type: production PNG for GLOMP local party game. Primary request: ONE isolated premium party game selection podium: squat round lavender blue pedestal with a hot pink lower rim, cream glossy top, soft rounded bevels, front three-quarter overhead perspective, transparent background, no character, no text. Wide ellipse, charming toy-like candy materials. Style: premium smooth illustrated 2D/2.5D candy party game, soft glossy painted volumes, controlled dark plum edging, clean antialiased curves, vivid friendly colors. NO pixel art, NO stepped pixels, NO dithering, NO watermark, NO text, NO backdrop, NO sheet. Transparent background with no glow outside the object. ONE asset only.",
+    "transparent": true
+  },
+  {
+    "id": "ui/button",
+    "path": "assets/illustrated/ui/button.png",
+    "prompt": "Use case: stylized-concept. Asset type: production PNG for GLOMP local party game. Primary request: ONE blank wide horizontal rounded rectangular game button, front facing flat UI view, pearly WHITE neutral tintable face, deep plum thick outline, slight raised bevel, inset white highlight at top edge, purple-gray underside, rounded corners. It will be stretched with nine-slice so keep center clean and uniform, large simple silhouette, no icons, no text, no background. Style: premium smooth illustrated 2D/2.5D candy party game, soft glossy painted volumes, controlled dark plum edging, clean antialiased curves, vivid friendly colors. NO pixel art, NO stepped pixels, NO dithering, NO watermark, NO text, NO backdrop, NO sheet. Transparent background with no glow outside the object. ONE asset only.",
+    "transparent": true
+  },
+  {
+    "id": "ui/ribbon",
+    "path": "assets/illustrated/ui/ribbon.png",
+    "prompt": "Use case: stylized-concept. Asset type: production PNG for GLOMP local party game. Primary request: ONE blank wide horizontal premium party game heading banner with gently folded ends, saturated turquoise blue center, warm cream thick edge, dark plum outline, tiny yellow corner accents, soft glossy highlights, front-facing UI element, no words, no letters, no icons, transparent background. Style: premium smooth illustrated 2D/2.5D candy party game, soft glossy painted volumes, controlled dark plum edging, clean antialiased curves, vivid friendly colors. NO pixel art, NO stepped pixels, NO dithering, NO watermark, NO text, NO backdrop, NO sheet. Transparent background with no glow outside the object. ONE asset only.",
+    "transparent": true
+  },
+  {
+    "id": "ui/panel",
+    "path": "assets/illustrated/ui/panel.png",
+    "prompt": "Use case: stylized-concept. Asset type: production PNG for GLOMP local party game. Primary request: ONE blank game UI panel: deep midnight indigo-blue matte center with very subtle navy gradient, rounded cream-white border with a fine lavender outer edge, tiny glossy corner accents, thick smooth rounded corners. Front facing flat rectangle, uniform clean center for text, no icons, no text, isolated on transparent background. Suitable for nine-slice scaling. Style: premium smooth illustrated 2D/2.5D candy party game, soft glossy painted volumes, controlled dark plum edging, clean antialiased curves, vivid friendly colors. NO pixel art, NO stepped pixels, NO dithering, NO watermark, NO text, NO backdrop, NO sheet. Transparent background with no glow outside the object. ONE asset only.",
+    "transparent": true
+  },
+  {
+    "id": "maps/lava",
+    "path": "assets/illustrated/maps/lava.png",
+    "prompt": "Use case: stylized-concept. Asset type: production PNG for GLOMP local party game. Primary request: A complete high-resolution 16:9 top-down 2D party game arena background, wide 3072x1728 composition. Match the premium smooth illustrated food-and-slime arena style of the project's sample maps: clear readable overhead layout, soft beveled edges, warm saturated palette, polished painted toy-like material, no pixel art. ONE large rectangular rounded sandstone platform centered, taking exactly x=12% to 88%, y=14% to 86% of canvas, surrounded on ALL sides by vivid orange-red lava with warm glowing swirls. The playable platform is a broad flat pale golden cookie-stone floor, gently cracked subtle details, completely OPEN without obstacles in its interior. Its four outer corners are rounded, radius about 7% of canvas width. Along the outside of the lava are distant dark chocolate volcanic rock ledges, small glowing crystals and culinary cauldrons, all decorative OUTSIDE the main platform. The edge of the platform is low and open with no railings, so slimes can be pushed into lava. Strict top-down orthographic camera with only tiny front bevel of platform visible, balanced symmetrical layout. NO characters, NO text, NO UI, NO HUD, NO logo. Crisp smooth illustration, not pixel art, no grid overlay, no isometric camera tilt.",
+    "transparent": false
+  },
+  {
+    "id": "food/ingredient1",
+    "path": "assets/illustrated/food/ingredient1.png",
+    "prompt": "Use case: stylized-concept. Asset type: production PNG for GLOMP local party game. Primary request: ONE isolated cartoon game food pickup: a juicy red tomato with green calyx. Clearly readable silhouette at 40 pixels, slightly overhead view, full object centered with transparent margins, upper-left lighting, no text. Style: premium smooth illustrated 2D/2.5D candy party game, soft glossy painted volumes, controlled dark plum edging, clean antialiased curves, vivid friendly colors. NO pixel art, NO stepped pixels, NO dithering, NO watermark, NO text, NO backdrop, NO sheet. Transparent background with no glow outside the object. ONE asset only.",
+    "transparent": true
+  },
+  {
+    "id": "food/ingredient2",
+    "path": "assets/illustrated/food/ingredient2.png",
+    "prompt": "Use case: stylized-concept. Asset type: production PNG for GLOMP local party game. Primary request: ONE isolated cartoon game food pickup: a crisp green lettuce head. Clearly readable silhouette at 40 pixels, slightly overhead view, full object centered with transparent margins, upper-left lighting, no text. Style: premium smooth illustrated 2D/2.5D candy party game, soft glossy painted volumes, controlled dark plum edging, clean antialiased curves, vivid friendly colors. NO pixel art, NO stepped pixels, NO dithering, NO watermark, NO text, NO backdrop, NO sheet. Transparent background with no glow outside the object. ONE asset only.",
+    "transparent": true
+  },
+  {
+    "id": "food/ingredient3",
+    "path": "assets/illustrated/food/ingredient3.png",
+    "prompt": "Use case: stylized-concept. Asset type: production PNG for GLOMP local party game. Primary request: ONE isolated cartoon game food pickup: a small bunch of purple grapes. Clearly readable silhouette at 40 pixels, slightly overhead view, full object centered with transparent margins, upper-left lighting, no text. Style: premium smooth illustrated 2D/2.5D candy party game, soft glossy painted volumes, controlled dark plum edging, clean antialiased curves, vivid friendly colors. NO pixel art, NO stepped pixels, NO dithering, NO watermark, NO text, NO backdrop, NO sheet. Transparent background with no glow outside the object. ONE asset only.",
+    "transparent": true
+  },
+  {
+    "id": "food/ingredient4",
+    "path": "assets/illustrated/food/ingredient4.png",
+    "prompt": "Use case: stylized-concept. Asset type: production PNG for GLOMP local party game. Primary request: ONE isolated cartoon game food pickup: a fresh orange carrot with green leaves. Clearly readable silhouette at 40 pixels, slightly overhead view, full object centered with transparent margins, upper-left lighting, no text. Style: premium smooth illustrated 2D/2.5D candy party game, soft glossy painted volumes, controlled dark plum edging, clean antialiased curves, vivid friendly colors. NO pixel art, NO stepped pixels, NO dithering, NO watermark, NO text, NO backdrop, NO sheet. Transparent background with no glow outside the object. ONE asset only.",
+    "transparent": true
+  },
+  {
+    "id": "food/ingredient5",
+    "path": "assets/illustrated/food/ingredient5.png",
+    "prompt": "Use case: stylized-concept. Asset type: production PNG for GLOMP local party game. Primary request: ONE isolated cartoon game food pickup: three round blue blueberries. Clearly readable silhouette at 40 pixels, slightly overhead view, full object centered with transparent margins, upper-left lighting, no text. Style: premium smooth illustrated 2D/2.5D candy party game, soft glossy painted volumes, controlled dark plum edging, clean antialiased curves, vivid friendly colors. NO pixel art, NO stepped pixels, NO dithering, NO watermark, NO text, NO backdrop, NO sheet. Transparent background with no glow outside the object. ONE asset only.",
+    "transparent": true
+  },
+  {
+    "id": "food/ingredient6",
+    "path": "assets/illustrated/food/ingredient6.png",
+    "prompt": "Use case: stylized-concept. Asset type: production PNG for GLOMP local party game. Primary request: ONE isolated cartoon game food pickup: a golden bread loaf. Clearly readable silhouette at 40 pixels, slightly overhead view, full object centered with transparent margins, upper-left lighting, no text. Style: premium smooth illustrated 2D/2.5D candy party game, soft glossy painted volumes, controlled dark plum edging, clean antialiased curves, vivid friendly colors. NO pixel art, NO stepped pixels, NO dithering, NO watermark, NO text, NO backdrop, NO sheet. Transparent background with no glow outside the object. ONE asset only.",
+    "transparent": true
+  },
+  {
+    "id": "food/ingredient7",
+    "path": "assets/illustrated/food/ingredient7.png",
+    "prompt": "Use case: stylized-concept. Asset type: production PNG for GLOMP local party game. Primary request: ONE isolated cartoon game food pickup: one red strawberry. Clearly readable silhouette at 40 pixels, slightly overhead view, full object centered with transparent margins, upper-left lighting, no text. Style: premium smooth illustrated 2D/2.5D candy party game, soft glossy painted volumes, controlled dark plum edging, clean antialiased curves, vivid friendly colors. NO pixel art, NO stepped pixels, NO dithering, NO watermark, NO text, NO backdrop, NO sheet. Transparent background with no glow outside the object. ONE asset only.",
+    "transparent": true
+  },
+  {
+    "id": "food/ingredient8",
+    "path": "assets/illustrated/food/ingredient8.png",
+    "prompt": "Use case: stylized-concept. Asset type: production PNG for GLOMP local party game. Primary request: ONE isolated cartoon game food pickup: a green apple with leaf. Clearly readable silhouette at 40 pixels, slightly overhead view, full object centered with transparent margins, upper-left lighting, no text. Style: premium smooth illustrated 2D/2.5D candy party game, soft glossy painted volumes, controlled dark plum edging, clean antialiased curves, vivid friendly colors. NO pixel art, NO stepped pixels, NO dithering, NO watermark, NO text, NO backdrop, NO sheet. Transparent background with no glow outside the object. ONE asset only.",
+    "transparent": true
+  },
+  {
+    "id": "food/ingredient9",
+    "path": "assets/illustrated/food/ingredient9.png",
+    "prompt": "Use case: stylized-concept. Asset type: production PNG for GLOMP local party game. Primary request: ONE isolated cartoon game food pickup: a purple eggplant. Clearly readable silhouette at 40 pixels, slightly overhead view, full object centered with transparent margins, upper-left lighting, no text. Style: premium smooth illustrated 2D/2.5D candy party game, soft glossy painted volumes, controlled dark plum edging, clean antialiased curves, vivid friendly colors. NO pixel art, NO stepped pixels, NO dithering, NO watermark, NO text, NO backdrop, NO sheet. Transparent background with no glow outside the object. ONE asset only.",
+    "transparent": true
+  },
+  {
+    "id": "food/ingredient10",
+    "path": "assets/illustrated/food/ingredient10.png",
+    "prompt": "Use case: stylized-concept. Asset type: production PNG for GLOMP local party game. Primary request: ONE isolated cartoon game food pickup: a yellow corn cob with green husk. Clearly readable silhouette at 40 pixels, slightly overhead view, full object centered with transparent margins, upper-left lighting, no text. Style: premium smooth illustrated 2D/2.5D candy party game, soft glossy painted volumes, controlled dark plum edging, clean antialiased curves, vivid friendly colors. NO pixel art, NO stepped pixels, NO dithering, NO watermark, NO text, NO backdrop, NO sheet. Transparent background with no glow outside the object. ONE asset only.",
+    "transparent": true
+  },
+  {
+    "id": "food/ingredient11",
+    "path": "assets/illustrated/food/ingredient11.png",
+    "prompt": "Use case: stylized-concept. Asset type: production PNG for GLOMP local party game. Primary request: ONE isolated cartoon game food pickup: a small blue cooked fish icon. Clearly readable silhouette at 40 pixels, slightly overhead view, full object centered with transparent margins, upper-left lighting, no text. Style: premium smooth illustrated 2D/2.5D candy party game, soft glossy painted volumes, controlled dark plum edging, clean antialiased curves, vivid friendly colors. NO pixel art, NO stepped pixels, NO dithering, NO watermark, NO text, NO backdrop, NO sheet. Transparent background with no glow outside the object. ONE asset only.",
+    "transparent": true
+  },
+  {
+    "id": "food/ingredient12",
+    "path": "assets/illustrated/food/ingredient12.png",
+    "prompt": "Use case: stylized-concept. Asset type: production PNG for GLOMP local party game. Primary request: ONE isolated cartoon game food pickup: a round chocolate chip cookie. Clearly readable silhouette at 40 pixels, slightly overhead view, full object centered with transparent margins, upper-left lighting, no text. Style: premium smooth illustrated 2D/2.5D candy party game, soft glossy painted volumes, controlled dark plum edging, clean antialiased curves, vivid friendly colors. NO pixel art, NO stepped pixels, NO dithering, NO watermark, NO text, NO backdrop, NO sheet. Transparent background with no glow outside the object. ONE asset only.",
+    "transparent": true
+  },
+  {
+    "id": "food/ingredient13",
+    "path": "assets/illustrated/food/ingredient13.png",
+    "prompt": "Use case: stylized-concept. Asset type: production PNG for GLOMP local party game. Primary request: ONE isolated cartoon game food pickup: a light green pear. Clearly readable silhouette at 40 pixels, slightly overhead view, full object centered with transparent margins, upper-left lighting, no text. Style: premium smooth illustrated 2D/2.5D candy party game, soft glossy painted volumes, controlled dark plum edging, clean antialiased curves, vivid friendly colors. NO pixel art, NO stepped pixels, NO dithering, NO watermark, NO text, NO backdrop, NO sheet. Transparent background with no glow outside the object. ONE asset only.",
+    "transparent": true
+  },
+  {
+    "id": "food/banana",
+    "path": "assets/illustrated/food/banana.png",
+    "prompt": "Use case: stylized-concept. Asset type: production PNG for GLOMP local party game. Primary request: ONE isolated cartoon game food pickup: a curved yellow banana. Clearly readable silhouette at 40 pixels, slightly overhead view, full object centered with transparent margins, upper-left lighting, no text. Style: premium smooth illustrated 2D/2.5D candy party game, soft glossy painted volumes, controlled dark plum edging, clean antialiased curves, vivid friendly colors. NO pixel art, NO stepped pixels, NO dithering, NO watermark, NO text, NO backdrop, NO sheet. Transparent background with no glow outside the object. ONE asset only.",
+    "transparent": true
+  },
+  {
+    "id": "food/gum",
+    "path": "assets/illustrated/food/gum.png",
+    "prompt": "Use case: stylized-concept. Asset type: production PNG for GLOMP local party game. Primary request: ONE isolated cartoon game food pickup: a perfectly ROUND bubble of glossy translucent pink chewing gum, round sphere, subtle white glints, no wrapper. Clearly readable silhouette at 40 pixels, slightly overhead view, full object centered with transparent margins, upper-left lighting, no text. Style: premium smooth illustrated 2D/2.5D candy party game, soft glossy painted volumes, controlled dark plum edging, clean antialiased curves, vivid friendly colors. NO pixel art, NO stepped pixels, NO dithering, NO watermark, NO text, NO backdrop, NO sheet. Transparent background with no glow outside the object. ONE asset only.",
+    "transparent": true
+  },
+  {
+    "id": "food/melon",
+    "path": "assets/illustrated/food/melon.png",
+    "prompt": "Use case: stylized-concept. Asset type: production PNG for GLOMP local party game. Primary request: ONE isolated cartoon game food pickup: a triangular slice of watermelon, red flesh, black seeds, green rind. Clearly readable silhouette at 40 pixels, slightly overhead view, full object centered with transparent margins, upper-left lighting, no text. Style: premium smooth illustrated 2D/2.5D candy party game, soft glossy painted volumes, controlled dark plum edging, clean antialiased curves, vivid friendly colors. NO pixel art, NO stepped pixels, NO dithering, NO watermark, NO text, NO backdrop, NO sheet. Transparent background with no glow outside the object. ONE asset only.",
+    "transparent": true
+  },
+  {
+    "id": "food/plate",
+    "path": "assets/illustrated/food/plate.png",
+    "prompt": "Use case: stylized-concept. Asset type: production PNG for GLOMP local party game. Primary request: ONE isolated cartoon game food pickup: one small cream ceramic plate piled with golden cheese bites and two red tomato wedges. Clearly readable silhouette at 40 pixels, slightly overhead view, full object centered with transparent margins, upper-left lighting, no text. Style: premium smooth illustrated 2D/2.5D candy party game, soft glossy painted volumes, controlled dark plum edging, clean antialiased curves, vivid friendly colors. NO pixel art, NO stepped pixels, NO dithering, NO watermark, NO text, NO backdrop, NO sheet. Transparent background with no glow outside the object. ONE asset only.",
+    "transparent": true
+  },
+  {
+    "id": "food/feast",
+    "path": "assets/illustrated/food/feast.png",
+    "prompt": "Use case: stylized-concept. Asset type: production PNG for GLOMP local party game. Primary request: ONE isolated cartoon game food pickup: one magnificent golden flan dessert on a tiny cream plate, glossy caramel top, sparkling crown-like cream dollop. Clearly readable silhouette at 40 pixels, slightly overhead view, full object centered with transparent margins, upper-left lighting, no text. Style: premium smooth illustrated 2D/2.5D candy party game, soft glossy painted volumes, controlled dark plum edging, clean antialiased curves, vivid friendly colors. NO pixel art, NO stepped pixels, NO dithering, NO watermark, NO text, NO backdrop, NO sheet. Transparent background with no glow outside the object. ONE asset only.",
+    "transparent": true
+  }
+]

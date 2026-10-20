@@ -38,7 +38,7 @@ GLOMP.ui = {
     if (ui.lobby.length >= GLOMP.save.data.settings.maxPlayers) { ui.notify('lobbyFull'); return; }
     if (ui.lobby.length >= GLOMP.config.player.maxKeyboardPlayers && (source.kind === 'keyboard' || ui.lobby.some(function (p) { return p.source.kind === 'keyboard'; }))) { ui.notify('controllersRequired'); return; }
     if (source.kind === 'keyboard' && !confirmed) { ui.pendingSource = source; ui.focus = 'confirmControls'; return; }
-    ui.lobby.push({ playerId: ui.lobby.length, source: Object.assign({},source), color: ui.lobby.length % GLOMP.config.art.bodyColors.length, colorConfirmed: false, ready: false, previousX: 0 });
+    ui.lobby.push({ playerId: ui.lobby.length, source: Object.assign({},source), color: GLOMP.save.data.equipped[ui.lobby.length]?.body ? Number(GLOMP.save.equipment(ui.lobby.length).body.slice(4)) : ui.lobby.length % GLOMP.config.art.bodyColors.length, colorConfirmed: false, ready: false, previousX: 0 });
     ui.pendingSource = null; ui.focus = 'ready:' + (ui.lobby.length - 1);
   },
   addKeyboard: function () {
@@ -86,13 +86,13 @@ GLOMP.ui = {
         p.previousX = horizontal;
         const vertical = control.y < -GLOMP.config.input.menuAxisThreshold ? -1 : control.y > GLOMP.config.input.menuAxisThreshold ? 1 : 0;
         if (p.playerId === 0 && vertical && vertical !== p.previousY) {
-          const order = ['shop','settings','credits','practice','play'];
+          const order = ['shop','customize','settings','credits','practice','play'];
           const current = order.indexOf(ui.focus);
           ui.focus = order[(current + vertical + order.length) % order.length];
         }
         p.previousY = vertical;
       });
-      const host = ui.lobby[0], navigation = host && ['shop','settings','credits','practice','play'].includes(ui.focus) && input.joining().some(function (source) { return ui.sameSource(source,host.source); });
+      const host = ui.lobby[0], navigation = host && ['shop','customize','settings','credits','practice','play'].includes(ui.focus) && input.joining().some(function (source) { return ui.sameSource(source,host.source); });
       if (navigation) id = ui.focus;
       const startWithPad = ui.canStart() && host && host.source.kind === 'gamepad' && input.joining().some(function (source) { return ui.sameSource(source,host.source); });
       if (startWithPad && !navigation) id = 'play';
@@ -135,14 +135,21 @@ GLOMP.ui = {
     if (id.startsWith('ready:')) { const p = ui.lobby[Number(id.split(':')[1])]; if (p) { p.colorConfirmed = true; p.ready = !p.ready; } return; }
     if (id.startsWith('remove:')) { ui.lobby.splice(Number(id.split(':')[1]),1); ui.lobby.forEach(function (p,i) { p.playerId = i; p.ready = false; }); return; }
     if (id === 'practice') { GLOMP.sandbox.practice = true; ui.go(scene,'Sandbox'); return; }
-    if (id === 'shop') { ui.go(scene,'Shop'); return; }
+    if(id==='customize'){ui.category='face';ui.selectedItem=GLOMP.save.equipment(ui.selectedPlayer).face;ui.go(scene,'Shop');return;}
+    if (id === 'shop') { ui.category='featured';ui.selectedItem=GLOMP.shop.featured()[0].id;ui.go(scene,'Shop'); return; }
     if (id === 'settings') { ui.settingsPage = 'general'; ui.go(scene,'Settings'); return; }
     if (id === 'credits') { ui.go(scene,'Credits'); return; }
-    if (id.startsWith('body') || id.startsWith('face')) ui.selectedItem = id;
-    if (id === 'tabBody') { ui.category = 'body'; ui.focus = 'body0'; }
-    if (id === 'tabFace') { ui.category = 'face'; ui.focus = 'face0'; }
-    if (id === 'buy') ui.notify(GLOMP.shop.buy(ui.selectedItem) ? 'purchaseDone' : 'notEnoughCoins');
-    if (id === 'equip') ui.notify(GLOMP.shop.equip(ui.selectedItem,ui.selectedPlayer) ? 'equipped' : 'itemLocked');
+    if(GLOMP.shop.catalogue().some(function(e){return e.id===id;}))ui.selectedItem=id;
+    if(id.startsWith('category:')){ui.category=id.slice(9);const list=ui.category==='featured'?GLOMP.shop.featured():GLOMP.shop.catalogue().filter(function(e){return e.category===ui.category;});ui.selectedItem=list[0].id;}
+    if(id==='unequip')GLOMP.shop.clear(ui.category,ui.selectedPlayer);
+    if(id==='buy'){const bought=GLOMP.shop.buy(ui.selectedItem);ui.notify(bought?'purchaseDone':'notEnoughCoins');if(bought)ui.focus='equip';}
+    if(id==='equip') {
+      const equipped=GLOMP.shop.equip(ui.selectedItem,ui.selectedPlayer);ui.notify(equipped?'equipped':'itemLocked');
+      if(equipped&&ui.lobby[ui.selectedPlayer]) {
+        const item=GLOMP.shop.catalogue().find(function(e){return e.id===ui.selectedItem;});
+        if(['body','sets'].includes(item.category)){const p=ui.lobby[ui.selectedPlayer];p.color=Number(GLOMP.save.equipment(ui.selectedPlayer).body.slice(4));p.ready=false;p.colorConfirmed=false;}
+      }
+    }
     if (id === 'nextPlayer') ui.selectedPlayer = (ui.selectedPlayer + 1) % Math.max(1,ui.lobby.length);
     if (['music','effects','maxPlayers'].includes(id)) ui.adjustSetting(id,1);
     if (id === 'controls') { ui.settingsPage = 'keys'; ui.focus = 'key:0:action'; }
@@ -157,17 +164,19 @@ GLOMP.ui = {
     draw.graphics(view,'roomShade',2).beginFill(0x102039,0.32).drawRect(0,0,1920,1080).endFill().beginFill(0x121D32,0.78).drawRect(0,0,1920,125).drawRect(0,891,1920,189).endFill();
     draw.image(view,'brand','title-glomp',190,63,300,100,{z:110});
     draw.text(view,'profile',t('profile'),395,27,21,c.cream);
-    draw.text(view,'room',t('room'),395,58,35,c.yellow,{outline:3});
+    draw.text(view,'room',t('localProfile'),395,58,35,c.yellow,{outline:3});
     draw.panel(view,1460,24,420,74,c.dark,12,0.9);
     draw.text(view,'coins',t('coins',{count:GLOMP.save.data.coins}),1670,42,30,c.yellow,{center:true});
     draw.text(view,'roomSubtitle',t('roomSubtitle'),960,161,30,c.cream,{center:true,outline:4});
     draw.button(view,'shop',t('shop'),30,290,208,c.orange,true,80);
-    draw.button(view,'settings',t('settings'),30,395,208,c.blue,true,80);
+    draw.button(view,'customize',t('wardrobe'),30,395,208,c.pink,true,80);
+    draw.button(view,'settings',t('settings'),30,500,208,c.blue,true,80);
     draw.button(view,'credits',t('credits'),1682,290,208,c.purple,true,80);
     draw.text(view,'readyCount',t('playersReady',{ready:ui.lobby.filter(function (p) { return p.ready; }).length,count:ui.lobby.length}),1785,405,25,c.cream,{center:true,outline:4});
     const count = Math.max(1,ui.lobby.length), width = Math.min(480,1260 / count), start = 960 - (count - 1) * width / 2;
     if (!ui.lobby.length) {
-      draw.slime(view,'hero',960,540,390,0,0,1,1,1,30);
+      draw.image(view,'heroPodium','ui-podium',960,708,560,175,{z:20});
+      draw.slime(view,'hero',960,530,430,0,0,1,1,1,30);
       draw.text(view,'emptyHint',t('joinInstructions'),960,782,29,c.cream,{center:true,outline:4});
     }
     ui.lobby.forEach(function (p,index) {
@@ -176,8 +185,8 @@ GLOMP.ui = {
       draw.panel(view,x - width * 0.43,245,width * 0.86,69,c.dark,12,0.88);
       draw.text(view,'playerName' + index,marker + ' ' + t(count > 4 ? 'playerShort' : 'player',{number:index + 1}),x,255,count > 4 ? 22 : 29,c.cream,{center:true});
       draw.text(view,'device' + index,t(p.source.kind === 'keyboard' ? 'keyboardDevice' : 'gamepadDevice',{number:p.source.index + 1}),x,324,20,c.cream,{center:true,outline:3});
-      const shadow = draw.graphics(view,'roomShadow' + index,22); shadow.beginFill(c.dark,0.4).drawEllipse(x,669,size * 0.55,26).endFill();
-      draw.slime(view,'roomPlayer' + index,x,669 - size * 0.42 + Math.sin(ui.elapsed * GLOMP.config.ui.decorationRate + index) * GLOMP.config.ui.decorationBob,size,p.color,0,1,1,connected ? 1 : 0.5,30);
+      draw.image(view,'podium'+index,'ui-podium',x,694,size*1.35,size*0.4,{z:22});
+      draw.slime(view,'roomPlayer' + index,x,669 - size * 0.42 + Math.sin(ui.elapsed * GLOMP.config.ui.decorationRate + index) * GLOMP.config.ui.decorationBob,size,p.color,Number(GLOMP.save.equipment(p.playerId).face.slice(4)),1,1,connected ? 1 : 0.5,30,null,GLOMP.save.equipment(p.playerId));
       draw.text(view,'colorName' + index,t('color' + p.color),x,705,25,c.cream,{center:true,outline:3});
       const bw = Math.min(70,width * 0.19), left = x - width * 0.43;
       draw.button(view,'left:' + index,'‹',left,752,bw,c.blue,true,66);
@@ -186,9 +195,9 @@ GLOMP.ui = {
       draw.button(view,'remove:' + index,'×',x + width * 0.43 - 34,247,32,c.red,true,32);
     });
     const canAdd = ui.lobby.length < GLOMP.save.data.settings.maxPlayers;
-    draw.button(view,'addLeft',t('addPlayer'),272,510,92,c.blue,canAdd,92);
-    draw.button(view,'addRight',t('addPlayer'),1556,510,92,c.blue,canAdd,92);
-    draw.button(view,'practice',t('practice'),35,935,330,c.blue,true,100);
+    draw.button(view,'addLeft',t('addPlayer'),255,645,82,c.blue,canAdd,82);
+    draw.button(view,'addRight',t('addPlayer'),1583,645,82,c.blue,canAdd,82);
+    draw.button(view,'practice',t('practice'),35,917,330,c.blue,true,84);
     draw.panel(view,400,927,935,124,c.dark,12,0.96);
     draw.text(view,'cup',t('cup'),440,941,32,c.cream);
     draw.text(view,'cupRule',t('cupRule',{count:GLOMP.config.slicesToWin}),440,991,22,c.yellow);
@@ -202,7 +211,7 @@ GLOMP.ui = {
     ui.buttons = [];
     draw.graphics(view,'controlsShade',190).beginFill(c.dark,0.94).drawRect(0,0,1920,1080).endFill(); view.overlayZ = 100;
     const keys = GLOMP.save.data.settings.keys[source.index], preset = GLOMP.config.input.keyboard[source.index];
-    draw.text(view,'controlTitle',t('addTitle'),960,240,48,c.yellow,{center:true});
+    draw.heading(view,'controlTitle',t('addTitle'),960,232,1100,45);
     draw.text(view,'controlPlayer',t('keyboardDevice',{number:source.index + 1}),960,325,32,c.cream,{center:true});
     draw.text(view,'controlKeys',t('keysPreset',{keys:[preset.up,preset.left,preset.down,preset.right].map(function (key) { return GLOMP.input.label(key); }).join(' / ')}),960,412,34,c.cream,{center:true});
     draw.text(view,'controlAction',t('actionPreset',{key:GLOMP.input.label(keys.action)}),960,475,30,c.cream,{center:true});
@@ -210,22 +219,27 @@ GLOMP.ui = {
     draw.button(view,'confirmControls',t('confirmControls'),650,670,620,c.green);
     draw.button(view,'cancel',t('cancel'),650,780,620,c.red); view.overlayZ = 0;
   },
-  renderShop: function (view) {
-    const ui = GLOMP.ui, draw = GLOMP.view, t = GLOMP.i18n.text, c = GLOMP.config.ui.colors;
-    const item = GLOMP.shop.catalogue().find(function (e) { return e.id === ui.selectedItem; }) || GLOMP.shop.catalogue()[0];
-    const equipment = GLOMP.save.equipment(ui.selectedPlayer), body = item.category === 'body' ? item.index : Number(equipment.body.slice(4));
-    draw.slime(view,'shopPreview',510,520,370,body,0,1,1,1,110);
-    draw.text(view,'previewName',t(item.nameKey),510,770,34,c.cream,{center:true});
-    draw.button(view,'nextPlayer',t('player',{number:ui.selectedPlayer + 1}),320,245,380,c.yellow);
-    draw.button(view,'tabBody',t('bodyTab'),840,240,420,c.yellow); draw.button(view,'tabFace',t('faceTab'),1300,240,420,c.pink);
-    GLOMP.shop.catalogue().filter(function (e) { return e.category === ui.category; }).forEach(function (e,index) {
-      const x = 840 + index % 4 * 224,y = 390 + Math.floor(index / 4) * 150;
-      draw.button(view,e.id,e.category === 'body' ? t(e.nameKey) : t('face0'),x,y,198,e.color || c.cream);
-      draw.text(view,'price' + index,t(GLOMP.save.data.owned.includes(e.id) ? 'owned' : 'price',{count:e.price}),x + 99,y + 99,20,c.cream,{center:true});
+  renderShop: function(view) {
+    const ui=GLOMP.ui,draw=GLOMP.view,t=GLOMP.i18n.text,c=GLOMP.config.ui.colors;
+    const catalogue=GLOMP.shop.catalogue(),item=catalogue.find(function(e){return e.id===ui.selectedItem;})||catalogue[0];
+    const equipment=GLOMP.shop.preview(item,ui.selectedPlayer);
+    draw.image(view,'shopPodium','ui-podium',430,714,530,160,{z:105});
+    if(equipment.trail)for(let n=0;n<4;n++)draw.image(view,'previewTrail'+n,equipment.trail,200+n*70,670+n*10,50,50,{z:108,alpha:(n+1)/4});
+    draw.slime(view,'shopPreview',430,520,390,Number(equipment.body.slice(4)),Number(equipment.face.slice(4)),1,1,1,110,null,equipment);
+    draw.text(view,'previewName',t(item.nameKey),430,790,32,c.cream,{center:true,outline:3});
+    draw.button(view,'nextPlayer',t('player',{number:ui.selectedPlayer+1}),240,240,380,c.yellow);
+    const categories=['featured','body','face','accessory','particles','trail','sets'];
+    categories.forEach(function(category,index){draw.button(view,'category:'+category,t('category'+category),740+index*150,242,140,ui.category===category?c.yellow:c.blue,true,72);});
+    const list=ui.category==='featured'?GLOMP.shop.featured():catalogue.filter(function(e){return e.category===ui.category;});
+    list.forEach(function(e,index){
+      const x=760+index%4*250,y=365+Math.floor(index/4)*145;
+      draw.button(view,e.id,t(e.nameKey),x,y,220,e.color||c.purple,true,78);
+      draw.text(view,'price'+index,t(GLOMP.shop.owned(e)?'owned':'price',{count:GLOMP.shop.price(e)}),x+110,y+88,20,c.cream,{center:true});
     });
-    const owned = GLOMP.save.data.owned.includes(item.id);
-    draw.button(view,owned ? 'equip' : 'buy',t(owned ? 'equip' : 'buyPrice',{count:item.price}),840,760,870,owned ? c.green : c.yellow);
-    draw.text(view,'cosmetic',t('cosmeticOnly'),1100,905,24,c.cream,{center:true});
+    const owned=GLOMP.shop.owned(item);
+    draw.button(view,owned?'equip':'buy',t(owned?'equip':'buyPrice',{count:GLOMP.shop.price(item)}),760,825,970,owned?c.green:c.yellow);
+    if(['accessory','particles','trail'].includes(ui.category))draw.button(view,'unequip',t('unequip'),240,855,380,c.blue,true,70);
+    draw.text(view,'cosmetic',t('cosmeticOnly'),1230,965,22,c.cream,{center:true});
   },
   renderSettings: function (view) {
     const ui = GLOMP.ui, draw = GLOMP.view, t = GLOMP.i18n.text, c = GLOMP.config.ui.colors, s = GLOMP.save.data.settings;
@@ -250,12 +264,12 @@ GLOMP.ui = {
     else {
       draw.graphics(view,'pageShade',2).beginFill(c.dark,0.86).drawRect(0,0,1920,1080).endFill();
       draw.image(view,'smallBrand','title-glomp',170,75,270,110,{z:110});
-      draw.text(view,'heading',t(name.toLowerCase() + 'Title'),960,65,50,c.yellow,{center:true});
+      draw.heading(view,'heading',t(name.toLowerCase()+'Title'),960,55,720,48);
       draw.text(view,'wallet',t('coins',{count:GLOMP.save.data.coins}),1720,65,28,c.cream,{center:true});
-      draw.button(view,'back',t('back'),40,930,260,c.red);
+      draw.button(view,'back',t('back'),40,910,260,c.red);
       if (name === 'Shop') ui.renderShop(view);
       if (name === 'Settings') ui.renderSettings(view);
-      if (name === 'Credits') { draw.image(view,'banner','banner-original',1000,520,1200,675,{z:110}); draw.text(view,'credits',t('creditsBody'),1000,905,28,c.cream,{center:true}); }
+      if(name==='Credits'){draw.image(view,'banner','banner-original',1000,520,1200,675,{z:110});draw.text(view,'credits',t('creditsBody'),1000,895,28,c.cream,{center:true});draw.text(view,'fontCredit',t('fontCredit'),1000,950,22,c.cream,{center:true});}
     }
     if (ui.toastElapsed > 0) {
       draw.graphics(view,'toast',300).beginFill(c.cream,0.98).drawRoundedRect(430,150,1060,78,12).endFill();

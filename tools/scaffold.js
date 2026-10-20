@@ -43,10 +43,11 @@ function main() {
     }
   }
   const imageResource = readJSON('reference/image-resource.json').resource;
+  game.resources.resources=game.resources.resources.filter(resource=>(!resource.name.startsWith('assets/pixel/')&&resource.name!=='assets/face/happy.png')||manifest.resources.includes(resource.name));
   for (const file of manifest.resources || []) {
     assert(fs.existsSync(path.join(root, file)), `Recurso inexistente: ${file}`);
     let resource = game.resources.resources.find(resource => resource.name === file);
-    if (!resource) { resource = clone(imageResource); game.resources.resources.push(resource); }
+    if (!resource) { resource = clone(file.endsWith('.ttf') ? readJSON('reference/font-resource.json').resource : imageResource); game.resources.resources.push(resource); }
     Object.assign(resource, { name: file, file });
     if (file.startsWith('assets/pixel/')) resource.smoothed = false;
   }

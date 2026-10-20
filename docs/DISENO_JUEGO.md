@@ -1,88 +1,93 @@
-# GLOMP! — Diseño vigente de la rework
+# GLOMP! — Diseño vigente
 
-Dirección del usuario: composición de lobby inspirada en Brawl Stars, personajes
-personalizables como en una selección de luchadores e identidad propia de GLOMP!.
-Arte de las arenas y slimes en pixel art. La especificación de reglas detallada
-sigue en AGENTS.md; este documento describe su implementación y decisiones nuevas.
+La dirección del 19 de octubre de 2026 sustituye el pixel art, la cámara fija,
+las bombas de Bubble POM y los disparos de Guerra de Comida. El juego sigue siendo
+local, con slimes mecánicamente idénticos y dos entradas: Mover y Acción.
 
-## Sala y controles
+## Sala y accesos
 
-Menu es la sala principal; Lobby y Customize conservan rutas compatibles hacia
-la misma selección. Fondo: assets/ui/menu-village.png. Perfil/logo pequeño arriba,
-accesos laterales, personajes en el centro, Práctica y JUGAR abajo.
+Menu es la sala principal, con `assets/ui/menu-village.png`, logo aprobado,
+personajes sobre plataformas, accesos laterales y JUGAR abajo. Tienda abre los
+seis destacados diarios y todo el catálogo; Armario abre las caras. Ajustes,
+Créditos y Práctica tienen entrada y regreso con foco, teclado, ratón y mando.
 
-Los dos [+] ofrecen la siguiente plaza de teclado libre. Antes de ocuparla se
-muestran movimiento y Acción, se permite cambiar Acción sin duplicar teclas y se
-exige confirmar. E y Shift derecho también abren esta confirmación, salvo que el
-perfil conserve otra Acción remapeada; siempre se muestra la tecla real.
+Los [+] incorporan hasta dos teclados, después de confirmar sus controles:
+WASD + E y flechas + Shift derecho, con Acción remapeable sin duplicados. Desde
+la tercera persona todas las plazas requieren mandos. Cada participante cambia
+su color y confirma Listo por separado. Cambiar color retira Listo. Enter inicia;
+el anfitrión de mando también inicia con A. JUGAR abre Arena, Práctica Sandbox.
 
-Máximo dos teclados: WASD y flechas. Tres o más participantes exigen mandos en
-todas las plazas. A incorpora cada mando. Cada participante cambia su propio
-color con izquierda/derecha y confirma con Acción; cambiarlo retira su estado
-Listo. Hay ocho colores libres de identificación y marcadores de forma por plaza.
-Todos son mecánicamente idénticos. El anfitrión usa arriba/abajo para los accesos;
-Enter inicia la copa. Con mandos, A del anfitrión inicia cuando todos están listos.
+Armario/Tienda permiten previsualizar, comprar, equipar y retirar adornos, elegir
+la plaza y combinar piezas. Hay 8 colores, 6 caras, 10 accesorios, 4 partículas y
+3 rastros: 31 piezas, más cuatro combinaciones de set. Los sets compran las piezas
+sueltas; no bloquean combinaciones ni cobran de nuevo las piezas ya compradas.
+Compras, equipo por plaza y teclas se guardan en localStorage. Ningún cosmético
+modifica velocidad, escala, hitbox, retroceso o puntuación.
 
-JUGAR solo abre Arena con al menos dos plazas conectadas y confirmadas. Nunca
-abre Sandbox. Práctica es una ruta explícita y no entrega moneda ni rebanadas.
+## Arte, mapas y cámara
 
-## Mapas, cámara y pixel art
+Canvas objetivo: 1920×1080. Los tres mapas originales de `samples/maps` se copian
+sin reinterpretar a `assets/illustrated/maps`; conservan su geometría cuadrada.
+Las huellas de chocolate, mostradores, rocas y estanque central se trazan en
+coordenadas normalizadas de config. La vegetación señalada se puede atravesar;
+el estanque central es sólido. La arena de lava es una imagen original nueva,
+con una plataforma redondeada despejada y peligros fuera de ella.
 
-Resolución objetivo 1920×1080. En 16:9 el mapa entero cubre el canvas sin marco
-externo. Otras proporciones conservan la geometría y encuadran el mapa. Para 5/6
-personas se amplía el mundo manteniendo 16:9. La cámara queda fija durante juego.
+Los mapas de exploración miden 3000×3000 unidades; la arena de lava 3200×1800.
+La cámara compartida sigue al grupo de humanos vivos, ajusta zoom y reserva
+margen para el HUD. Excluye bots NPC y mantiene visibles a los supervivientes.
+Sumo limita el acercamiento para conservar visibles los bordes de lava.
+La presentación recorre y abre el mapa completo; la cuenta acerca la cámara al
+grupo sin avanzar la simulación. El escenario conserva proporciones; los bordes
+fuera del mundo muestran un ambiente del tema, nunca una arena estirada.
 
-Tres temas adaptados de samples/maps: Dulcería, Cocina Revuelta y Jardín de Slime.
-Cada uno tiene suelo repetible, muro, obstáculo, arbusto y pieza central separados;
-sus distribuciones difieren. Los obstáculos tienen una huella de colisión y una
-imagen que sobresale hacia arriba para mostrar volumen. El orden por altura
-permite pasar delante/detrás. La vegetación se transparenta si tapa a alguien en
-los modos que no usan ocultación. Los avisos de peligro quedan encima de ella.
+Todos los tamaños usan el mismo cuerpo blanco aprobado. Una malla articulada
+se deforma hacia la velocidad, respira, rebota y responde al bocado. Ojos y boca
+son PNG independientes sin tinte: mirada, parpadeo y gestos tienen movimiento
+propio. Solo el cuerpo cambia de color. Accesorios acompañan la coronilla; brillos
+y rastros son exclusivamente visuales. Los PNG pixel anteriores quedan como
+historial y no se cargan en la exportación vigente.
 
-Los slimes usan tres PNG originales independientes: small, medium y large.
-Cambian por tamaño visible en pantalla, con filtrado nearest. Son tres niveles de
-detalle generados, no una promesa de lienzos físicos de 48/96/192 píxeles: sus PNG
-fuente tienen mayor resolución. Cambiar imagen o color no altera la hitbox.
+Títulos: Lilita One local, licencia OFL incluida; no se afirma que sea la fuente
+propietaria de otro juego. Logo original y cintas ilustradas conservan identidad
+GLOMP!. HUD compacto alternado izquierda/derecha, hasta tres filas por lado,
+cronómetro al centro y sin logo persistente durante el gameplay.
 
-HUD superpuesto: J1 izquierda/J2 derecha, J3/J4 debajo y J5/J6 en la tercera fila.
-Cronómetro arriba al centro, aviso único abajo y marcadores sobre los slimes.
-No se dibuja el logo de marca durante el juego; GLOMP! aparece como inicio de ronda.
+## Modos y rondas
 
-## Ronda y copa
+Sala → presentación 5 s → 3, 2, 1 → GLOMP! → juego → reparto 8 s → otro modo.
+No se repite minijuego consecutivo; los mapas se eligen de su conjunto compatible.
+Al alcanzar cinco rebanadas termina la copa y aparece el regreso a la sala.
+Primero +2 rebanadas y segundo +1; los empates comparten posición. Los premios
+se acreditan una sola vez y terminar la copa siempre paga.
 
-Sala → presentación del mapa real con desplazamiento/zoom y explicación (5 s) →
-3, 2, 1 → GLOMP! → simulación → estadísticas (8 s) → otro minijuego y otro tema.
-Durante presentación/cuenta no se avanza la simulación ni se consume Acción.
-Las rondas están limitadas a 180 s, incluido Crazy Ingredients por indicación
-nueva del usuario. Al llegar a cinco rebanadas se muestran resultados finales y
-se vuelve a la sala al aceptar; no continúa esa misma copa.
-
-Rotación compatible, sin repetición consecutiva:
-
-| Modo | Personas | Máximo | Resultado |
+| Modo | Personas | Máximo | Regla |
 |---|---:|---:|---|
-| Come y crece | 2–4 | 150 s | masa |
-| Bubble POM! | 2–6 | 75 s | supervivencia |
-| Ingredientes locos | 2–6 | 180 s | supervivencia; empate de supervivientes al límite |
-| Buffet Blitz | 3–6 | 120 s | masa; desempate por Manjares |
-| Guerra de Comida | 2–6 | 120 s | supervivencia; vida al límite |
+| Come y crece | 2–4 | 150 s | Comer, devorar, reaparecer; gana la masa |
+| Bubble POM! | 2–6 | 15 s | Portador inicial aleatorio; Acción pasa el chicle |
+| Ingredientes locos | 2–6 | 180 s | Tocar el pedido; antibloqueo vivos−1 |
+| Buffet Blitz | 3–6 | 120 s | Masa, Manjar, corona y Zampada |
+| Sumo de lava (`war`) | 2–6 | 120 s | Empujar fuera; gana el último en pie |
 
-Primero +2 rebanadas, segundo +1, empates comparten posición. En llegada simultánea
-a cinco decide la posición de esa ronda; empate exacto comparte victoria. Los
-Glomps se acreditan una vez por reparto y una vez al completar la copa. Perfil y
-cartera locales compartidos, equipo independiente por plaza. Perder también paga.
+Bubble POM usa **una mecha global** que no se reinicia con los pases. El portador
+tiene una pequeña ayuda de velocidad; debe acercarse y mirar al rival para
+pasarlo con Acción. La protección breve tras un pase evita devoluciones en el
+mismo instante. Al agotarse los 15 s explota el portador y termina la ronda;
+los demás comparten la primera posición. El cronómetro, anillo y tarjeta indican
+quién lo lleva. Estadísticas: pases acertados.
 
-POM garantiza aviso mínimo, límite conservador de cobertura y una cruz central
-transitable de al menos 120 px. Crazy limita el suministro total del pedido a
-vivos−1 tras tres pedidos sin eliminaciones; recoger no repone ese suministro.
-Guerra muestra una trayectoria de preparación de 0.8 s antes de lanzar, para
-respetar el aviso mínimo también a corta distancia. Curar/acelerar gasta un hueco
-y la misma Acción. La Salsa no elimina; un desconectado conserva su plaza con
-sustituto gris y vuelve al recuperar el mando.
+Sumo de lava elimina apuntado, ratón de combate, munición y proyectiles. Acción
+prepara un empujón frontal con enfriamiento. El retroceso se integra separado del
+movimiento; mantener la dirección contraria no lo borra. Salir de la plataforma
+elimina. Desde 65 s se anuncia subida de lava y después se reduce el suelo.
+Todos los objetos caídos anuncian su zona al menos 0.8 s antes del impacto:
+banana acelera 4 s; escudo bloquea un golpe durante 8 s; chicle ralentiza en un
+charco 3 s; sandía produce una onda de empuje. No hay daño por roce. Al límite,
+los supervivientes empatan; las caídas simultáneas conservan el empate.
 
-## Implementación y aceptación
+## Límites de la entrega
 
-Lógica en src/minigames, maps, match y hud; números en config, texto en i18n,
-recursos en art y el manifiesto. Scaffold/build utilizan el contrato nativo
-verificado; no editar eventos JSON a mano. Audio y cosméticos completos siguen
-en PLAN_MAESTRO. Ver TESTING y EDITOR_TODO antes de aceptar hitos.
+El arte generado no aumenta mágicamente la resolución de los mapas originales.
+La calidad visual y el balance necesitan revisión jugando. No se declara calidad
+AAA ni aceptación de hitos por pasar pruebas automáticas. Audio pendiente: las
+opciones de volumen están preparadas, pero todavía no existen pistas ni efectos.

@@ -484,3 +484,26 @@ Implementado y pendientes: docs/DISENO_JUEGO.md, docs/PLAN_MAESTRO.md y
 docs/ASSETS_CHATGPT.md. No reconstruir funciones ya implementadas por leer una
 lista anterior. Las variantes small/medium/large son PNG originales con niveles
 de detalle distintos; no afirmar que sus lienzos físicos sean 48/96/192.
+
+## 14. Rework ilustrada y accesos (19 de octubre de 2026)
+
+La última dirección del usuario prevalece sobre §13, la cámara fija y las reglas
+antiguas de POM/Guerra. No pixel art: un único cuerpo blanco aprobado, tintado
+solo en el cuerpo, con ojos y bocas separados, gestos y deformación de malla hacia
+el movimiento. No cambiar silueta al crecer. Mapas originales completos de
+samples/maps y nueva arena ilustrada de lava; geometría y colisiones en config.
+
+Cámara compartida aprobada: sigue al grupo y ajusta zoom para mantener visibles a
+todos los humanos vivos. Presentación del mapa, cuenta y GLOMP! antes de simular;
+reparto y siguiente modo distinto automáticos. Mantener HUD alternado y sin logo
+persistente. Bubble POM es quema la papa: portador aleatorio, Acción pasa el chicle,
+mecha global 15 s que no se reinicia, explosión del portador termina la ronda.
+Guerra conserva el ID war y se presenta como Sumo de lava: Acción empuja, salir
+elimina, objetos buenos/malos caen con aviso; no hay disparos ni apuntado.
+
+Completar los accesos reales de sala, Armario/Tienda (31 piezas, sets y mezcla),
+ajustes, créditos, práctica, pausa, resultados y regreso. Guardado local por plaza
+y cosméticos sin cambios mecánicos. Tipografía local Lilita One con OFL. Ver
+DISENO_JUEGO.md para contratos y PLAN_MAESTRO.md solo para pendientes. Mantener
+AGENTS.md y CLAUDE.md idénticos. No presentar generación de imágenes, QA simulada
+ni apertura del editor como aceptación humana o calidad AAA.

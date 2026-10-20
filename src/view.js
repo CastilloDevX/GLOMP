@@ -11,7 +11,12 @@ GLOMP.view = {
   load: function (scene) {
     const manager = scene.getGame().getImageManager();
     GLOMP.view.ready = false; GLOMP.view.error = false;
-    Promise.all(Object.keys(GLOMP.art).map(function (id) {
+    const fonts=scene.getGame().getFontManager();
+    const fontPromise=fonts.loadResource('assets/fonts/LilitaOne-Regular.ttf').then(function(){
+      GLOMP.view.fontFamily=fonts.getFontFamily('assets/fonts/LilitaOne-Regular.ttf');
+      return document.fonts.load('32px "'+GLOMP.view.fontFamily+'"');
+    });
+    Promise.all([fontPromise].concat(Object.keys(GLOMP.art).map(function (id) {
       const asset = GLOMP.art[id];
       return manager.loadResource(asset.file).then(function () {
         const texture = manager.getPIXITexture(asset.file);
@@ -19,11 +24,11 @@ GLOMP.view = {
         if (asset.pixel) texture.baseTexture.scaleMode = PIXI.SCALE_MODES.NEAREST;
         GLOMP.view.textures[id] = asset.bounds ? new PIXI.Texture(texture.baseTexture, new PIXI.Rectangle(asset.bounds.x, asset.bounds.y, asset.bounds.width, asset.bounds.height)) : texture;
       });
-    })).then(function () { GLOMP.view.ready = true; }).catch(function () { GLOMP.view.error = true; });
+    }))).then(function () { GLOMP.view.ready = true; }).catch(function () { GLOMP.view.error = true; });
   },
   begin: function (scene) {
     const view = scene.__glompView;
-    view.graphics.clear(); view.overlayZ = 0;
+    view.graphics.clear(); view.overlayZ = 0; view.panelIndex=0;
     Object.keys(view.items).forEach(function (key) { view.items[key].visible = false; });
     const game = scene.getGame(), config = GLOMP.config.ui;
     const scale = Math.min(game.getGameResolutionWidth() / config.width, game.getGameResolutionHeight() / config.height);
@@ -38,13 +43,14 @@ GLOMP.view = {
   },
   text: function (view, key, text, x, y, size, color, options) {
     options = options || {};
-    const item = GLOMP.view.item(view, 'text:' + key, function () { return new PIXI.Text('', { fontFamily: 'Trebuchet MS, DejaVu Sans, sans-serif', fontWeight: '900', lineJoin: 'round' }); });
+    const item = GLOMP.view.item(view, 'text:' + key, function () { return new PIXI.Text('', { fontFamily: GLOMP.view.fontFamily || 'Lilita One, DejaVu Sans, sans-serif', fontWeight: '900', lineJoin: 'round' }); });
     if (item.text !== String(text)) item.text = String(text);
     item.style.fontSize = size; item.style.fill = color;
     item.style.stroke = options.stroke || GLOMP.config.ui.colors.chocolate;
     item.style.strokeThickness = options.outline || 0;
     item.style.align = options.align || 'left';
-    item.style.fontWeight = options.weight || '900';
+    item.style.fontWeight = options.weight || '400';
+    item.style.fontFamily = options.body ? 'DejaVu Sans, sans-serif' : (GLOMP.view.fontFamily || 'Lilita One, DejaVu Sans, sans-serif');
     item.style.wordWrap = !!options.wrap; item.style.wordWrapWidth = options.wrap || GLOMP.config.ui.width;
     item.anchor.set(options.center ? 0.5 : 0, options.middle ? 0.5 : 0);
     item.zIndex = (view.overlayZ || 0) + (options.z === undefined ? 120 : options.z);
@@ -64,10 +70,10 @@ GLOMP.view = {
     if (options.fill) sprite.scale.set(width / sprite.texture.width, height / sprite.texture.height);
     return sprite;
   },
-  panel: function (view, x, y, width, height, color, radius, alpha) {
-    const g = view.graphics, c = GLOMP.config.ui.colors;
-    g.lineStyle(4, c.chocolate).beginFill(c.chocolate, alpha === undefined ? 1 : alpha).drawRoundedRect(x, y + 6, width, height, radius || 22).endFill();
-    g.beginFill(color, alpha === undefined ? 1 : alpha).drawRoundedRect(x, y, width, height, radius || 22).endFill().lineStyle(0);
+  panel: function(view,x,y,width,height,color,radius,alpha) {
+    const key='panel:'+(view.panelIndex++);
+    if(GLOMP.view.textures['ui-panel'])GLOMP.view.nine(view,key,'ui-panel',x,y,width,height,0xffffff,alpha,105);
+    else view.graphics.beginFill(color,alpha===undefined?1:alpha).drawRoundedRect(x,y,width,height,radius||20).endFill();
   },
   button: function (view, id, label, x, y, width, color, enabled, height) {
     const config = GLOMP.config.ui, ui = GLOMP.ui;
@@ -79,11 +85,16 @@ GLOMP.view = {
     });
     graphic.zIndex = (view.overlayZ || 0) + 150;
     graphic.__enabled = enabled !== false; graphic.alpha = graphic.__enabled ? 1 : 0.55;
-    graphic.clear().lineStyle(focused ? 7 : 4, focused ? c.cream : c.chocolate);
-    graphic.beginFill(c.chocolate).drawRoundedRect(x, y + 7, width, height, 23).endFill();
-    graphic.beginFill(graphic.__enabled ? color : c.muted).drawRoundedRect(x, y, width, height, 23).endFill();
-    graphic.lineStyle(0).beginFill(0xffffff, 0.2).drawRoundedRect(x + 9, y + 7, width - 18, height / 3, 16).endFill();
-    const text = GLOMP.view.text(view, 'button:' + id, label, x + width / 2, y + height / 2, 27, c.chocolate, { center: true, middle: true, z: 151 });
+    graphic.clear();
+    if(focused)graphic.lineStyle(4,c.cream,0.95).drawRoundedRect(x-5,y-5,width+10,height+10,24).lineStyle(0);
+    if(width<160) {
+      graphic.lineStyle(4,c.ink).beginFill(c.ink).drawRoundedRect(x,y+5,width,height,Math.min(22,height/2)).endFill();
+      graphic.beginFill(graphic.__enabled?color:c.muted).drawRoundedRect(x,y,width,height,Math.min(22,height/2)).endFill().lineStyle(0);
+      graphic.beginFill(0xFFFFFF,0.2).drawRoundedRect(x+7,y+6,width-14,height/3,Math.min(15,height/3)).endFill();
+    } else if(!GLOMP.view.nine(view,'button:'+id,'ui-button',x,y,width,height,graphic.__enabled?color:c.muted,graphic.alpha,150)) {
+      graphic.beginFill(graphic.__enabled?color:c.muted).drawRoundedRect(x,y,width,height,23).endFill();
+    }
+    const text = GLOMP.view.text(view, 'button:' + id, label, x + width / 2, y + height / 2, 27, c.cream, { center: true, middle: true, z: 152, outline: 3, stroke: c.ink });
     if (text.width > width - 20) text.style.fontSize = Math.max(14,Math.floor(27 * (width - 20) / text.width));
     text.alpha = graphic.alpha;
   },
@@ -91,13 +102,18 @@ GLOMP.view = {
     const g = GLOMP.view.item(view,'graphics:' + key,function () { return new PIXI.Graphics(); });
     g.clear(); g.zIndex = (view.overlayZ || 0) + z; return g;
   },
-  slimeTier: function (size) {
-    const thresholds = GLOMP.config.art.tierThresholds;
-    return size < thresholds[0] ? 0 : size < thresholds[1] ? 1 : 2;
+  nine: function(view,key,id,x,y,width,height,tint,alpha,z) {
+    const texture=GLOMP.view.textures[id];if(!texture)return null;
+    const border=Math.min(texture.width,texture.height)*0.23;
+    const item=GLOMP.view.item(view,'nine:'+key,function(){return new PIXI.NineSlicePlane(texture,border,border,border,border);});
+    item.position.set(x,y);item.width=width;item.height=height;item.tint=tint===undefined?0xffffff:tint;
+    item.alpha=alpha===undefined?1:alpha;item.zIndex=(view.overlayZ||0)+(z===undefined?110:z);return item;
   },
-  slime: function (view, key, x, y, size, bodyIndex, faceIndex, sx, sy, alpha, z) {
-    const c = GLOMP.config.art, tier = GLOMP.view.slimeTier(size);
-    const id = c.pixelTiers[tier];
-    GLOMP.view.image(view, key + ':body', id, x, y, size, size, { tint: bodyIndex === -1 ? c.botColor : c.bodyColors[bodyIndex] === undefined ? c.bodyColors[0] : c.bodyColors[bodyIndex], scaleX: sx || 1, scaleY: sy || 1, alpha: alpha, z: z === undefined ? 110 : z });
+  heading: function(view,key,label,x,y,width,size) {
+    GLOMP.view.image(view,'ribbon:'+key,'ui-ribbon',x,y+size*0.55,width,size*2.5,{fill:true,z:111});
+    GLOMP.view.text(view,key,label,x,y,size,0xFFF7E5,{center:true,outline:5,stroke:0x26223F,z:112});
+  },
+  slime: function(view,key,x,y,size,bodyIndex,faceIndex,sx,sy,alpha,z,player,equipment) {
+    return GLOMP.rig.draw(view,key,x,y,size,bodyIndex,faceIndex,alpha,z,player,equipment);
   },
 };

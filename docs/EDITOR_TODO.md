@@ -1,21 +1,21 @@
-# Trabajo humano y de editor pendiente
+# Revisión humana y audio pendientes
 
-La sala, arenas, presentación y rondas ya se ejecutaron en Preview nativa. No
-hay que crear sus escenas ni volver a colocar manualmente objetos dinámicos.
-Las herramientas generan nueve escenas con un evento JsCode cada una.
+No hace falta recrear escenas, objetos ni eventos manualmente. Abrir **game.json**;
+scaffold/build mantienen nueve escenas, cada una con un despachador JavaScript.
+`GLOMP!.json` es una copia vacía ajena al proyecto canónico y se conserva intacta.
 
-- Abrir **game.json** y revisar visualmente los tres mapas, obstáculos, sombras,
-  sprites y las tres variantes de tamaño del slime. GLOMP!.json fue comparado:
-  es un proyecto vacío del editor, con cero escenas/recursos; se conserva intacto.
-- Realizar los criterios humanos de TESTING.md. Revisar especialmente diversión,
-  auras, pasillos de POM, lecturabilidad con seis jugadores y ghosting de teclado.
-- Conectar seis mandos físicos y activar todos. Registrar índices y navegador;
-  0 conectados no demuestra un límite de cuatro. Solo bajar maxPlayers si la
-  prueba física demuestra ese límite. Probar sustitución gris y reconexión.
-- Exportar/abrir HTML5 en otro PC y revisar pantalla completa, guardado y consola.
-- Completar catálogo de caras/accesorios/partículas/rastros en pixel art. El rostro
-  actual está integrado en cada cuerpo: todavía no es una capa intercambiable.
-- Añadir música y efectos con licencia desde el editor/recursos y registrar su
-  procedencia. Hoy el juego es silencioso; los controles de volumen son el shell.
+- Revisar jugando los accesos, selección por plaza, cinco capas y catálogo; comprar,
+  equipar, retirar, recargar y verificar que la mezcla permanece.
+- Revisar los tres mapas originales y la nueva lava, colisiones, cámara compartida,
+  gestos y escala con todos los supervivientes visibles. No volver a pedir tres
+  cuerpos distintos ni pixel art: esa dirección fue sustituida.
+- Cumplir las pruebas humanas de TESTING.md: diversión, auras, persecución de
+  Bubble POM, empujones y objetos de lava, ghosting y lectura con seis personas.
+- Conectar seis mandos físicos, comprobar sustitución/reconexión e índices.
+  Cero mandos conectados no demuestra un límite de cuatro.
+- Abrir la exportación HTML5 en otro PC y revisar rendimiento, pantalla completa,
+  guardado y consola. No declarar aceptación humana a partir de hardware simulado.
+- Incorporar música y efectos con licencia. Actualmente el juego es silencioso;
+  los controles de volumen están preparados para esos recursos.
 
-No declarar H1–H8 aceptados hasta completar sus pruebas con personas.
+No declarar H1–H8 aceptados antes de completar sus criterios con personas.

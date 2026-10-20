@@ -1,26 +1,21 @@
-# GLOMP! — Pendientes después de la rework pixel art
+# GLOMP! — Pendientes reales
 
-La sala integrada, selección individual de color, arena Full HD, presentación,
-cuenta, cinco modos, reparto y avance automático ya tienen implementación.
-No volver a planificarlos como funciones inexistentes. Las reglas vigentes están
-en DISENO_JUEGO.md; las pruebas automáticas no sustituyen la aceptación humana.
+No volver a reconstruir sala, accesos, capas de slime, catálogo, cámara compartida
+ni modos: la implementación vigente está en DISENO_JUEGO.md.
 
-1. Jugar con dos personas reales: confirmar teclas, seleccionar colores distintos,
-   terminar una copa, volver a la sala y repetir. Registrar ghosting del teclado.
-2. Validar movimiento y diversión de cada modo. Ajustar balance solo en config.js.
-   En POM el generador reserva pasillos centrales seguros: medir si permiten
-   esperar quieto demasiado tiempo antes de ampliar el generador con rutas variables.
-3. Conectar seis mandos físicos y registrar navegador e índices. Hay cobertura
-   simulada de 2/6, pero eso no certifica hardware. Si el límite probado es cuatro,
-   bajar maxPlayers; no rediseñar la arquitectura.
-4. Validar la exportación HTML5 en otro PC/navegador, pantalla completa y
-   desconexión/reconexión de mandos durante todas las fases.
-5. Completar cosméticos por capas en pixel art. Los ocho colores de identificación
-   de sala son libres; quedan pendientes caras intercambiables, accesorios,
-   partículas, rastros y el catálogo completo de 31 piezas. No mezclar el antiguo
-   cuerpo ilustrado con los nuevos sprites durante una partida.
-6. Incorporar audio con licencia y comprobar los controles de volumen con audio
-   real. Actualmente no hay música ni efectos sonoros.
-7. Congelar funciones y corregir los defectos encontrados en pruebas externas.
+1. Dos personas reales: jugar una copa y una revancha; revisar ghosting, controles,
+   lectura de gestos, cámara compartida y sensación de movimiento/crecimiento.
+2. Validar la cartografía en las tres referencias y ajustar huellas donde el arte
+   sugiera un paso distinto. Revisar claridad de arbustos y estanque central.
+3. Medir Bubble POM con 2 y 6: duración de persecución, ayuda del portador y bloqueo
+   de devolución. Ajustar únicamente config. Medir Sumo: empujones, escudos,
+   telegráficos y subida de lava; comprobar remontadas sin depender del azar.
+4. Conectar seis mandos físicos y registrar navegador, modelos e índices. Las
+   pruebas simuladas no certifican hardware; bajar a cuatro solo si se demuestra.
+5. Exportar y jugar en otro PC: Full HD, otra proporción, guardado, reconexión y
+   rendimiento real. La QA automatizada local no sustituye esta sesión externa.
+6. Incorporar música y efectos con licencia y comprobar volumen con audio real.
+7. Ejecutar pruebas externas de objetivo en 10 s, revancha ≥70%, remontadas ≥20%
+   y una ronda ganada por alguien nuevo. Congelar funciones y corregir resultados.
 
-H1–H8 no se declaran aceptados: faltan sus sesiones humanas y pruebas físicas.
+H1–H8 siguen pendientes de su aceptación humana y física; no son hitos cerrados.

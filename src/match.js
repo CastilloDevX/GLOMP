@@ -13,11 +13,14 @@ GLOMP.match = {
     const options = GLOMP.match.compatible(m.participants.length).filter(function (id) { return id !== m.previous; });
     if (!options.length) throw new Error('No hay dos minijuegos compatibles para alternar.');
     const mode = options[Math.floor(GLOMP.food.random(m) * options.length)];
-    m.round++; m.previous = mode; m.phase = 'intro'; m.phaseElapsed = 0; m.rows = []; m.roundPaid = false;
-    const themes = GLOMP.config.arena.themes;
-    m.world = GLOMP.maps.create(m.participants, themes[(m.round - 1) % themes.length], Math.floor(GLOMP.food.random(m) * 4294967296));
+    m.round++; m.previous = mode; m.phase = 'intro'; m.phaseElapsed = 0; m.rows = []; m.roundPaid = false; m.endingElapsed=0;
+    let themes = GLOMP.config.arena.modeThemes[mode];
+    if(themes.length>1)themes=themes.filter(function(t){return t!==m.previousTheme;});
+    const theme=themes[Math.floor(GLOMP.food.random(m)*themes.length)];m.previousTheme=theme;
+    m.world = GLOMP.maps.create(m.participants, theme, Math.floor(GLOMP.food.random(m) * 4294967296));
     m.world.mode = mode; m.world.round = m.round;
     GLOMP.minigames[mode].start(m.world);
+    GLOMP.camera.update(m.world,0);
     m.world.players.forEach(function (p) { if (!p.npc) p.slices = m.participants[p.playerId].slices; });
   },
   rank: function (w) {
@@ -77,8 +80,14 @@ GLOMP.match = {
         if (first) w.pendingActions.fill(false); first = false;
         if (w.elapsed + Number.EPSILON >= Math.min(c.maxSeconds,GLOMP.config.minigames[w.mode].duration)) w.over = true;
       }
-      if (w.over) GLOMP.match.finishRound(m);
+      if(w.over) {
+        const feedback=w.mode==='pom'?GLOMP.config.minigames.pom.burstSeconds:w.mode==='war'?GLOMP.config.minigames.war.fallSeconds:0;
+        m.endingElapsed+=dt;
+        if(w.mode==='war')w.players.forEach(function(p){p.fall=Math.max(0,p.fall-dt);});
+        if(m.endingElapsed>=feedback)GLOMP.match.finishRound(m);
+      }
     }
+    GLOMP.camera.update(m.world,dt);
   },
   onStart: function (scene) {
     if (!GLOMP.ui.canStart()) { GLOMP.ui.go(scene,'Menu'); return; }
@@ -90,7 +99,7 @@ GLOMP.match = {
     if (!Number.isFinite(dt) || dt < 0) return;
     const m = GLOMP.match.current, input = GLOMP.input, ui = GLOMP.ui;
     if (!m) return;
-    input.update(dt);
+    ui.elapsed+=dt;input.update(dt);
     if (input.back && m.phase !== 'final') { m.paused = !m.paused; ui.focus = 'resume'; }
     if (m.paused || m.phase === 'final') {
       if (input.nav) ui.moveFocus(input.nav);

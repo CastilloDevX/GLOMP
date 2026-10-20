@@ -165,7 +165,7 @@ console.log(`${passed} comprobaciones de infraestructura y física superadas.`);
 function participants(count) { return Array.from({length:count},(_,index)=>({source:{kind:'gamepad',index},color:index % 8})); }
 function stationary(count) { return Array.from({length:count},()=>({x:0,y:0,connected:true,action:false})); }
 function forceMode(G,mode,count,seed=51) {
-  const w=G.maps.create(participants(count),'candy',seed);w.mode=mode;G.minigames[mode].start(w);return w;
+  const w=G.maps.create(participants(count),mode==='war'?'lava':'candy',seed);w.mode=mode;G.minigames[mode].start(w);return w;
 }
 test('cada teclado confirma controles antes de ocupar una plaza y confirma su color',()=>{
   const G=game();G.ui.join({kind:'keyboard',index:0});assert.equal(G.ui.lobby.length,0);assert.equal(G.ui.pendingSource.index,0);
@@ -183,7 +183,7 @@ test('el color de cada participante se conserva en cada ronda sin alterar mecán
 });
 test('cámara de presentación y bloqueo de simulación hasta GLOMP',()=>{
   const G=game(),m=G.match.create(participants(2),12),p=m.world.players[0],x=p.x,y=p.y;
-  const start=G.hud.camera(m);m.phaseElapsed=G.config.round.cinematicSeconds;const end=G.hud.camera(m);assert(start.scale>end.scale);assert.equal(end.x,0);assert.equal(end.y,0);m.phaseElapsed=0;
+  const start=G.hud.camera(m);m.phaseElapsed=G.config.round.cinematicSeconds;const end=G.hud.camera(m);assert(start.scale>end.scale);assert(Math.abs(end.scale-Math.min(1920/m.world.width,1080/m.world.height))<1e-9);m.phaseElapsed=0;
   const controls=[{x:1,y:1,connected:true,action:true},{x:-1,y:-1,connected:true}];let steps=0;
   while(m.phase!=='playing'&&steps++<1000){G.match.advance(m,1/60,controls);assert.equal(m.world.elapsed,0);assert.equal(p.x,x);assert.equal(p.y,y);}
   assert.equal(m.phase,'playing');G.match.advance(m,1/60,controls);assert.notEqual(p.x,x);
@@ -217,24 +217,25 @@ for(const count of [2,6]) {
     assert(w.over);assert(G.maps.alive(w).length<=1);assert(cycles<=count*(G.config.minigames.crazy.antiStallOrders+1));
   });
 }
-test('50 rondas del generador POM: aviso mínimo, cobertura y ruta continua de 120 px',()=>{
-  const G=game(),c=G.config.minigames.pom;let generated=0,mysteries=0;
-  for(let round=1;round<=50;round++){
-    const w=forceMode(G,'pom',6,round);w.bombHistory=[];
-    for(let frame=0;frame<c.duration*10;frame++){
-      w.elapsed=frame/10;w.zone=frame/10<c.shrinkStart?0:Math.min(1,(frame/10-c.shrinkStart)/c.shrinkSeconds)*(1-c.arenaFinalRatio)/2;
-      w.bombs.forEach(b=>{b.age+=0.1;});w.bombs=w.bombs.filter(b=>b.age<b.seconds);
-      if(frame%7===0)G.minigames.pom.spawn(w);
-      for(const b of w.bombs){
-        assert(b.seconds>=G.config.telegraphSeconds);assert(Math.abs(b.x-w.width/2)-b.maxRx>=c.minRouteWidth/2);assert(Math.abs(b.y-w.height/2)-b.maxRy>=c.minRouteWidth/2);
-        if(b.kind==='mystery'){mysteries++;assert(b.maxRx>=b.rx&&b.maxRy>=b.ry);}
-      }
-    }
-    generated+=w.bombHistory.length;assert(w.bombHistory.every(b=>b.coverage<=c.maxCoverage));assert(w.bombHistory.length>0);
-    // Los obstáculos dejan libre toda la cruz reservada: no basta comprobar solo las bombas.
-    w.obstacles.forEach(r=>{assert(r.x+r.width<w.width/2-c.minRouteWidth/2||r.x>w.width/2+c.minRouteWidth/2);assert(r.y+r.height<w.height/2-c.minRouteWidth/2||r.y>w.height/2+c.minRouteWidth/2);});
+test('50 rondas POM: portador al azar, mecha de 15 s y una sola explosión',()=>{
+  const G=game(),holders=new Set();
+  for(let seed=1;seed<=50;seed++) {
+    const w=forceMode(G,'pom',6,seed*98123);holders.add(w.holder);const c=G.config.minigames.pom;
+    for(let tick=0;tick<c.fuseSeconds*120+2&&!w.over;tick++){w.elapsed+=1/120;G.minigames.pom.step(w,1/120,stationary(6));}
+    assert(w.over);assert(w.elapsed>=c.fuseSeconds-G.config.physics.fixedStep);assert(w.elapsed<=c.fuseSeconds+G.config.physics.fixedStep*2);
+    assert.equal(G.maps.alive(w).length,5);assert.equal(w.players[w.holder].alive,false);assert.equal(w.fuse,0);
+    const rows=G.match.rank(w);assert.equal(rows.filter(r=>r.place===1).length,5);
   }
-  assert(generated>500);assert(mysteries>0);
+  assert(holders.size>1);
+});
+test('POM exige Acción, conserva la mecha y bloquea el pase inmediato de vuelta',()=>{
+  const G=game(),w=forceMode(G,'pom',2),a=w.players[0],b=w.players[1],c=G.config.minigames.pom;
+  w.obstacles=[];w.circles=[];a.x=900;a.y=1100;b.x=1000;b.y=1100;w.holder=0;w.fuse=7;
+  const controls=stationary(2);G.minigames.pom.step(w,1/120,controls);assert.equal(w.holder,0);
+  controls[0].action=true;G.minigames.pom.step(w,1/120,controls);assert.equal(w.holder,1);assert(w.fuse<7);assert.equal(a.stats.passes,1);
+  controls[0].action=false;controls[1].action=true;b.facingX=-1;G.minigames.pom.step(w,1/120,controls);assert.equal(w.holder,1);assert(w.transferLock>0);
+  controls[1].action=false;for(let i=0;i<Math.ceil(c.transferLock*120)+1;i++)G.minigames.pom.step(w,1/120,controls);
+  b.actionCooldown=0;controls[1].action=true;G.minigames.pom.step(w,1/120,controls);assert.equal(w.holder,0);assert(w.fuse<7-c.transferLock);
 });
 test('comida simultánea: gana el centro más cercano y solo se recoge una vez',()=>{
   const G=game(),w=forceMode(G,'crazy',2);w.orderElapsed=2;const f=w.food.find(f=>f.ingredient===w.requested);w.players[0].x=f.x;w.players[0].y=f.y;w.players[1].x=f.x+20;w.players[1].y=f.y;
@@ -244,7 +245,7 @@ test('comida simultánea: gana el centro más cercano y solo se recoge una vez',
 });
 test('EatEm devora, reparte masa, reaparece y la Salsa nunca mata a masa cero',()=>{
   const G=game(),w=forceMode(G,'eatEm',2),c=G.config.minigames.eatEm,a=w.players[0],b=w.players[1];
-  w.food=[];a.mass=150;b.mass=10;a.immune=0;b.immune=0;a.x=b.x=w.width/2;a.y=b.y=w.height/2;G.player.refresh(a);G.player.refresh(b);
+  w.food=[];a.mass=150;b.mass=10;a.immune=0;b.immune=0;w.obstacles=[];w.circles=[];a.x=b.x=w.width/2;a.y=b.y=w.height/2;G.player.refresh(a);G.player.refresh(b);
   for(let t=0;t<60;t++){w.elapsed+=1/120;G.minigames.eatEm.step(w,1/120,stationary(w.players.length));}
   assert.equal(b.alive,false);assert.equal(a.stats.devoured,1);
   a.x=200;a.y=300;for(let t=0;t<300;t++){w.elapsed+=1/120;G.minigames.eatEm.step(w,1/120,stationary(w.players.length));}
@@ -262,7 +263,7 @@ test('límite absoluto de tres minutos y todas las rondas reales terminan con 2 
 
 console.log(`${passed} comprobaciones totales superadas. Aceptación humana y mandos físicos pendientes.`);
 test('Buffet: Zampada suelta masa, aturde y no recoge inmediatamente sus propias migas',()=>{
-  const G=game(),w=forceMode(G,'buffet',3),a=w.players[0],b=w.players[1];w.food=[];a.x=400;a.y=540;b.x=490;b.y=540;b.mass=100;G.player.refresh(b);
+  const G=game(),w=forceMode(G,'buffet',3),a=w.players[0],b=w.players[1];w.food=[];w.obstacles=[];w.circles=[];a.x=400;a.y=540;b.x=490;b.y=540;b.mass=100;G.player.refresh(b);
   const controls=stationary(3);controls[0]={x:1,y:0,action:true,connected:true};w.elapsed=1;G.minigames.buffet.step(w,1/120,controls);
   assert(b.stun>0);assert(b.immune>0);assert(b.mass<100);const dropped=w.food.find(f=>f.blockedPlayerId===1);assert(dropped);assert.notEqual(G.maps.nearest(w,dropped)?.playerId,1);
 });
@@ -272,17 +273,48 @@ test('Buffet: Manjar exige un segundo continuo, última comilona y desempate por
   for(let i=0;i<25;i++)G.minigames.buffet.step(w,1/120,stationary(3));assert.equal(p.stats.feasts,1);assert(p.mass>=20);assert(w.finalFeast);
   w.players.forEach(q=>{q.mass=50;});p.stats.feasts=2;w.players[1].stats.feasts=1;const rows=G.match.rank(w);assert.equal(rows[0].player.playerId,0);assert.equal(rows[1].place,2);
 });
-test('Guerra: máximo tres alimentos, curarse gasta un hueco y no cambia el balance',()=>{
-  const G=game(),before=JSON.stringify(G.config),w=forceMode(G,'war',2),p=w.players[0];p.health=40;p.ammo=['lettuce','tomato','gum'];
-  const controls=stationary(2);controls[0].action=true;G.minigames.war.step(w,1/120,controls);assert.equal(p.health,65);assert.equal(p.ammo.length,2);assert.equal(JSON.stringify(G.config),before);
-  p.ammo=['tomato','gum','melon'];w.food=[{id:1,type:'lettuce',x:p.x,y:p.y}];controls[0].action=false;G.minigames.war.step(w,1/120,controls);assert.equal(p.ammo.length,3);assert(w.food.some(f=>f.id===1));
+test('Lava: el empujón usa dirección y conserva retroceso frente al movimiento contrario',()=>{
+  const G=game(),w=forceMode(G,'war',2),a=w.players[0],b=w.players[1];a.x=1400;a.y=900;b.x=1500;b.y=900;
+  const controls=stationary(2);controls[0]={x:1,y:0,action:true,connected:true};
+  for(let i=0;i<25;i++){w.elapsed+=1/120;G.minigames.war.step(w,1/120,controls);controls[0].action=false;}
+  assert(a.stats.pushes>0);assert(b.knockX>0);const previous=b.x;controls[1].x=-1;G.minigames.war.step(w,1/120,controls);assert(b.x>previous);
 });
-test('Guerra: proyectil avisa 0.8 s, el impacto da inmunidad y el cuerpo a cuerpo no daña',()=>{
-  const G=game(),w=forceMode(G,'war',2),a=w.players[0],b=w.players[1];a.x=600;a.y=540;b.x=710;b.y=540;a.ammo=['tomato'];const controls=stationary(2);controls[0].action=true;
-  G.minigames.war.step(w,1/120,controls);controls[0].action=false;assert.equal(w.projectiles[0].delay>0,true);
-  for(let i=0;i<90;i++)G.minigames.war.step(w,1/120,controls);assert.equal(b.health,100);
-  for(let i=0;i<40;i++)G.minigames.war.step(w,1/120,controls);assert.equal(b.health,75);assert(b.immune>0);
-  const hp=b.health;a.x=b.x;a.y=b.y;G.minigames.war.step(w,1/120,controls);assert.equal(b.health,hp);
+test('Lava: escudo absorbe un golpe, borde elimina y empate simultáneo se conserva',()=>{
+  const G=game(),w=forceMode(G,'war',2),a=w.players[0],b=w.players[1];a.x=1400;a.y=900;b.x=1500;b.y=900;b.shield=5;
+  G.minigames.war.shock(w,1450,900,600,null);assert.equal(b.shield,0);assert.equal(b.knockX,0);assert(b.immune>0);
+  a.x=0;b.x=w.width;w.elapsed=20;G.minigames.war.step(w,1/120,stationary(2));assert(w.over);assert(w.players.every(p=>!p.alive));const rows=G.match.rank(w);assert(rows.every(r=>r.place===1));
+});
+test('50 arenas de lava: todo objeto avisa y cae dentro de la plataforma',()=>{
+  const G=game();let hazards=0;
+  for(let seed=1;seed<=50;seed++) {
+    const w=forceMode(G,'war',6,seed*30011);
+    for(let i=0;i<50;i++){w.drops=[];G.minigames.war.spawn(w);}
+    assert(w.dropHistory.length>0);
+    w.dropHistory.forEach(d=>{assert(d.notice>=G.config.telegraphSeconds);assert(G.minigames.war.inside(w,d.x,d.y,G.config.minigames.war.dropRadius));if(['melon','gum'].includes(d.type))hazards++;});
+  }
+  assert(hazards>100);
+});
+test('Lava: peligros no impactan antes del aviso, plátano y escudo no cambian config',()=>{
+  const G=game(),before=JSON.stringify(G.config),w=forceMode(G,'war',2),p=w.players[0],notice=G.config.minigames.war.dropNotice;
+  w.drops=[{id:1,type:'melon',x:p.x-80,y:p.y,age:0,notice,landed:false,life:8}];
+  const controls=stationary(2);for(let i=0;i<Math.floor((notice-.1)*120);i++)G.minigames.war.step(w,1/120,controls);
+  assert.equal(p.knockX,0);for(let i=0;i<20;i++)G.minigames.war.step(w,1/120,controls);assert(p.knockX>0);
+  w.drops=[{id:2,type:'banana',x:p.x,y:p.y,age:notice,notice,landed:false,life:8}];G.minigames.war.step(w,1/120,controls);assert(p.boost>0);
+  assert.equal(JSON.stringify(G.config),before);
+});
+test('cámara sigue al grupo y mantiene visibles a todos los humanos, ignorando bots',()=>{
+  const G=game(),w=forceMode(G,'eatEm',2),m={world:w,phase:'playing',phaseElapsed:0};
+  G.camera.update(w,0);const initial=w.camera.cx;
+  w.players[0].x=400;w.players[0].y=450;w.players[1].x=2600;w.players[1].y=2400;
+  G.camera.update(w,1/30);let cam=G.camera.get(m);
+  G.maps.alive(w).forEach(p=>{const x=p.x*cam.scale+cam.x,y=p.y*cam.scale+cam.y,r=p.radius*cam.scale;assert(x-r>=0&&x+r<=1920&&y-r>=0&&y+r<=1080);});
+  w.players[0].x=1800;w.players[1].x=2000;for(let i=0;i<120;i++)G.camera.update(w,1/60);assert(w.camera.cx>initial);
+});
+test('rig: deformación orientada, gesto y parpadeo sin cambiar cuerpo ni estadísticas',()=>{
+  const G=game(),p=G.player.create(0,{kind:'keyboard',index:0},800,800);G.player.refresh(p);p.vx=p.speed;
+  const pose=G.rig.pose(p,1,0),top=G.rig.vertex(.5,0,pose),base=G.rig.vertex(.5,1,pose);assert(top.x>base.x);
+  p.gulp=G.config.physics.gulpSeconds/2;assert.equal(G.rig.pose(p,1,0).mouth,'gasp');assert(G.rig.pose(p,G.config.animation.blinkSeconds/2,0).blink<.2);
+  assert(!Object.keys(G.art).some(id=>id.startsWith('pixel-')));assert(G.art['slime-base-chatgpt-v1']);
 });
 test('todos los minijuegos compatibles terminan dentro de tres minutos con 2 y 6 jugadores',()=>{
   for(const count of [2,6]){
@@ -297,5 +329,30 @@ console.log(`${passed} comprobaciones finales superadas.`);
 
 test('Acción breve entre dos frames no se pierde ni se repite al mantenerla',()=>{
   const G=game();G.input.press('KeyE');G.input.release('KeyE');G.input.update(1/20);assert(G.input.edges.KeyE);G.input.update(1/20);assert(!G.input.edges.KeyE);G.input.press('KeyE');G.input.update(1/20);assert(G.input.edges.KeyE);G.input.press('KeyE');G.input.update(1/20);assert(!G.input.edges.KeyE);
+});
+console.log(`${passed} comprobaciones finales superadas.`);
+
+test('31 cosméticos y sets: compra, mezcla, guardado y retirada sin tocar mecánicas',()=>{
+  const G=game(),before=JSON.stringify(G.config),catalogue=G.shop.catalogue();
+  assert.equal(catalogue.filter(e=>e.category!=='sets').length,31);assert.equal(G.shop.featured().length,6);
+  G.save.data.coins=1000;assert(G.shop.buy('set0'));assert(G.shop.equip('set0',0));
+  assert.equal(G.save.equipment(0).accessory,'accessory0');assert.equal(G.save.equipment(0).particles,'particles3');assert.equal(G.save.equipment(0).trail,'trail1');
+  assert(G.shop.buy('accessory1'));assert(G.shop.equip('accessory1',0));assert.equal(G.save.equipment(0).trail,'trail1');
+  G.save.load();assert.equal(G.save.equipment(0).accessory,'accessory1');assert.equal(G.save.equipment(0).trail,'trail1');
+  const p=G.player.create(0,{kind:'keyboard',index:0},900,900),q=G.player.create(1,{kind:'keyboard',index:1},900,900);G.player.refresh(p);G.player.refresh(q);assert.equal(p.speed,q.speed);assert.equal(p.radius,q.radius);
+  assert(G.shop.clear('accessory',0));assert.equal(G.save.equipment(0).accessory,null);assert.equal(G.save.equipment(0).trail,'trail1');assert.equal(JSON.stringify(G.config),before);
+});
+console.log(`${passed} comprobaciones finales superadas.`);
+
+test('POM en el flujo real elimina exactamente al portador antes de repartir',()=>{
+  const G=game(),m=G.match.create(participants(2),98123);m.world=forceMode(G,'pom',2);m.phase='playing';
+  for(let i=0;i<500&&m.phase==='playing';i++)G.match.advance(m,1/30,stationary(2));
+  assert.equal(m.phase,'results');assert.equal(G.maps.alive(m.world).length,1);assert.equal(m.rows[0].place,1);assert.equal(m.rows[1].place,2);assert.equal(m.world.fuse,0);
+});
+console.log(`${passed} comprobaciones finales superadas.`);
+
+test('Acción remapeada confirma también los accesos de menú',()=>{
+  const G=game();G.save.data.settings.keys[0].action='KeyQ';G.input.press('KeyQ');G.input.release('KeyQ');G.input.update(1/60);assert(G.input.confirm);
+  G.input.update(1/60);assert(!G.input.confirm);
 });
 console.log(`${passed} comprobaciones finales superadas.`);
