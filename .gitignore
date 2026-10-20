@@ -3,3 +3,4 @@
 game.json.bak*
 .cache/
 tmp/
+.claude/settings.local.json
