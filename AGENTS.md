@@ -507,3 +507,19 @@ y cosméticos sin cambios mecánicos. Tipografía local Lilita One con OFL. Ver
 DISENO_JUEGO.md para contratos y PLAN_MAESTRO.md solo para pendientes. Mantener
 AGENTS.md y CLAUDE.md idénticos. No presentar generación de imágenes, QA simulada
 ni apertura del editor como aceptación humana o calidad AAA.
+
+## 15. Revisión cartoon y mapas panorámicos (20 de octubre de 2026)
+
+Prevalece sobre el cuerpo anterior y las geometrías cuadradas. Una base cartoon
+blanca redondeada para todos los tamaños, cara vectorial independiente con ojos
+simples y sonrisa sin dientes; color solo en el cuerpo y reflejos blancos.
+Lobby luminoso con cápsulas e iconos; tienda con vista previa grande y galería
+3×2 paginada. Mapas de 3200×1800 (16:9) reconstruidos por piezas independientes,
+sin estirar fondos cuadrados; cámara compartida limitada al escenario.
+
+**Skins y trajes completos aplazados por petición expresa del usuario.** Usar
+únicamente accesorios sencillos y combinables. Los sets son combinaciones de las
+piezas existentes. No desarrollar los personajes vestidos de las referencias.
+Arte activo en assets/cartoon y src/art.js, registro tools/register-cartoon.js.
+Mantener AGENTS.md y CLAUDE.md idénticos. No declarar calidad AAA ni aceptación
+humana por generar imágenes o pasar QA automatizada.

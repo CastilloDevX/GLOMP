@@ -6,9 +6,11 @@ scaffold/build mantienen nueve escenas, cada una con un despachador JavaScript.
 
 - Revisar jugando los accesos, selección por plaza, cinco capas y catálogo; comprar,
   equipar, retirar, recargar y verificar que la mezcla permanece.
-- Revisar los tres mapas originales y la nueva lava, colisiones, cámara compartida,
+- Revisar los tres mapas panorámicos por piezas y lava, colisiones, cámara compartida,
   gestos y escala con todos los supervivientes visibles. No volver a pedir tres
   cuerpos distintos ni pixel art: esa dirección fue sustituida.
+- Revisar nueva cara cartoon, tarjetas de tienda 3×2 y paginación. Mantener
+  accesorios simples; skins completas pendientes para una futura solicitud.
 - Cumplir las pruebas humanas de TESTING.md: diversión, auras, persecución de
   Bubble POM, empujones y objetos de lava, ghosting y lectura con seis personas.
 - Conectar seis mandos físicos, comprobar sustitución/reconexión e índices.

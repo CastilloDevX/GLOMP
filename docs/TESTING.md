@@ -1,9 +1,9 @@
-# Verificación de la rework ilustrada
+# Verificación de la revisión cartoon y panorámica
 
 ## Automatización
 
 `node tools/build.js && node tools/check.js` y `node tools/selftest.js`:
-45 comprobaciones. Esquema nativo sin eventos visuales añadidos, idempotencia,
+48 comprobaciones. Esquema nativo sin eventos visuales añadidos, idempotencia,
 PNG, mandos simulados 2/6, física 30/144 fps, límites, recogida exclusiva, tienda
 sin mutación de config, confirmación de teclado/color, guardado, cámara y bloqueo
 antes de GLOMP!, premios únicos, final de copa y rotación sin modo consecutivo.
@@ -20,6 +20,9 @@ antes de GLOMP!, premios únicos, final de copa y rotación sin modo consecutivo
 - Rig: deformación orientada, parpadeo, gesto y un único cuerpo activo. Cámara:
   grupo visible y bots NPC excluidos. Cosméticos: 31 piezas, seis destacados,
   sets, mezcla, retirada, guardado y equivalencia de velocidad/hitbox.
+- Mapas fuente 16:9, mundo horizontal, cámara cubre el viewport durante la
+  presentación y el juego; comida evita el volumen elevado de los props.
+- Galería: paginar o previsualizar no compra ni cambia el equipo guardado.
 - Todos los modos compatibles terminan dentro del máximo de 180 s con 2/6.
 
 Las pruebas antiguas de bombas y munición se sustituyeron porque el usuario
@@ -29,9 +32,9 @@ al nuevo quema la papa. Las invariantes de avisos de objetos caídos se mantiene
 ## Editor y exportación reales
 
 GDevelop instalado 5.6.284; referencia fijada al esquema 5.6.283. Se verificaron
-FontResource, SimplePlane y NineSlicePlane en el motor real. Exportación HTML5
+FontResource, SimplePlane, NineSlicePlane y filtro de color del cuerpo en el motor real. Exportación HTML5
 nativa a `.cache/export-web`, servida localmente por `node tools/serve.js`.
-53 imágenes y fuente local cargan sin error. No hay un renderizador alternativo
+57 imágenes y fuente local cargan sin error. No hay un renderizador alternativo
 que sustituya GDevelop en estas comprobaciones.
 
 QA con Chromium y eventos CDP reales, perfil de pruebas aislado:

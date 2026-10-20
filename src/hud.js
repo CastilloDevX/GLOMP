@@ -8,6 +8,25 @@ GLOMP.hud = {
     if(ambient)ambient.alpha=0.35;
     d.image(view,'map','map-'+w.theme,x(w.width/2),y(w.height/2),w.width*s,w.height*s,{fill:true,z:2});
     const ground=d.graphics(view,'ground',3),rings=d.graphics(view,'rings',6),effects=d.graphics(view,'effects',55);
+    if(w.theme!=='lava') {
+      const block='map-'+w.theme+'-block';
+      w.obstacles.forEach(function(r,index){
+        const texture=d.textures[block];if(!texture)return;
+        const height=r.width*texture.height/texture.width;
+        ground.beginFill(0x30253E,.22).drawEllipse(x(r.x+r.width/2),y(r.y+r.height),r.width*s*.5,r.height*s*.34).endFill();
+        d.image(view,'block'+index,block,x(r.x+r.width/2),y(r.y+r.height-height/2),r.width*s,height*s,{fill:true,z:20+(r.y+r.height)/w.height*10});
+      });
+      (w.circles||[]).forEach(function(circle,index){
+        const id='map-'+w.theme+'-center',texture=d.textures[id];if(!texture)return;
+        const art=GLOMP.config.arena.centerArt,width=circle.radius*art.width,height=width*texture.height/texture.width;
+        d.image(view,'center'+index,id,x(circle.x),y(circle.y+circle.radius*art.bottom-height/2),width*s,height*s,{fill:true,z:20+(circle.y+circle.radius*art.bottom)/w.height*10});
+      });
+      w.bushes.forEach(function(b,index){
+        const occupied=w.players.some(function(p){return p.alive&&Math.abs(p.x-b.x)<b.width/2&&Math.abs(p.y-b.y)<b.height/2;});
+        d.image(view,'bush'+index,'map-'+w.theme+'-bush',x(b.x),y(b.y),b.width*s,b.height*s,{z:20+(b.y+b.height/3)/w.height*10,alpha:occupied?.45:1});
+      });
+    }
+
     if(w.mode==='eatEm'&&w.sauce) {
       const bx=w.width*w.sauce,by=w.height*w.sauce;
       ground.beginFill(0xDF4E53,0.52).drawRect(x(0),y(0),w.width*s,by*s).drawRect(x(0),y(w.height-by),w.width*s,by*s).drawRect(x(0),y(by),bx*s,(w.height-by*2)*s).drawRect(x(w.width-bx),y(by),bx*s,(w.height-by*2)*s).endFill();
@@ -82,25 +101,26 @@ GLOMP.hud = {
       d.text(view,'burst',GLOMP.i18n.text('pomBurst'),x(w.burst.x),y(w.burst.y),60,0xFFF3D3,{center:true,middle:true,outline:6,z:60});
     }
   },
-  cards: function (view,m) {
-    const draw = GLOMP.view, t = GLOMP.i18n.text, c = GLOMP.config.ui.colors, w = m.world;
-    w.players.filter(function (p) { return !p.npc; }).forEach(function (p,index) {
-      const right = index % 2 === 1, x = right ? 1620 : 20, y = 20 + Math.floor(index / 2) * 110;
-      const camera = GLOMP.hud.camera(m);
-      const behind = w.players.some(function (q) { return q.alive && q.x * camera.scale + camera.x + q.radius * camera.scale > x && q.x * camera.scale + camera.x - q.radius * camera.scale < x + 280 && q.y * camera.scale + camera.y + q.radius * camera.scale > y && q.y * camera.scale + camera.y - q.radius * camera.scale < y + 94; });
-      const opacity = behind ? 0.38 : 1;
-      draw.panel(view,x,y,280,94,0x211C38,12,0.87 * opacity);
-      draw.slime(view,'avatar' + index,x + 45,y + 48,64,Number(p.bodyColor.slice(4)),Number(p.face.slice(4)),1,1,(p.alive ? 1 : 0.4) * opacity,110,p);
-      draw.text(view,'cardName' + index,GLOMP.config.art.markerIcons[index] + ' ' + t('player',{number:index + 1}),x + 85,y + 10,22,c.cream,{alpha:opacity});
-      draw.text(view,'cardSlices' + index,t('slices',{count:m.participants[index].slices,goal:GLOMP.config.slicesToWin}),x + 252,y + 10,22,c.yellow,{center:true,alpha:opacity});
-      let label = ['eatEm','buffet','practice'].includes(w.mode) ? t('mass',{count:Math.floor(p.mass)}) : p.alive ? (w.mode === 'crazy' && p.safe ? t('safe') : t('ready')) : t('eliminated');
+  cards: function(view,m) {
+    const d=GLOMP.view,t=GLOMP.i18n.text,c=GLOMP.config.ui.colors,w=m.world,camera=GLOMP.camera.get(m);
+    w.players.filter(function(p){return !p.npc;}).forEach(function(p,index){
+      const right=index%2===1,x=right?1540:22,y=18+Math.floor(index/2)*116,width=358,height=104;
+      const behind=w.players.some(function(q){const px=q.x*camera.scale+camera.x,py=q.y*camera.scale+camera.y,r=q.radius*camera.scale;return q.alive&&px+r>x&&px-r<x+width&&py+r>y&&py-r<y+height;});
+      const alpha=behind?.38:.97;
+      d.panel(view,x,y,width,height,c.blue,35,alpha);
+      const avatarX=right?x+305:x+51,textX=right?x+28:x+100;
+      d.graphics(view,'portraitFrame'+index,108).lineStyle(4,0xA9F8FF,alpha).beginFill(0x064CAA,alpha).drawCircle(avatarX,y+51,44).endFill().lineStyle(0);
+      d.slime(view,'avatar'+index,avatarX,y+53,74,Number(p.bodyColor.slice(4)),Number(p.face.slice(4)),1,1,(p.alive?1:.5)*alpha,110,p);
+      d.text(view,'cardName'+index,GLOMP.config.art.markerIcons[index]+' '+t('player',{number:index+1}),textX,y+12,26,0xFFFFFF,{outline:4,stroke:0x103B8C,alpha:alpha});
+      d.text(view,'cardSlices'+index,t('slices',{count:m.participants[index].slices,goal:GLOMP.config.slicesToWin}),right?x+230:x+312,y+15,22,c.yellow,{center:true,outline:3,stroke:0x103B8C,alpha:alpha});
+      let label=['eatEm','buffet','practice'].includes(w.mode)?t('mass',{count:Math.floor(p.mass)}):p.alive?(w.mode==='crazy'&&p.safe?t('safe'):t('ready')):t('eliminated');
       if(w.mode==='war'&&p.alive)label=t(p.shield>0?'shieldActive':'pushes',{count:p.stats.pushes});
       if(w.mode==='pom'&&p.alive)label=t(p.playerId===w.holder?'gumHolder':'gumSafe');
-      if (p.bot) label = t('autoControl');
-      if (p.respawn > 0 && !p.alive) label = t('respawning',{seconds:Math.ceil(p.respawn)});
-      draw.text(view,'cardStat' + index,label,x + 85,y + 41,20,p.alive ? c.cream : c.red,{alpha:opacity});
-      const bar = ['eatEm','buffet'].includes(w.mode) ? Math.min(1,p.scale / GLOMP.config.player.maxScale) : w.mode === 'war' ? Math.max(0,1-p.actionCooldown/GLOMP.config.minigames.war.shoveCooldown) : p.alive ? 1 : 0;
-      view.graphics.beginFill(c.ink,opacity).drawRoundedRect(x + 85,y + 73,170,7,3).endFill().beginFill(GLOMP.config.art.markerColors[index],opacity).drawRoundedRect(x + 85,y + 73,170 * bar,7,3).endFill();
+      if(p.bot)label=t('autoControl');if(p.respawn>0&&!p.alive)label=t('respawning',{seconds:Math.ceil(p.respawn)});
+      const status=d.text(view,'cardStat'+index,label,textX,y+49,24,p.alive?c.yellow:0xFF9DA8,{outline:3,stroke:0x103B8C,alpha:alpha});
+      if(status.width>236)status.style.fontSize=Math.floor(24*236/status.width);
+      const bar=['eatEm','buffet'].includes(w.mode)?Math.min(1,p.scale/GLOMP.config.player.maxScale):w.mode==='war'?Math.max(0,1-p.actionCooldown/GLOMP.config.minigames.war.shoveCooldown):p.alive?1:0;
+      view.graphics.beginFill(0x133A83,alpha).drawRoundedRect(textX,y+84,210,7,3).endFill().beginFill(GLOMP.config.art.markerColors[index],alpha).drawRoundedRect(textX,y+84,210*bar,7,3).endFill();
     });
   },
   results: function (view,m) {
@@ -128,8 +148,8 @@ GLOMP.hud = {
     const draw = GLOMP.view, view = draw.begin(scene), c = GLOMP.config.ui.colors, t = GLOMP.i18n.text, w = m.world;
     GLOMP.ui.buttons = []; GLOMP.hud.world(view,m); GLOMP.hud.cards(view,m);
     const duration = Math.min(GLOMP.config.round.maxSeconds,(GLOMP.config.minigames[w.mode] || {}).duration || GLOMP.config.round.maxSeconds), remaining = Math.max(0,Math.ceil(w.mode==='pom'?w.fuse:duration-w.elapsed));
-    draw.panel(view,830,20,260,86,c.dark,12,0.88);
-    const timer = draw.text(view,'timer',t('roundTime',{minutes:Math.floor(remaining / 60),seconds:String(remaining % 60).padStart(2,'0')}),960,21,55,remaining < duration / 3 ? c.red : c.cream,{center:true,outline:3});
+    draw.panel(view,790,14,340,112,c.blue,48,.98);GLOMP.icons.draw(view,'clock','clock',843,69,65,124);
+    const timer = draw.title(view,'timer',t('roundTime',{minutes:Math.floor(remaining / 60),seconds:String(remaining % 60).padStart(2,'0')}),987,27,68,remaining<duration/3?0xFF6B85:0xFFFFFF,{outline:12,stroke:7});
     timer.scale.set(remaining < duration / 3 ? 1 + Math.sin(w.elapsed * 5) * 0.035 : 1);
     if(w.mode==='pom'&&m.phase==='playing') {
       draw.panel(view,630,118,660,62,c.dark,15,0.9);
@@ -140,17 +160,22 @@ GLOMP.hud = {
       draw.panel(view,620,116,680,60,c.dark,12,0.92);
       draw.text(view,'order',t(w.orderElapsed < GLOMP.config.minigames.crazy.announcementSeconds ? 'requestStarting' : 'request',{name:t('food' + w.requested)}) + ' · ' + Math.max(0,Math.ceil(w.stage.seconds + GLOMP.config.minigames.crazy.announcementSeconds - w.orderElapsed)),960,127,29,c.yellow,{center:true});
     }
-    if (m.phase === 'intro') {
-      draw.graphics(view,'introShade',90).beginFill(c.dark,0.80).drawRect(0,725,1920,355).endFill();
-      const cap = w.mode.charAt(0).toUpperCase() + w.mode.slice(1);
-      draw.text(view,'introRound',t('roundLabel',{number:m.round}) + ' · ' + t('map' + w.theme.charAt(0).toUpperCase() + w.theme.slice(1)),960,753,24,c.yellow,{center:true});
-      draw.text(view,'introTitle',t('mode' + cap),960,795,58,c.cream,{center:true,outline:5});
-      draw.text(view,'introRule',t('rule' + cap),960,877,29,c.cream,{center:true,wrap:1350});
-      draw.text(view,'introAction',t('action' + cap),960,960,23,c.yellow,{center:true});
+    if(m.phase==='intro') {
+      const intro=draw.graphics(view,'introShade',90);intro.lineStyle(4,0x6DE7FF).beginFill(0x083684,.91).drawRoundedRect(38,772,1844,280,44).endFill().lineStyle(0);
+      const cap=w.mode.charAt(0).toUpperCase()+w.mode.slice(1);
+      draw.text(view,'introRound',t('roundLabel',{number:m.round})+' · '+t('map'+w.theme.charAt(0).toUpperCase()+w.theme.slice(1)),960,789,24,c.yellow,{center:true,outline:3,stroke:0x103B8C});
+      draw.title(view,'introTitle',t('mode'+cap),960,824,65,0xFFFFFF,{z:122,outline:13,stroke:7});
+      draw.text(view,'introRule',t('rule'+cap),960,908,27,0xFFFFFF,{center:true,wrap:1740,outline:3,stroke:0x103B8C});
+      const banner=draw.graphics(view,'introAction',115);banner.beginFill(0xFFD52E).drawRoundedRect(420,985,1080,52,26).endFill();
+      draw.text(view,'introAction',t('action'+cap),960,994,24,0x0C2C63,{center:true});
     }
-    if (m.phase === 'countdown' || m.phase === 'launch') {
-      draw.graphics(view,'countShade',90).beginFill(c.dark,0.20).drawRect(0,0,1920,1080).endFill();
-      draw.text(view,'countdown',m.phase === 'launch' ? t('launch') : t('countdown',{number:Math.max(1,Math.ceil(GLOMP.config.round.countdownSeconds - m.phaseElapsed))}),960,420,m.phase === 'launch' ? 150 : 190,c.yellow,{center:true,middle:true,outline:12});
+    if(m.phase==='countdown'||m.phase==='launch') {
+      draw.graphics(view,'countShade',90).beginFill(c.dark,.13).drawRect(0,0,1920,1080).endFill();
+      const launch=m.phase==='launch',progress=launch?m.phaseElapsed/GLOMP.config.round.launchSeconds:m.phaseElapsed%1;
+      const pop=1+Math.sin(Math.min(1,progress)*Math.PI)*(launch?GLOMP.config.ui.cartoon.launchPop:GLOMP.config.ui.cartoon.countdownPop);
+      const title=draw.title(view,'countdown',launch?t('launch'):t('countdown',{number:Math.max(1,Math.ceil(GLOMP.config.round.countdownSeconds-m.phaseElapsed))}),960,487,launch?155:195,launch?0xFFD92E:0xFFFFFF,{middle:true,scale:pop,outline:20,stroke:11,z:125});
+      title.rotation=launch?Math.sin(progress*Math.PI)*-.035:0;
+      if(launch)for(let i=0;i<8;i++){const a=i*Math.PI/4;GLOMP.icons.draw(view,'launchStar'+i,'star',960+Math.cos(a)*(240+progress*190),487+Math.sin(a)*(130+progress*90),30*(1-progress)+12,121);}
     }
     if (w.mode === 'eatEm' && w.sauce && m.phase === 'playing') draw.text(view,'notice',t('sauceWarning'),960,1020,23,c.cream,{center:true,outline:4});
     if (w.finalFeast && m.phase === 'playing') draw.text(view,'notice',t('finalFeast'),960,1020,26,c.yellow,{center:true,outline:4});

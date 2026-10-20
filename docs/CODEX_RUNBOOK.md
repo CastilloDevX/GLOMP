@@ -2,7 +2,7 @@
 
 ## Antes de trabajar
 
-1. Leer AGENTS.md / CLAUDE.md, incluida §14; ambos deben permanecer idénticos.
+1. Leer AGENTS.md / CLAUDE.md, incluidas §14–15; ambos deben permanecer idénticos.
 2. Revisar cambios de otras sesiones sin descartarlos. Proyecto canónico para
    build/scaffold: `game.json`. No sobrescribir ni borrar `GLOMP!.json` si aparece
    como copia del editor; comparar antes de una futura unificación.
@@ -41,7 +41,7 @@ proveedor; no reemplazar silenciosamente el arte aprobado.
   luego `node tools/build.js && node tools/check.js` y selftest pertinente.
 - Verificar render y controles en GDevelop. Registrar por separado pruebas
   simuladas, pruebas reales y aceptación humana; no intercambiarlas.
-- Commit por tarea, en español. No incluir claves, copias del editor ni temporales.
+- Commit por tarea, en español, formato pedido: feat: ✨ descripción. No incluir claves, copias del editor ni temporales.
 - Al aceptar una tarea, retirarla del plan de pendientes. Mantener esquema,
   decisiones vigentes y pruebas todavía necesarias. Si solo cambian documentos,
   revisar enlaces, coherencia y diff; no regenerar el juego por rutina.

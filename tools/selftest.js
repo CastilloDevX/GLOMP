@@ -1,5 +1,5 @@
 'use strict';
-// Pruebas del hito actual. No representan partidas de minijuegos aún inexistentes.
+// Pruebas automáticas de infraestructura, modos y flujos; no sustituyen partidas humanas.
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
@@ -305,7 +305,7 @@ test('Lava: peligros no impactan antes del aviso, plátano y escudo no cambian c
 test('cámara sigue al grupo y mantiene visibles a todos los humanos, ignorando bots',()=>{
   const G=game(),w=forceMode(G,'eatEm',2),m={world:w,phase:'playing',phaseElapsed:0};
   G.camera.update(w,0);const initial=w.camera.cx;
-  w.players[0].x=400;w.players[0].y=450;w.players[1].x=2600;w.players[1].y=2400;
+  w.players[0].x=w.width*.12;w.players[0].y=w.height*.16;w.players[1].x=w.width*.88;w.players[1].y=w.height*.84;
   G.camera.update(w,1/30);let cam=G.camera.get(m);
   G.maps.alive(w).forEach(p=>{const x=p.x*cam.scale+cam.x,y=p.y*cam.scale+cam.y,r=p.radius*cam.scale;assert(x-r>=0&&x+r<=1920&&y-r>=0&&y+r<=1080);});
   w.players[0].x=1800;w.players[1].x=2000;for(let i=0;i<120;i++)G.camera.update(w,1/60);assert(w.camera.cx>initial);
@@ -314,7 +314,7 @@ test('rig: deformación orientada, gesto y parpadeo sin cambiar cuerpo ni estad�
   const G=game(),p=G.player.create(0,{kind:'keyboard',index:0},800,800);G.player.refresh(p);p.vx=p.speed;
   const pose=G.rig.pose(p,1,0),top=G.rig.vertex(.5,0,pose),base=G.rig.vertex(.5,1,pose);assert(top.x>base.x);
   p.gulp=G.config.physics.gulpSeconds/2;assert.equal(G.rig.pose(p,1,0).mouth,'gasp');assert(G.rig.pose(p,G.config.animation.blinkSeconds/2,0).blink<.2);
-  assert(!Object.keys(G.art).some(id=>id.startsWith('pixel-')));assert(G.art['slime-base-chatgpt-v1']);
+  assert(!Object.keys(G.art).some(id=>id.startsWith('pixel-')));assert(G.art[G.config.art.bodyAsset]);
 });
 test('todos los minijuegos compatibles terminan dentro de tres minutos con 2 y 6 jugadores',()=>{
   for(const count of [2,6]){
@@ -356,3 +356,33 @@ test('Acción remapeada confirma también los accesos de menú',()=>{
   G.input.update(1/60);assert(!G.input.confirm);
 });
 console.log(`${passed} comprobaciones finales superadas.`);
+
+test('mapas panorámicos: fuente 16:9 y cámara cubre toda la pantalla sin deformar',()=>{
+  const G=game();
+  for(const theme of ['candy','cooking','slimegarden','lava']) {
+    const b=fs.readFileSync(G.art['map-'+theme].file);assert(Math.abs(b.readUInt32BE(16)/b.readUInt32BE(20)-16/9)<.003,theme);
+    const w=G.maps.create(participants(6),theme,98);assert.equal(w.width/w.height,16/9);
+    for(const phase of ['intro','countdown','playing'])for(const phaseElapsed of [0,1,3,5]) {
+      const c=G.camera.get({world:w,phase,phaseElapsed});assert(c.x<=.001&&c.y<=.001);
+      assert(w.width*c.scale+c.x>=1920-.001&&w.height*c.scale+c.y>=1080-.001);
+    }
+  }
+});
+test('galería: cambiar página y previsualizar no compra ni cambia el equipo',()=>{
+  const G=game(),scene={getName:()=> 'Shop'},before=JSON.stringify(G.save.data);
+  G.ui.category='accessory';G.ui.shopPage=0;G.ui.selectedItem='accessory0';
+  G.ui.activate(scene,'pageNext');assert.equal(G.ui.shopPage,1);assert.equal(G.ui.selectedItem,'accessory6');
+  G.ui.activate(scene,'accessory9');assert.equal(G.ui.selectedItem,'accessory9');
+  assert.equal(JSON.stringify(G.save.data),before);G.ui.activate(scene,'pageNext');assert.equal(G.ui.shopPage,0);
+});
+test('comida visible: evita también la parte elevada de cada obstáculo',()=>{
+  const G=game();for(const theme of ['candy','cooking','slimegarden']) {
+    const w=G.maps.create(participants(2),theme,90),r=w.obstacles[0];
+    assert(!G.maps.pickupFree(w,r.x+r.width/2,r.y-5,10));
+    const c=w.circles[0],art=G.config.arena.centerArt,top=c.y+c.radius*art.bottom-c.radius*art.width*art.ratios[theme];
+    assert(G.maps.free(w,c.x,top+c.radius*.1,10));assert(!G.maps.pickupFree(w,c.x,top+c.radius*.1,10));
+    for(let i=0;i<120;i++)G.food.spawn(w,'bite');
+    w.food.forEach(f=>assert(G.maps.pickupFree(w,f.x,f.y,G.config.physics.foodRadius)));
+  }
+});
+console.log(`${passed} comprobaciones superadas; aceptación humana pendiente.`);

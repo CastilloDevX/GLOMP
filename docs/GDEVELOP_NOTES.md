@@ -82,3 +82,15 @@ file, kind="font", metadata, name y userAdded. Scaffold la clona para el TTF;
 FontManager.loadResource/getFontFamily y document.fonts.load esperan su carga.
 La exportación conserva el nombre del recurso aunque aplane la ruta del archivo.
 Los hashes y el esquema original de eventos permanecen sin modificar.
+
+## Revisión del 20 de octubre
+
+El arte activo usa una base cartoon y cara vectorial; los tres escenarios se
+reconstruyen por piezas en 3200×1800. El filtro de color pertenece únicamente a
+la malla del cuerpo y conserva alfa/reflejos, sin teñir los Graphics de la cara.
+Los accesorios siguen siendo sprites sencillos, sin trajes ni skins completas.
+La galería usa marcos rectangulares propios: el panel ancho no se fuerza sobre
+las tarjetas. Los botones pequeños usan geometría nativa para conservar forma.
+Las imágenes históricas no se borran; scaffold retira del proyecto solo recursos
+propios conocidos que ya no aparecen en el índice activo. No cambia el esquema
+de eventos ni las referencias verificadas del serializador.

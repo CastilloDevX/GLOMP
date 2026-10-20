@@ -11,7 +11,7 @@ GLOMP.food = {
       const x = config.spawnPadding + GLOMP.food.random(world) * ((world.width || world.size) - config.spawnPadding * 2);
       const y = config.spawnPadding + GLOMP.food.random(world) * ((world.height || world.size) - config.spawnPadding * 2);
       if (world.food.some(function (food) { return Math.hypot(food.x - x, food.y - y) < (world.foodSpacing || config.foodSpacing); })) continue;
-      if (GLOMP.maps && !GLOMP.maps.free(world,x,y,GLOMP.config.physics.foodRadius)) continue;
+      if (GLOMP.maps && !GLOMP.maps.pickupFree(world,x,y,GLOMP.config.physics.foodRadius)) continue;
       world.food.push({ id: world.nextFoodId++, type: type, x: x, y: y }); return true;
     }
     return false;

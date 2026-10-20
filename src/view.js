@@ -75,28 +75,28 @@ GLOMP.view = {
     if(GLOMP.view.textures['ui-panel'])GLOMP.view.nine(view,key,'ui-panel',x,y,width,height,0xffffff,alpha,105);
     else view.graphics.beginFill(color,alpha===undefined?1:alpha).drawRoundedRect(x,y,width,height,radius||20).endFill();
   },
-  button: function (view, id, label, x, y, width, color, enabled, height) {
-    const config = GLOMP.config.ui, ui = GLOMP.ui;
-    height = height || config.buttonHeight;
-    const focused = ui.focus === id, c = config.colors;
-    ui.buttons.push({ id: id, x: x + width / 2, y: y + height / 2, enabled: enabled !== false, width: width, height: height });
-    const graphic = GLOMP.view.item(view, 'button:' + id, function () {
-      return new PIXI.Graphics();
-    });
-    graphic.zIndex = (view.overlayZ || 0) + 150;
-    graphic.__enabled = enabled !== false; graphic.alpha = graphic.__enabled ? 1 : 0.55;
-    graphic.clear();
-    if(focused)graphic.lineStyle(4,c.cream,0.95).drawRoundedRect(x-5,y-5,width+10,height+10,24).lineStyle(0);
-    if(width<160) {
-      graphic.lineStyle(4,c.ink).beginFill(c.ink).drawRoundedRect(x,y+5,width,height,Math.min(22,height/2)).endFill();
-      graphic.beginFill(graphic.__enabled?color:c.muted).drawRoundedRect(x,y,width,height,Math.min(22,height/2)).endFill().lineStyle(0);
-      graphic.beginFill(0xFFFFFF,0.2).drawRoundedRect(x+7,y+6,width-14,height/3,Math.min(15,height/3)).endFill();
-    } else if(!GLOMP.view.nine(view,'button:'+id,'ui-button',x,y,width,height,graphic.__enabled?color:c.muted,graphic.alpha,150)) {
-      graphic.beginFill(graphic.__enabled?color:c.muted).drawRoundedRect(x,y,width,height,23).endFill();
+  hit: function(view,id,x,y,width,height,enabled) {
+    GLOMP.ui.buttons.push({id:id,x:x+width/2,y:y+height/2,width:width,height:height,enabled:enabled!==false});
+  },
+  button: function(view,id,label,x,y,width,color,enabled,height,icon) {
+    const c=GLOMP.config.ui.colors,ui=GLOMP.ui; height=height||GLOMP.config.ui.buttonHeight;
+    GLOMP.view.hit(view,id,x,y,width,height,enabled);
+    const focused=ui.focus===id,active=enabled!==false,alpha=active?1:.55;
+    const g=GLOMP.view.graphics(view,'button:'+id,150),radius=Math.min(height/2,34);
+    if(focused)g.lineStyle(6,0xFFE766,.95).drawRoundedRect(x-5,y-5,width+10,height+10,radius+5).lineStyle(0);
+    g.lineStyle(6,0x113A86).beginFill(0x143D8A,.85).drawRoundedRect(x,y+6,width,height,radius).endFill();
+    if(width>=132)GLOMP.view.image(view,'button:'+id,'ui-button',x+width/2,y+height/2,width,height,{fill:true,tint:active?color:c.muted,alpha:alpha,z:151});
+    else {g.beginFill(active?color:c.muted).drawRoundedRect(x,y,width,height,radius).endFill();g.beginFill(0xFFFFFF,.24).drawRoundedRect(x+5,y+5,Math.max(1,width-10),height*.30,Math.min(radius,10)).endFill();}
+    g.lineStyle(3,0xFFFFFF,.95).drawRoundedRect(x+2,y+2,width-4,height-4,radius).lineStyle(0);g.alpha=alpha;
+    const icons={shop:'shop',customize:'shirt',settings:'gear',credits:'star',practice:'gamepad',play:'play',buy:'coin',equip:'star',back:'back'};
+    icon=icon||icons[id];if(id.startsWith('category:'))icon={featured:'star',body:'color',face:'face',accessory:'hat',particles:'particles',trail:'trail',sets:'gift'}[id.slice(9)];
+    const hasIcon=icon&&width>=132,iconSize=Math.min(height*(id.startsWith('category:')?.4:.6),66);
+    if(hasIcon&&GLOMP.icons) {
+      const item=GLOMP.icons.draw(view,'button:'+id,icon,x+height*.58,y+height/2,iconSize,153);item.alpha=alpha;
     }
-    const text = GLOMP.view.text(view, 'button:' + id, label, x + width / 2, y + height / 2, 27, c.cream, { center: true, middle: true, z: 152, outline: 3, stroke: c.ink });
-    if (text.width > width - 20) text.style.fontSize = Math.max(14,Math.floor(27 * (width - 20) / text.width));
-    text.alpha = graphic.alpha;
+    const font=Math.min(38,height*.39),available=width-(hasIcon?height*.85:20)-18;
+    const text=GLOMP.view.text(view,'button:'+id,label,x+width/2+(hasIcon?height*.22:0),y+height/2,font,0xFFFFFF,{center:true,middle:true,z:154,outline:4,stroke:0x123B88});
+    if(text.width>available)text.style.fontSize=Math.max(13,Math.floor(font*available/text.width));text.alpha=alpha;
   },
   graphics: function (view,key,z) {
     const g = GLOMP.view.item(view,'graphics:' + key,function () { return new PIXI.Graphics(); });
@@ -104,14 +104,25 @@ GLOMP.view = {
   },
   nine: function(view,key,id,x,y,width,height,tint,alpha,z) {
     const texture=GLOMP.view.textures[id];if(!texture)return null;
-    const border=Math.min(texture.width,texture.height)*0.23;
+    const border=Math.min(texture.width,texture.height)*0.32;
     const item=GLOMP.view.item(view,'nine:'+key,function(){return new PIXI.NineSlicePlane(texture,border,border,border,border);});
     item.position.set(x,y);item.width=width;item.height=height;item.tint=tint===undefined?0xffffff:tint;
     item.alpha=alpha===undefined?1:alpha;item.zIndex=(view.overlayZ||0)+(z===undefined?110:z);return item;
   },
+  title: function(view,key,label,x,y,size,color,options) {
+    options=options||{};
+    const item=GLOMP.view.item(view,'title:'+key,function(){const root=new PIXI.Container();root.outer=new PIXI.Text('');root.inner=new PIXI.Text('');root.addChild(root.outer,root.inner);return root;});
+    const style={fontFamily:GLOMP.view.fontFamily,fontSize:size,fontWeight:'400',lineJoin:'round',fill:color,align:'center'};
+    item.outer.style=Object.assign({},style,{stroke:0xFFFFFF,strokeThickness:options.outline||13});
+    item.inner.style=Object.assign({},style,{stroke:0x103B8C,strokeThickness:options.stroke||7});
+    item.outer.text=String(label);item.inner.text=String(label);
+    item.outer.anchor.set(.5,options.middle?.5:0);item.inner.anchor.set(.5,options.middle?.5:0);
+    item.position.set(x,y);item.scale.set(options.scale||1);item.alpha=options.alpha===undefined?1:options.alpha;
+    item.zIndex=(view.overlayZ||0)+(options.z===undefined?122:options.z);return item;
+  },
   heading: function(view,key,label,x,y,width,size) {
-    GLOMP.view.image(view,'ribbon:'+key,'ui-ribbon',x,y+size*0.55,width,size*2.5,{fill:true,z:111});
-    GLOMP.view.text(view,key,label,x,y,size,0xFFF7E5,{center:true,outline:5,stroke:0x26223F,z:112});
+    GLOMP.view.image(view,'ribbon:'+key,'ui-ribbon',x,y+size*.6,width,size*2.5,{fill:true,z:111});
+    return GLOMP.view.title(view,key,label,x,y,size,0xFFFFFF,{z:112,outline:11,stroke:6});
   },
   slime: function(view,key,x,y,size,bodyIndex,faceIndex,sx,sy,alpha,z,player,equipment) {
     return GLOMP.rig.draw(view,key,x,y,size,bodyIndex,faceIndex,alpha,z,player,equipment);

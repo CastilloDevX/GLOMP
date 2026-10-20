@@ -1,38 +1,42 @@
-# GLOMP! — Arte ilustrado
+# GLOMP! — Arte cartoon vigente
 
-Proveedor activo autorizado: ChatGPT `imagegen`. Google/Nano Banana permanece
-suspendido por cuota. No leer, imprimir ni trasladar claves de `.env`.
+Proveedor autorizado: ChatGPT imagegen. Google/Nano Banana sigue suspendido por
+cuota. No leer, imprimir ni trasladar claves de .env.
 
-## Contrato vigente
+## Contrato visual del 20 de octubre
 
-Un único cuerpo blanco aprobado en `assets/slime/base-white-chatgpt-v1.png` para
-todos los tamaños, con deformación de malla. Cara por piezas y sin tinte; cuerpo
-con color. Curvas suaves y luz superior izquierda, sin pixel art ni sprites de
-slime alternativos que cambien la silueta. Accesorios anclados sobre la misma
-coronilla, partículas y rastros sin efectos mecánicos.
+- Una base blanca redondeada en assets/cartoon/slime/body.png; una sola silueta
+  en todos los tamaños. Color aplicado solo al cuerpo, con reflejos blancos.
+- Cara cartoon vectorial separada y animada: ojos simples, mejillas y boca sin
+  dientes. No se cargan los ojos de cristal ni las bocas raster anteriores.
+- Lobby luminoso, cápsulas, iconos propios, podios y títulos con Lilita One local.
+  Logo aprobado conservado. El fondo nuevo es una versión de la plaza original.
+- Tres mapas panorámicos por piezas: suelo/perímetro 16:9 más bloque, vegetación
+  y objeto central transparentes. Geometría y colisiones en config. Lava conserva
+  su imagen horizontal. No estirar los conceptos cuadrados de samples/maps.
+- Accesorios simples existentes: corona, gorro, halo, lazo y similares. **Skins y
+  trajes completos aplazados por el usuario.** Los sets solo combinan piezas.
 
-Los mapas de Dulcería, Cocina y Jardín reutilizan los originales exactos de
-`samples/maps`; las copias activas están en `assets/illustrated/maps`. Lava es una
-ilustración nueva con plataforma libre. Las dimensiones reales y huellas están
-registradas: no presentar los PNG como lienzos 3072×1728 si el proveedor entregó
-otras medidas. El canvas Full HD es independiente de la resolución fuente.
+## Procedencia y reproducción
 
-## Recursos y procedencia
+assets/cartoon/prompts.json contiene las 18 solicitudes exactas de esta revisión:
+base, cinco piezas UI, tres fondos y nueve props. Las dimensiones entregadas se
+registran tal cual, sin fingir que el proveedor generó un lienzo Full HD. Los
+fondos son 1672×941; la proporción difiere de 16:9 menos de 0.1 %. La base es
+1536×1024 con un recorte alfa de 1164×704. No hay tres cuerpos distintos.
 
-- `assets/illustrated/prompts.json`: 28 prompts exactos, una imagen por solicitud:
-  ojo, cuatro bocas, plataforma, botón, cinta, panel, lava y 18 comidas.
-- `assets/illustrated/cosmetic-prompts.json`: 17 prompts, diez sombreros, cuatro
-  partículas y tres rastros, todos independientes y con alfa.
-- `assets/manifest.json`: archivo, proveedor, prompt, estado, dimensiones, límites
-  alfa y SHA-256. Los nuevos PNG están generados/integrados, no declarados aprobados
-  por el usuario sin una revisión suya.
-- `tools/register-illustrated.js`: calcula metadatos e índice, sin editar píxeles;
-  `src/art.js` enumera únicamente el arte activo. Recursos anteriores conservados
-  como historial, sin pixel art activo en el juego.
-- `assets/fonts/LilitaOne-Regular.ttf` y OFL.txt: fuente local y licencia. Fuente
-  oficial: https://github.com/google/fonts/tree/main/ofl/lilitaone .
+assets/manifest.json conserva prompt, referencias, proveedor, estado, dimensiones,
+límites alfa y SHA-256. Generado/integrado no significa aprobado por el usuario.
+tools/register-cartoon.js selecciona el nuevo arte y mantiene comida y accesorios
+sencillos de la revisión anterior. No edita píxeles. src/art.js es el índice activo;
+scaffold retira únicamente los recursos anteriores que pertenecen al manifiesto
+y ya no se utilizan, conservando archivos históricos y recursos ajenos.
 
-Títulos y textos se dibujan con fuente real, no se hornean dentro de los botones.
-Mantener el logo/título y menu-village aprobados. Para próximas revisiones usar la
-imagen actual como referencia, cambiar una pieza por llamada y revisar el
-resultado a escala de juego antes de incorporarlo. No generar audio con imagen.
+Pipeline: node tools/register-cartoon.js → node tools/scaffold.js →
+node tools/build.js → node tools/check.js. La generación se hace con imagegen,
+una pieza por solicitud; no volver a generar el lote para reconstruir el índice.
+Los prompts anteriores siguen en assets/illustrated como historial.
+
+Fuente local assets/fonts/LilitaOne-Regular.ttf, licencia OFL.txt y procedencia
+SOURCE.md. Títulos y botones conservan texto real, no letras horneadas en imágenes.
+Audio pendiente; no se genera con herramientas de imagen.

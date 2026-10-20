@@ -1,13 +1,15 @@
 # GLOMP! — Diseño vigente
 
-La dirección del 19 de octubre de 2026 sustituye el pixel art, la cámara fija,
+La dirección del 20 de octubre de 2026 conserva el rework ilustrado y sustituye el pixel art, la cámara fija,
 las bombas de Bubble POM y los disparos de Guerra de Comida. El juego sigue siendo
 local, con slimes mecánicamente idénticos y dos entradas: Mover y Acción.
 
 ## Sala y accesos
 
-Menu es la sala principal, con `assets/ui/menu-village.png`, logo aprobado,
-personajes sobre plataformas, accesos laterales y JUGAR abajo. Tienda abre los
+Menu es la sala principal, con la nueva versión `assets/cartoon/ui/village.png`
+registrada como menu-village, logo aprobado,
+personajes sobre plataformas, accesos laterales y JUGAR abajo. Cabecera y
+monedero en cápsulas azules, iconos propios y botones de colores. Tienda abre los
 seis destacados diarios y todo el catálogo; Armario abre las caras. Ajustes,
 Créditos y Práctica tienen entrada y regreso con foco, teclado, ratón y mando.
 
@@ -21,32 +23,38 @@ Armario/Tienda permiten previsualizar, comprar, equipar y retirar adornos, elegi
 la plaza y combinar piezas. Hay 8 colores, 6 caras, 10 accesorios, 4 partículas y
 3 rastros: 31 piezas, más cuatro combinaciones de set. Los sets compran las piezas
 sueltas; no bloquean combinaciones ni cobran de nuevo las piezas ya compradas.
-Compras, equipo por plaza y teclas se guardan en localStorage. Ningún cosmético
+Galería de seis tarjetas en tres columnas y dos filas, páginas para las categorías
+largas y vista previa grande a la izquierda. Seleccionar o cambiar de página no
+compra. Compras, equipo por plaza y teclas se guardan en localStorage. Ningún cosmético
 modifica velocidad, escala, hitbox, retroceso o puntuación.
 
 ## Arte, mapas y cámara
 
-Canvas objetivo: 1920×1080. Los tres mapas originales de `samples/maps` se copian
-sin reinterpretar a `assets/illustrated/maps`; conservan su geometría cuadrada.
-Las huellas de chocolate, mostradores, rocas y estanque central se trazan en
-coordenadas normalizadas de config. La vegetación señalada se puede atravesar;
-el estanque central es sólido. La arena de lava es una imagen original nueva,
-con una plataforma redondeada despejada y peligros fuera de ella.
+Canvas objetivo: 1920×1080. Todos los mundos miden 3200×1800, proporción 16:9.
+Dulcería, Cocina y Jardín se reconstruyen con fondos horizontales de suelo y
+perímetro en `assets/cartoon/maps`, inspirados en samples/maps. Los obstáculos,
+vegetación y objeto central son PNG independientes en `assets/cartoon/props`.
+Sus huellas físicas normalizadas están en config; el orden de dibujo depende
+de la base de cada pieza. La vegetación es transitable; los objetos centrales
+son sólidos. Los alimentos evitan tanto las huellas como el volumen visual
+superior de los obstáculos. Lava conserva su ilustración horizontal y plataforma.
 
-Los mapas de exploración miden 3000×3000 unidades; la arena de lava 3200×1800.
-La cámara compartida sigue al grupo de humanos vivos, ajusta zoom y reserva
-margen para el HUD. Excluye bots NPC y mantiene visibles a los supervivientes.
-Sumo limita el acercamiento para conservar visibles los bordes de lava.
-La presentación recorre y abre el mapa completo; la cuenta acerca la cámara al
-grupo sin avanzar la simulación. El escenario conserva proporciones; los bordes
-fuera del mundo muestran un ambiente del tema, nunca una arena estirada.
+La cámara compartida sigue al grupo de humanos vivos y ajusta zoom sin salir
+del escenario ni dejar bandas vacías en 16:9. Excluye NPC y mantiene visibles a
+los supervivientes; Sumo limita el acercamiento para mostrar la lava. La
+presentación recorre y abre el mapa completo; la cuenta acerca la cámara al
+grupo sin avanzar la simulación. Ningún fondo cuadrado se estira a panorámico.
 
-Todos los tamaños usan el mismo cuerpo blanco aprobado. Una malla articulada
-se deforma hacia la velocidad, respira, rebota y responde al bocado. Ojos y boca
-son PNG independientes sin tinte: mirada, parpadeo y gestos tienen movimiento
-propio. Solo el cuerpo cambia de color. Accesorios acompañan la coronilla; brillos
-y rastros son exclusivamente visuales. Los PNG pixel anteriores quedan como
-historial y no se cargan en la exportación vigente.
+Una sola base cartoon blanca, `assets/cartoon/slime/body.png`, sirve para todos
+los tamaños; no cambia la silueta al crecer. La malla respira, rebota y se inclina
+hacia el movimiento. Un filtro aplica color solo al cuerpo y conserva reflejos
+blancos. La cara es una capa vectorial separada: ojos pequeños oscuros, brillo
+simple, mejillas, parpadeo y sonrisa sin dientes. Las seis expresiones siguen
+siendo equipables. La cara conserva sus colores y acompaña el movimiento.
+Accesorios sencillos anclados a la coronilla, partículas y rastros siguen siendo
+cosméticos. Las skins y trajes completos quedan aplazados por indicación del
+usuario; las referencias de personajes no implican fabricar esos trajes ahora.
+El arte anterior se conserva como historial, sin cargarlo si ya no está activo.
 
 Títulos: Lilita One local, licencia OFL incluida; no se afirma que sea la fuente
 propietaria de otro juego. Logo original y cintas ilustradas conservan identidad
@@ -87,7 +95,8 @@ los supervivientes empatan; las caídas simultáneas conservan el empate.
 
 ## Límites de la entrega
 
-El arte generado no aumenta mágicamente la resolución de los mapas originales.
+Las dimensiones reales de los PNG están registradas en el manifiesto; el canvas
+Full HD no implica que cada imagen fuente mida 1920×1080.
 La calidad visual y el balance necesitan revisión jugando. No se declara calidad
 AAA ni aceptación de hitos por pasar pruebas automáticas. Audio pendiente: las
 opciones de volumen están preparadas, pero todavía no existen pistas ni efectos.

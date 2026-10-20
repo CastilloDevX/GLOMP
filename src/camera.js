@@ -6,7 +6,8 @@ GLOMP.camera = {
     if(!players.length)return {cx:w.width/2,cy:w.height/2,scale:Math.min(u.width/w.width,u.height/w.height)};
     const minX=Math.min.apply(null,players.map(function(p){return p.x-p.radius;})),maxX=Math.max.apply(null,players.map(function(p){return p.x+p.radius;}));
     const minY=Math.min.apply(null,players.map(function(p){return p.y-p.radius;})),maxY=Math.max.apply(null,players.map(function(p){return p.y+p.radius;}));
-    const scale=Math.min(w.mode==='war'?GLOMP.config.minigames.war.cameraMaxScale:c.maxScale,(u.width-c.paddingX*2)/(maxX-minX||1),(u.height-c.paddingTop-c.paddingBottom)/(maxY-minY||1));
+    const fit=Math.min(u.width/w.width,u.height/w.height);
+    const scale=Math.max(fit,Math.min(w.mode==='war'?GLOMP.config.minigames.war.cameraMaxScale:c.maxScale,(u.width-c.paddingX*2)/(maxX-minX||1),(u.height-c.paddingTop-c.paddingBottom)/(maxY-minY||1)));
     return {cx:(minX+maxX)/2,cy:(minY+maxY)/2,scale:scale};
   },
   update: function(w,dt) {
@@ -29,16 +30,20 @@ GLOMP.camera = {
     if(m.phase==='intro') {
       const t=Math.min(1,m.phaseElapsed/GLOMP.config.round.cinematicSeconds),ease=t*t*(3-2*t);
       const scale=fit*(c.introZoom+(1-c.introZoom)*ease);
-      return {scale:scale,x:(u.width-w.width*scale)/2+Math.sin(t*Math.PI*2)*u.width*c.introPan*(1-t),y:(u.height-w.height*scale)/2};
+      return GLOMP.camera.limit({scale:scale,x:(u.width-w.width*scale)/2+Math.sin(t*Math.PI*2)*u.width*c.introPan*(1-t),y:(u.height-w.height*scale)/2},w);
     }
     const camera=w.camera||GLOMP.camera.target(w),scale=camera.scale;
     const target={scale:scale,x:u.width/2-camera.cx*scale,y:(u.height+c.paddingTop-c.paddingBottom)/2-camera.cy*scale};
     if(m.phase==='countdown') {
       const t=Math.min(1,m.phaseElapsed/GLOMP.config.round.countdownSeconds),a=t*t*(3-2*t);
-      return {scale:fit+(scale-fit)*a,x:(u.width-w.width*fit)/2*(1-a)+target.x*a,y:(u.height-w.height*fit)/2*(1-a)+target.y*a};
+      return GLOMP.camera.limit({scale:fit+(scale-fit)*a,x:(u.width-w.width*fit)/2*(1-a)+target.x*a,y:(u.height-w.height*fit)/2*(1-a)+target.y*a},w);
     }
-    target.x=w.width*scale>=u.width?Math.max(u.width-w.width*scale,Math.min(0,target.x)):(u.width-w.width*scale)/2;
-    target.y=w.height*scale>=u.height?Math.max(u.height-w.height*scale,Math.min(0,target.y)):(u.height-w.height*scale)/2;
-    return target;
+    return GLOMP.camera.limit(target,w);
+  },
+  limit: function(frame,w) {
+    const u=GLOMP.config.ui,scale=frame.scale;
+    frame.x=w.width*scale>=u.width?Math.max(u.width-w.width*scale,Math.min(0,frame.x)):(u.width-w.width*scale)/2;
+    frame.y=w.height*scale>=u.height?Math.max(u.height-w.height*scale,Math.min(0,frame.y)):(u.height-w.height*scale)/2;
+    return frame;
   },
 };

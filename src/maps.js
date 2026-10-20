@@ -1,4 +1,4 @@
-// Arte original completo y colisiones trazadas sobre sus coordenadas normalizadas.
+// Escenarios panorámicos por piezas y colisiones definidas con sus huellas normalizadas.
 GLOMP.maps = {
   create: function (participants, theme, seed) {
     const c = GLOMP.config.arena, lava = theme === 'lava';
@@ -25,6 +25,12 @@ GLOMP.maps = {
     if (x < world.wall + radius || x > world.width - world.wall - radius || y < world.wall + radius || y > world.height - world.wall - radius) return false;
     if ((world.circles || []).some(function(c){return Math.hypot(x-c.x,y-c.y)<radius+c.radius;})) return false;
     return !world.obstacles.some(function (r) { return x + radius > r.x && x - radius < r.x + r.width && y + radius > r.y && y - radius < r.y + r.height; });
+  },
+  pickupFree: function(world,x,y,radius) {
+    if(!GLOMP.maps.free(world,x,y,radius))return false;
+    const ratio=GLOMP.config.arena.propHeights[world.theme]||1,art=GLOMP.config.arena.centerArt;
+    if((world.circles||[]).some(function(c){const width=c.radius*art.width,height=width*art.ratios[world.theme],bottom=c.y+c.radius*art.bottom;return x+radius>c.x-width/2&&x-radius<c.x+width/2&&y+radius>bottom-height&&y-radius<bottom;}))return false;
+    return !world.obstacles.some(function(r){const overhang=Math.max(0,r.width*ratio-r.height);return x+radius>r.x&&x-radius<r.x+r.width&&y+radius>r.y-overhang&&y-radius<r.y+r.height;});
   },
   respawn: function (world, player) {
     const points = GLOMP.config.arena.spawns;

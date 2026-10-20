@@ -43,7 +43,8 @@ function main() {
     }
   }
   const imageResource = readJSON('reference/image-resource.json').resource;
-  game.resources.resources=game.resources.resources.filter(resource=>(!resource.name.startsWith('assets/pixel/')&&resource.name!=='assets/face/happy.png')||manifest.resources.includes(resource.name));
+  const ownedAssets = new Set(readJSON('assets/manifest.json').assets.map(asset => asset.file));
+  game.resources.resources = game.resources.resources.filter(resource => manifest.resources.includes(resource.name) || (!ownedAssets.has(resource.name) && !resource.name.startsWith('assets/pixel/') && resource.name !== 'assets/face/happy.png'));
   for (const file of manifest.resources || []) {
     assert(fs.existsSync(path.join(root, file)), `Recurso inexistente: ${file}`);
     let resource = game.resources.resources.find(resource => resource.name === file);

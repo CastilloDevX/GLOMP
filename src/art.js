@@ -1,14 +1,5 @@
-// Arte ilustrado activo. Los PNG anteriores se conservan como historial.
+// Arte cartoon activo: base, escenarios 16:9 y piezas con transparencia.
 GLOMP.art = {
-  "slime-base-chatgpt-v1": {
-    "file": "assets/slime/base-white-chatgpt-v1.png",
-    "bounds": {
-      "x": 241,
-      "y": 312,
-      "width": 776,
-      "height": 633
-    }
-  },
   "title-glomp": {
     "file": "assets/ui/title-glomp.png",
     "bounds": {
@@ -19,7 +10,7 @@ GLOMP.art = {
     }
   },
   "menu-village": {
-    "file": "assets/ui/menu-village.png",
+    "file": "assets/cartoon/ui/village.png",
     "bounds": null
   },
   "food-bite": {
@@ -35,85 +26,40 @@ GLOMP.art = {
     "file": "assets/ui/banner-original.png",
     "bounds": null
   },
-  "face-eye": {
-    "file": "assets/illustrated/face/eye.png",
-    "bounds": {
-      "x": 80,
-      "y": 132,
-      "width": 865,
-      "height": 1268
-    }
-  },
-  "mouth-smile": {
-    "file": "assets/illustrated/face/mouth-smile.png",
-    "bounds": {
-      "x": 66,
-      "y": 132,
-      "width": 1406,
-      "height": 781
-    }
-  },
-  "mouth-gasp": {
-    "file": "assets/illustrated/face/mouth-gasp.png",
-    "bounds": {
-      "x": 342,
-      "y": 135,
-      "width": 696,
-      "height": 873
-    }
-  },
-  "mouth-grit": {
-    "file": "assets/illustrated/face/mouth-grit.png",
-    "bounds": {
-      "x": 149,
-      "y": 185,
-      "width": 1477,
-      "height": 530
-    }
-  },
-  "mouth-cheer": {
-    "file": "assets/illustrated/face/mouth-cheer.png",
-    "bounds": {
-      "x": 38,
-      "y": 138,
-      "width": 1461,
-      "height": 782
-    }
-  },
   "ui-podium": {
-    "file": "assets/illustrated/ui/podium.png",
+    "file": "assets/cartoon/ui/podium.png",
     "bounds": {
-      "x": 61,
-      "y": 183,
-      "width": 1414,
-      "height": 705
+      "x": 226,
+      "y": 113,
+      "width": 1720,
+      "height": 555
     }
   },
   "ui-button": {
-    "file": "assets/illustrated/ui/button.png",
+    "file": "assets/cartoon/ui/button.png",
     "bounds": {
-      "x": 28,
+      "x": 47,
       "y": 64,
-      "width": 2117,
-      "height": 571
+      "width": 2078,
+      "height": 587
     }
   },
   "ui-ribbon": {
-    "file": "assets/illustrated/ui/ribbon.png",
+    "file": "assets/cartoon/ui/ribbon.png",
     "bounds": {
-      "x": 20,
-      "y": 101,
-      "width": 2133,
-      "height": 521
+      "x": 42,
+      "y": 67,
+      "width": 2088,
+      "height": 577
     }
   },
   "ui-panel": {
-    "file": "assets/illustrated/ui/panel.png",
+    "file": "assets/cartoon/ui/panel.png",
     "bounds": {
-      "x": 41,
-      "y": 104,
-      "width": 1456,
-      "height": 805
+      "x": 10,
+      "y": 65,
+      "width": 2152,
+      "height": 572
     }
   },
   "map-lava": {
@@ -436,15 +382,105 @@ GLOMP.art = {
     }
   },
   "map-candy": {
-    "file": "assets/illustrated/maps/candy.png",
+    "file": "assets/cartoon/maps/candy.png",
     "bounds": null
   },
   "map-cooking": {
-    "file": "assets/illustrated/maps/cooking.png",
+    "file": "assets/cartoon/maps/cooking.png",
     "bounds": null
   },
   "map-slimegarden": {
-    "file": "assets/illustrated/maps/slimegarden.png",
+    "file": "assets/cartoon/maps/slimegarden.png",
     "bounds": null
+  },
+  "cartoon-body": {
+    "file": "assets/cartoon/slime/body.png",
+    "bounds": {
+      "x": 189,
+      "y": 171,
+      "width": 1164,
+      "height": 704
+    }
+  },
+  "map-candy-block": {
+    "file": "assets/cartoon/props/candy-block.png",
+    "bounds": {
+      "x": 51,
+      "y": 50,
+      "width": 1210,
+      "height": 1098
+    }
+  },
+  "map-candy-bush": {
+    "file": "assets/cartoon/props/candy-bush.png",
+    "bounds": {
+      "x": 70,
+      "y": 172,
+      "width": 1413,
+      "height": 675
+    }
+  },
+  "map-candy-center": {
+    "file": "assets/cartoon/props/candy-center.png",
+    "bounds": {
+      "x": 85,
+      "y": 84,
+      "width": 1280,
+      "height": 921
+    }
+  },
+  "map-cooking-block": {
+    "file": "assets/cartoon/props/cooking-block.png",
+    "bounds": {
+      "x": 73,
+      "y": 51,
+      "width": 1388,
+      "height": 948
+    }
+  },
+  "map-cooking-bush": {
+    "file": "assets/cartoon/props/cooking-bush.png",
+    "bounds": {
+      "x": 27,
+      "y": 161,
+      "width": 1484,
+      "height": 697
+    }
+  },
+  "map-cooking-center": {
+    "file": "assets/cartoon/props/cooking-center.png",
+    "bounds": {
+      "x": 72,
+      "y": 33,
+      "width": 1166,
+      "height": 1117
+    }
+  },
+  "map-slimegarden-block": {
+    "file": "assets/cartoon/props/slimegarden-block.png",
+    "bounds": {
+      "x": 71,
+      "y": 84,
+      "width": 1404,
+      "height": 827
+    }
+  },
+  "map-slimegarden-bush": {
+    "file": "assets/cartoon/props/slimegarden-bush.png",
+    "bounds": {
+      "x": 44,
+      "y": 32,
+      "width": 1462,
+      "height": 959
+    }
+  },
+  "map-slimegarden-center": {
+    "file": "assets/cartoon/props/slimegarden-center.png",
+    "bounds": {
+      "x": 152,
+      "y": 40,
+      "width": 1230,
+      "height": 940
+    }
   }
 };

@@ -160,6 +160,7 @@ GLOMP.i18n = {
     color5: 'Zanahoria',
     color6: 'Menta',
     color7: 'Nube',
+    cataloguePage:'{page} / {pages}',
     categoryfeatured:'DESTACADOS', categorybody:'COLOR', categoryface:'CARA', categoryaccessory:'SOMBREROS', categoryparticles:'BRILLOS', categorytrail:'RASTROS', categorysets:'SETS', unequip:'QUITAR ADORNO',
     accessory0:'Fiesta', accessory1:'Corona', accessory2:'Chef', accessory3:'Pirata', accessory4:'Lazo', accessory5:'Brote', accessory6:'Gorra', accessory7:'Halo', accessory8:'Margarita', accessory9:'Astro',
     particles0:'Estrellas', particles1:'Corazones', particles2:'Burbujas', particles3:'Confeti', trail0:'Gotas de menta', trail1:'Arcoíris', trail2:'Cometa',

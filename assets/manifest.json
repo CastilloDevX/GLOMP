@@ -1611,6 +1611,339 @@
       },
       "sha256": "bb63e4d9d621d2e2d5c0e69b7161a8cc2880384890f992b0abcc211b5eb0e886",
       "milestone": "illustrated-rework"
+    },
+    {
+      "id": "cartoon-body",
+      "file": "assets/cartoon/slime/body.png",
+      "prompt": "Use case: stylized-concept. Production game asset for GLOMP. Style reference: the supplied GLOMP character sheet and premium bright candy-party UI concepts. Charming CARTOON, polished rounded jelly/candy volumes, restrained soft outlines, broad clean WHITE specular highlights, no realistic organic anatomy, no pixel art, no text, no watermark, no sheets. Upper-left lighting. Redesign the plain old gray body to match the friendly squat liquid slimes in the character sheet. ONE neutral grayscale pearl-white tintable FACELESS jelly slime BODY ONLY. Wider than tall, visible silhouette width:height about 1.5:1. Rounded low soft dome with charming tiny integrated side arm mounds and a wavy liquid puddle base, no separate round feet. Main surface light silver-gray around #BDBDBD to #DDDDDD, shaded rim medium neutral gray, a few clear almost-white graphic highlights on the upper left, so body tint can retain white shine. Soft translucent jelly feeling, no hard flat thick black contour, no egg-shaped tall head. Front view slightly overhead, centered entire shape, equal padding. NO eyes, mouth, cheek, clothes, hat, face, shadow or detached droplets. Actual transparent background.",
+      "references": [
+        "samples/skins.png",
+        "assets/slime/base-white-chatgpt-v1.png"
+      ],
+      "width": 1536,
+      "height": 1024,
+      "bounds": {
+        "x": 189,
+        "y": 171,
+        "width": 1164,
+        "height": 704
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "953b7a539c335a34973bae93ad5453f45e1d13cd93038cfa83c2137bb4ec9bf5"
+    },
+    {
+      "id": "cartoon-village",
+      "file": "assets/cartoon/ui/village.png",
+      "prompt": "Use case: stylized-concept. Production game asset for GLOMP. Style reference: the supplied GLOMP character sheet and premium bright candy-party UI concepts. Charming CARTOON, polished rounded jelly/candy volumes, restrained soft outlines, broad clean WHITE specular highlights, no realistic organic anatomy, no pixel art, no text, no watermark, no sheets. Upper-left lighting. Edit the village backdrop into a vivid panoramic 16:9 HORIZONTAL game lobby plaza, matching the bright glossy GLOMP mockups. Keep food village, distant fairytale castle and waterfalls, strawberries/cheese stalls at the sides, colorful awnings, warm sunlight. Camera lower, inviting bright cobblestone paved plaza in lower half, royal blue sky and soft clouds upper center. Richer defined volumes and saturated cyan/pink/gold lighting. Large clean EMPTY central stage area and clear side UI areas. Slight foreground depth of field on edge strawberries and leaves only, never on the middle plaza. NO character, NO podium, NO logo, NO writing, NO interface or buttons. Wide 16:9 composition, not square.",
+      "references": [
+        "assets/ui/menu-village.png"
+      ],
+      "width": 1672,
+      "height": 941,
+      "bounds": null,
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "f0d57d665d7f94d1a05dd3b26db00063d883a1301e5ce39a63b0ff266c20f3e1"
+    },
+    {
+      "id": "cartoon-podium",
+      "file": "assets/cartoon/ui/podium.png",
+      "prompt": "Use case: stylized-concept. Production game asset for GLOMP. Style reference: the supplied GLOMP character sheet and premium bright candy-party UI concepts. Charming CARTOON, polished rounded jelly/candy volumes, restrained soft outlines, broad clean WHITE specular highlights, no realistic organic anatomy, no pixel art, no text, no watermark, no sheets. Upper-left lighting. ONE empty royal game character display pedestal, wide low circular platform seen slightly from above, bright electric blue luminous top, polished golden metal rim and white glossy edging, royal blue base, subtle central gold star badge on the FRONT of its base. Transparent outside, NO floor, NO character, NO shadow beyond a compact soft contact shadow. Entire platform centered, width about 3 times its height.",
+      "references": [],
+      "width": 2172,
+      "height": 724,
+      "bounds": {
+        "x": 226,
+        "y": 113,
+        "width": 1720,
+        "height": 555
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "ec7f3d6f6422bff1e85de56b551036c3e6dfbca6ab5f541fdf252e3fa86bfcab"
+    },
+    {
+      "id": "cartoon-button",
+      "file": "assets/cartoon/ui/button.png",
+      "prompt": "Use case: stylized-concept. Production game asset for GLOMP. Style reference: the supplied GLOMP character sheet and premium bright candy-party UI concepts. Charming CARTOON, polished rounded jelly/candy volumes, restrained soft outlines, broad clean WHITE specular highlights, no realistic organic anatomy, no pixel art, no text, no watermark, no sheets. Upper-left lighting. ONE blank neutral pearl-WHITE glossy rounded CAPSULE button shell, white/chrome rim with a thin light cyan inner edge, broad simple smooth glossy top reflection, subtle gray lower bevel. A true rounded rectangle/capsule, no hexagon, no points, no diamond, no wings, no gemstones. Straight uniform center so it supports nine-slice resizing. Center blank WHITE, neutral grayscale intended for color tinting. Front view, wide 3:1 aspect, transparent outside, NO text or symbols.",
+      "references": [],
+      "width": 2172,
+      "height": 724,
+      "bounds": {
+        "x": 47,
+        "y": 64,
+        "width": 2078,
+        "height": 587
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "f1851a18f0c6d2101ffdab98e6e30ba4cf8ddc59bab842c1f484fc8d887d18f3"
+    },
+    {
+      "id": "cartoon-panel",
+      "file": "assets/cartoon/ui/panel.png",
+      "prompt": "Use case: stylized-concept. Production game asset for GLOMP. Style reference: the supplied GLOMP character sheet and premium bright candy-party UI concepts. Charming CARTOON, polished rounded jelly/candy volumes, restrained soft outlines, broad clean WHITE specular highlights, no realistic organic anatomy, no pixel art, no text, no watermark, no sheets. Upper-left lighting. ONE blank glossy electric royal BLUE rounded-rectangle UI panel, thick smooth white outer rim, thin cyan luminous inner rim, bright lighter blue top edge, deep cobalt center with very subtle gradient. Broad empty clean center for live text. Round capsule corners, no hexagon or point, no facets, no gems. Straight uniform edges for nine-slice resizing. Front view, wide 3:1 aspect, transparent outside. NO text or icon.",
+      "references": [],
+      "width": 2172,
+      "height": 724,
+      "bounds": {
+        "x": 10,
+        "y": 65,
+        "width": 2152,
+        "height": 572
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "6e90df91c67a8078618b98343508cda0e2a22a568d124bd0772cfd5a3b4cc1ad"
+    },
+    {
+      "id": "cartoon-ribbon",
+      "file": "assets/cartoon/ui/ribbon.png",
+      "prompt": "Use case: stylized-concept. Production game asset for GLOMP. Style reference: the supplied GLOMP character sheet and premium bright candy-party UI concepts. Charming CARTOON, polished rounded jelly/candy volumes, restrained soft outlines, broad clean WHITE specular highlights, no realistic organic anatomy, no pixel art, no text, no watermark, no sheets. Upper-left lighting. ONE blank royal BLUE celebration title ribbon with broad smooth curved rectangular central banner, cream-white glossy outline and thin golden trims, little curled tails at sides. Central banner very wide and EMPTY for live letters, simple polished blue gradient. Front facing, centered, wide 3:1 aspect, transparent background. No symbols, no words.",
+      "references": [],
+      "width": 2172,
+      "height": 724,
+      "bounds": {
+        "x": 42,
+        "y": 67,
+        "width": 2088,
+        "height": 577
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "21ff6c993d485a48ce61fc728539705f645634716a32f030811752205d25326e"
+    },
+    {
+      "id": "cartoon-map-candy",
+      "file": "assets/cartoon/maps/candy.png",
+      "prompt": "Use case: stylized-concept. Production game asset for GLOMP. Style reference: the supplied GLOMP character sheet and premium bright candy-party UI concepts. Charming CARTOON, polished rounded jelly/candy volumes, restrained soft outlines, broad clean WHITE specular highlights, no realistic organic anatomy, no pixel art, no text, no watermark, no sheets. Upper-left lighting. Redesign the supplied map as a WIDE HORIZONTAL 16:9 arena GROUND AND PERIMETER ONLY. Slightly overhead 2.5D cartoon party game camera, clear playable ground stretching across the whole wide image. Golden DIAGONAL wafer-tile floor, tiny fine seams and restrained sugar sparkle. Borders made of chocolate-and-wafer candy walls with bright pink icing, striped candy canes, giant lollipops and jellybeans outside playable area. IMPORTANT: keep the entire middle 80 percent of width and middle 78 percent of height OPEN EMPTY WALKABLE FLOOR. No obstacles, blocks, bushes, tables, props or centerpiece anywhere in the interior: these will be separate game sprites. Decorative border occupies at most the outer 7 percent on each side, never an inner frame. No black void, no sky, no characters, no slime creatures, no UI, no lettering. Exact wide 16:9 composition.",
+      "references": [
+        "samples/maps/map-candy.png"
+      ],
+      "width": 1672,
+      "height": 941,
+      "bounds": null,
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "be296dffcb2db9b331ef3445e9d7af4c49cf5f7e9449dc31fd6a820b75b678e1"
+    },
+    {
+      "id": "cartoon-map-cooking",
+      "file": "assets/cartoon/maps/cooking.png",
+      "prompt": "Use case: stylized-concept. Production game asset for GLOMP. Style reference: the supplied GLOMP character sheet and premium bright candy-party UI concepts. Charming CARTOON, polished rounded jelly/candy volumes, restrained soft outlines, broad clean WHITE specular highlights, no realistic organic anatomy, no pixel art, no text, no watermark, no sheets. Upper-left lighting. Redesign the supplied map as a WIDE HORIZONTAL 16:9 arena GROUND AND PERIMETER ONLY. Slightly overhead 2.5D cartoon party game camera, clear playable ground stretching across the whole wide image. Warm cream-and-gold ceramic kitchen tiles, polished soft reflections and subtle diagonal inlays. Borders made of whimsical restaurant counters, red-and-white striped awnings, glossy cookware and herbs outside playable area. IMPORTANT: keep the entire middle 80 percent of width and middle 78 percent of height OPEN EMPTY WALKABLE FLOOR. No obstacles, blocks, bushes, tables, props or centerpiece anywhere in the interior: these will be separate game sprites. Decorative border occupies at most the outer 7 percent on each side, never an inner frame. No black void, no sky, no characters, no slime creatures, no UI, no lettering. Exact wide 16:9 composition.",
+      "references": [
+        "samples/maps/map-cooking.png"
+      ],
+      "width": 1672,
+      "height": 941,
+      "bounds": null,
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "71408becb0f91d18ec3cda42c49a777d543f8147d9acf6fa086a945da1bd98da"
+    },
+    {
+      "id": "cartoon-map-slimegarden",
+      "file": "assets/cartoon/maps/slimegarden.png",
+      "prompt": "Use case: stylized-concept. Production game asset for GLOMP. Style reference: the supplied GLOMP character sheet and premium bright candy-party UI concepts. Charming CARTOON, polished rounded jelly/candy volumes, restrained soft outlines, broad clean WHITE specular highlights, no realistic organic anatomy, no pixel art, no text, no watermark, no sheets. Upper-left lighting. Redesign the supplied map as a WIDE HORIZONTAL 16:9 arena GROUND AND PERIMETER ONLY. Slightly overhead 2.5D cartoon party game camera, clear playable ground stretching across the whole wide image. Warm green grassy garden and broad golden dirt paths over a horizontal island. Turquoise mint slime river and mossy stone cliffs OUTSIDE playable rectangle, tiny flowers and glossy foliage around the borders. No interior ponds or trees. IMPORTANT: keep the entire middle 80 percent of width and middle 78 percent of height OPEN EMPTY WALKABLE FLOOR. No obstacles, blocks, bushes, tables, props or centerpiece anywhere in the interior: these will be separate game sprites. Decorative border occupies at most the outer 7 percent on each side, never an inner frame. No black void, no sky, no characters, no slime creatures, no UI, no lettering. Exact wide 16:9 composition.",
+      "references": [
+        "samples/maps/map-slime.png"
+      ],
+      "width": 1672,
+      "height": 941,
+      "bounds": null,
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "44c7251af3975a6b9e1135a1e3997ae31bd4e93b0088df449b7272978df90ccd"
+    },
+    {
+      "id": "cartoon-candy-block",
+      "file": "assets/cartoon/props/candy-block.png",
+      "prompt": "Use case: stylized-concept. Production game asset for GLOMP. Style reference: the supplied GLOMP character sheet and premium bright candy-party UI concepts. Charming CARTOON, polished rounded jelly/candy volumes, restrained soft outlines, broad clean WHITE specular highlights, no realistic organic anatomy, no pixel art, no text, no watermark, no sheets. Upper-left lighting. ONE chunky short chocolate-and-golden-wafer cube barrier with pink frosting trim. Large readable top face and short front face; perspective matches slightly overhead candy arena. No other candy, floor or scene. ONE standalone centered asset, actual transparent background.",
+      "references": [],
+      "width": 1309,
+      "height": 1202,
+      "bounds": {
+        "x": 51,
+        "y": 50,
+        "width": 1210,
+        "height": 1098
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "17ce98c8e9585d633082aed517b70b69a93925439e6cdb3b714b5177e39c7d6e"
+    },
+    {
+      "id": "cartoon-candy-bush",
+      "file": "assets/cartoon/props/candy-bush.png",
+      "prompt": "Use case: stylized-concept. Production game asset for GLOMP. Style reference: the supplied GLOMP character sheet and premium bright candy-party UI concepts. Charming CARTOON, polished rounded jelly/candy volumes, restrained soft outlines, broad clean WHITE specular highlights, no realistic organic anatomy, no pixel art, no text, no watermark, no sheets. Upper-left lighting. ONE low soft patch of fluffy pink cotton-candy foliage, wide and gently irregular, clearly low passable fluff not a solid wall, upper-left shine and soft plum shading. No base pot, no floor. ONE standalone centered asset, actual transparent background.",
+      "references": [],
+      "width": 1536,
+      "height": 1024,
+      "bounds": {
+        "x": 70,
+        "y": 172,
+        "width": 1413,
+        "height": 675
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "b89be122dba607f71ab1c1ad170fe42a5f5ea16a3e280c04e8ac4f8a6bca89b0"
+    },
+    {
+      "id": "cartoon-candy-center",
+      "file": "assets/cartoon/props/candy-center.png",
+      "prompt": "Use case: stylized-concept. Production game asset for GLOMP. Style reference: the supplied GLOMP character sheet and premium bright candy-party UI concepts. Charming CARTOON, polished rounded jelly/candy volumes, restrained soft outlines, broad clean WHITE specular highlights, no realistic organic anatomy, no pixel art, no text, no watermark, no sheets. Upper-left lighting. ONE thick golden doughnut centerpiece with glossy pink frosting and a few bright sprinkles, horizontal donut lying flat on ground, viewed from above at a gentle angle. Hole visible, entire ring. No plate, no floor. ONE standalone centered asset, actual transparent background.",
+      "references": [],
+      "width": 1448,
+      "height": 1086,
+      "bounds": {
+        "x": 85,
+        "y": 84,
+        "width": 1280,
+        "height": 921
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "61f505cae4fba3e196df286e2751f41720f571bc14b64f15ea9072eaaf7b6ba9"
+    },
+    {
+      "id": "cartoon-cooking-block",
+      "file": "assets/cartoon/props/cooking-block.png",
+      "prompt": "Use case: stylized-concept. Production game asset for GLOMP. Style reference: the supplied GLOMP character sheet and premium bright candy-party UI concepts. Charming CARTOON, polished rounded jelly/candy volumes, restrained soft outlines, broad clean WHITE specular highlights, no realistic organic anatomy, no pixel art, no text, no watermark, no sheets. Upper-left lighting. ONE modular kitchen counter obstacle, golden wooden front, cream stone top, small red-and-white checkered cloth draped over one side. Slightly overhead readable top and short front face. No food, no floor or scenery. ONE standalone centered asset, actual transparent background.",
+      "references": [],
+      "width": 1536,
+      "height": 1024,
+      "bounds": {
+        "x": 73,
+        "y": 51,
+        "width": 1388,
+        "height": 948
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "0d20db7a1de7ef94450bee32d20a73084fdf1c1677fae502dad5e416fad89012"
+    },
+    {
+      "id": "cartoon-cooking-bush",
+      "file": "assets/cartoon/props/cooking-bush.png",
+      "prompt": "Use case: stylized-concept. Production game asset for GLOMP. Style reference: the supplied GLOMP character sheet and premium bright candy-party UI concepts. Charming CARTOON, polished rounded jelly/candy volumes, restrained soft outlines, broad clean WHITE specular highlights, no realistic organic anatomy, no pixel art, no text, no watermark, no sheets. Upper-left lighting. ONE low dense clump of bright fresh basil and mint leaves, broad horizontal silhouette with soft glossy volumes, passable herb patch, no pot, no floor or scenery. ONE standalone centered asset, actual transparent background.",
+      "references": [],
+      "width": 1536,
+      "height": 1024,
+      "bounds": {
+        "x": 27,
+        "y": 161,
+        "width": 1484,
+        "height": 697
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "89615ea3e139210db3924d1abd0e1600bdd18b283cd7d2531a28d2a7bdf410fe"
+    },
+    {
+      "id": "cartoon-cooking-center",
+      "file": "assets/cartoon/props/cooking-center.png",
+      "prompt": "Use case: stylized-concept. Production game asset for GLOMP. Style reference: the supplied GLOMP character sheet and premium bright candy-party UI concepts. Charming CARTOON, polished rounded jelly/candy volumes, restrained soft outlines, broad clean WHITE specular highlights, no realistic organic anatomy, no pixel art, no text, no watermark, no sheets. Upper-left lighting. ONE round golden serving table centerpiece, small polished silver covered platter on top, red-and-white checkered tablecloth, slightly overhead, short table base. No floor or scenery. ONE standalone centered asset, actual transparent background.",
+      "references": [],
+      "width": 1312,
+      "height": 1199,
+      "bounds": {
+        "x": 72,
+        "y": 33,
+        "width": 1166,
+        "height": 1117
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "19846a2224d0a615f99a706c8f06e2cd63672a3df221c3426d893495aa03805b"
+    },
+    {
+      "id": "cartoon-slimegarden-block",
+      "file": "assets/cartoon/props/slimegarden-block.png",
+      "prompt": "Use case: stylized-concept. Production game asset for GLOMP. Style reference: the supplied GLOMP character sheet and premium bright candy-party UI concepts. Charming CARTOON, polished rounded jelly/candy volumes, restrained soft outlines, broad clean WHITE specular highlights, no realistic organic anatomy, no pixel art, no text, no watermark, no sheets. Upper-left lighting. ONE chunky rounded mossy slate rock barrier with glossy green slime glaze on top and one tiny white flower at its foot, readable overhead top and short front face. No floor or scenery. ONE standalone centered asset, actual transparent background.",
+      "references": [],
+      "width": 1536,
+      "height": 1024,
+      "bounds": {
+        "x": 71,
+        "y": 84,
+        "width": 1404,
+        "height": 827
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "3bc1df40e88edfb36f80b2ba13e8e4d157dab2a94319ded9e487c64b8ebaebdd"
+    },
+    {
+      "id": "cartoon-slimegarden-bush",
+      "file": "assets/cartoon/props/slimegarden-bush.png",
+      "prompt": "Use case: stylized-concept. Production game asset for GLOMP. Style reference: the supplied GLOMP character sheet and premium bright candy-party UI concepts. Charming CARTOON, polished rounded jelly/candy volumes, restrained soft outlines, broad clean WHITE specular highlights, no realistic organic anatomy, no pixel art, no text, no watermark, no sheets. Upper-left lighting. ONE low broad lush green fern bush patch with rounded glossy leaves and a few tiny flowers, top-down gentle front angle, no trunk, pot, floor or scenery. ONE standalone centered asset, actual transparent background.",
+      "references": [],
+      "width": 1536,
+      "height": 1024,
+      "bounds": {
+        "x": 44,
+        "y": 32,
+        "width": 1462,
+        "height": 959
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "593bcbc81833c339bd07bd3e39c43fef7b72ae50c61107788d6cccfdf125a260"
+    },
+    {
+      "id": "cartoon-slimegarden-center",
+      "file": "assets/cartoon/props/slimegarden-center.png",
+      "prompt": "Use case: stylized-concept. Production game asset for GLOMP. Style reference: the supplied GLOMP character sheet and premium bright candy-party UI concepts. Charming CARTOON, polished rounded jelly/candy volumes, restrained soft outlines, broad clean WHITE specular highlights, no realistic organic anatomy, no pixel art, no text, no watermark, no sheets. Upper-left lighting. ONE small round turquoise mint jelly pond set in a rounded mossy-stone rim, flat water viewed from above at gentle angle, a few shiny bubbles in the water. Isolated entire pond. Outside its stone rim must be transparent. No creatures, no surrounding floor or scene. ONE standalone centered asset, actual transparent background.",
+      "references": [],
+      "width": 1536,
+      "height": 1024,
+      "bounds": {
+        "x": 152,
+        "y": 40,
+        "width": 1230,
+        "height": 940
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "8a5818d3fe3992d1c1e59b4042ccd60b0f79fe3c1913fa789820f7326decc31a"
     }
   ],
   "artProvider": {
