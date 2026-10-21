@@ -40,3 +40,23 @@ Los prompts anteriores siguen en assets/illustrated como historial.
 Fuente local assets/fonts/LilitaOne-Regular.ttf, licencia OFL.txt y procedencia
 SOURCE.md. Títulos y botones conservan texto real, no letras horneadas en imágenes.
 Audio pendiente; no se genera con herramientas de imagen.
+
+## Iconos, controles y reparto
+
+assets/icons/prompts.json contiene 28 solicitudes de imagegen, una por archivo:
+las ocho secciones principales, siete categorías, cronómetro, participantes,
+regreso, [+], cruz roja, flechas, confirmar, música, efectos, pantalla, teclado y
+corona. Son PNG originales con alfa; no se recortan de una hoja ni se reemplazan
+por dibujos vectoriales. Contorno oscuro, volumen cartoon y medallones cian;
+Tienda/Play dorados y controles de cerrar/confirmar rojos/verdes. src/icons.js
+resuelve sprites del índice; la estrella geométrica solo decora el reparto.
+
+Los botones con texto se componen con Canvas/PIXI desde src/view.js. Los controles
+pequeños usan directamente su PNG, sin un segundo borde debajo. Los textos siguen
+siendo texto real, centrado y ajustado; no se hornean en imágenes.
+
+assets/cartoon/rewards/prompts.json registra otra solicitud: cake-slice.png, una
+rebanada con alfa real para apilar premios. Se conservan las 18 solicitudes cartoon
+anteriores; el índice vigente suma 86 imágenes y la fuente local. Los podios,
+marcos y confeti se dibujan en src/results.js. No son una captura plana del concepto;
+las cifras, los cosméticos y las posiciones proceden de la partida real.

@@ -523,3 +523,28 @@ piezas existentes. No desarrollar los personajes vestidos de las referencias.
 Arte activo en assets/cartoon y src/art.js, registro tools/register-cartoon.js.
 Mantener AGENTS.md y CLAUDE.md idénticos. No declarar calidad AAA ni aceptación
 humana por generar imágenes o pasar QA automatizada.
+
+## 16. Pulido de controles y reparto solicitado (20 de octubre de 2026)
+
+Ocho iconos propios para las secciones principales; bordes unificados también
+para [+] y controles pequeños. Los títulos usan un solo texto centrado dentro
+de su cinta, con ajuste de tamaño. El reparto se presenta mediante podios azules,
+oro/plata, slimes equipados, pilas de rebanadas, Glomps y estadísticas reales.
+Animaciones de entrada, podios, slimes, rebanadas, contadores y confeti mediante dt.
+La presentación no modifica ni repite premios. El final ordena primero al campeón
+de la copa aunque su posición en la última ronda fuera segunda. Conservar empates,
+pausa, siguiente modo automático y compatibilidad de dos a seis participantes.
+Las skins completas siguen aplazadas. Ver src/results.js y docs/TESTING.md.
+
+
+## 17. Iconos individuales ilustrados (20 de octubre de 2026)
+
+La última referencia del usuario sustituye los iconos de geometría nativa por
+PNG generados individualmente: volúmenes cartoon, brillo suave, contorno oscuro
+y medallones cian; Tienda y Play en dorado. Integrar las ocho secciones principales,
+las siete categorías de tienda, navegación, ajustes e indicadores. Las solicitudes
+exactas y las 28 piezas están en assets/icons/prompts.json; src/icons.js solo
+resuelve sus sprites. La estrella geométrica queda únicamente como decoración.
+Los controles [+], cruz roja y flechas usan su PNG completo, sin otra superficie
+debajo que duplique bordes. Quitar jugador ocupa 52×52 y acompaña su cabecera,
+conservando el dispositivo de las otras plazas. No desarrollar skins completas.

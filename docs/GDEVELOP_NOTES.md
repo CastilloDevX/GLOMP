@@ -6,7 +6,7 @@ pero el esquema sigue siendo necesario para no corromper el proyecto.
 ## Referencias y versión
 
 - `reference/empty.json`: proyecto generado con la fábrica/serializador nativos de
-  GDevelop 5.6.283; `gdVersion` = build 283, major 5, minor 6, revision 0.
+  GDevelop 5.6.284; `gdVersion` = build 284, major 5, minor 6, revision 0.
 - `reference/templates.json`: plantillas de objetos e instancia de esa sesión.
 - `reference/provenance.json`: método y hashes SHA-256 que verifican las herramientas.
 - `reference/image-resource.json`: plantilla de recurso de imagen obtenida del
@@ -28,7 +28,7 @@ pero el esquema sigue siendo necesario para no corromper el proyecto.
 }
 ```
 
-`inlineCode` es string; el marcador es su primera línea y debe nombrar la escena.
+`inlineCode` de build es string; el guardado nativo también admite una lista de líneas string; el marcador es su primera línea y debe nombrar la escena.
 No añadir eventos visuales ni eventos hijos. Build concatena los módulos del
 manifiesto y conserva `GLOMP.__loaded` para no reiniciar el namespace en cada tick.
 Cada escena solo despacha onStart y onTick; la lógica permanece en src.
@@ -91,6 +91,25 @@ la malla del cuerpo y conserva alfa/reflejos, sin teñir los Graphics de la cara
 Los accesorios siguen siendo sprites sencillos, sin trajes ni skins completas.
 La galería usa marcos rectangulares propios: el panel ancho no se fuerza sobre
 las tarjetas. Los botones pequeños usan geometría nativa para conservar forma.
+Los iconos vigentes son PNG individuales, incluidos los controles pequeños.
 Las imágenes históricas no se borran; scaffold retira del proyecto solo recursos
 propios conocidos que ya no aparecen en el índice activo. No cambia el esquema
 de eventos ni las referencias verificadas del serializador.
+
+
+## Guardado nativo 5.6.284 y arranque sin textos
+
+Al guardar desde el editor instalado, el proyecto pasó de 5.6.283 a 5.6.284 y
+serializó inlineCode multilínea como array de strings. Se detuvo scaffold y se
+verificó en el editor: la referencia original se cargó/serializó con gd.Project;
+solo cambian build y renderer3DWorldScale=100. El proyecto real abierto mediante
+el proveedor local y serializado desde currentProject confirmó el array. La muestra
+íntegra está en reference/multiline-event.json, con SHA-256 en provenance.json.
+No se modificó manualmente ningún evento. La validación conserva marcador,
+campos, tipos y único evento por escena; rechaza arrays con líneas de otro tipo.
+Build conserva su salida string idempotente, también admitida por el editor.
+
+Boot conserva el fondo RGB 25/19/49 sin objetos ni instancias de texto. Scaffold
+retira explícitamente BootTitle/BootStatus/BootHelp; los diagnósticos de mandos
+y fallos de carga permanecen en consola. No se muestra título ni instrucciones
+antes de la sala. Esta revisión no certifica mandos físicos ni aceptación humana.

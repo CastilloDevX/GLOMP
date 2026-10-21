@@ -25,6 +25,9 @@ function main() {
     }
     Object.assign(scene, specification.background);
     scene.title = manifest.project.name;
+    const removedObjects = new Set(specification.removeObjects || []);
+    scene.objects = scene.objects.filter(object => !removedObjects.has(object.name));
+    scene.instances = scene.instances.filter(instance => !removedObjects.has(instance.name));
     for (const spec of specification.texts || []) {
       const template = templates.objects.find(object => object.type === 'TextObject::Text');
       assert(template, 'Falta plantilla de texto obtenida del editor');

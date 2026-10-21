@@ -10,12 +10,13 @@ GLOMP.input = {
       if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space', 'Tab'].includes(event.code)) event.preventDefault();
     };
     GLOMP.input.onUp = function (event) { GLOMP.input.release(event.code); };
-    GLOMP.input.onBlur = function () { GLOMP.input.keys = {}; GLOMP.input.previousKeys = {}; GLOMP.input.pendingKeys = {}; };
+    GLOMP.input.onBlur = function () { GLOMP.input.pointerHeld=null; GLOMP.input.keys = {}; GLOMP.input.previousKeys = {}; GLOMP.input.pendingKeys = {}; };
     window.addEventListener('keydown', GLOMP.input.onDown);
     window.addEventListener('keyup', GLOMP.input.onUp);
     window.addEventListener('blur', GLOMP.input.onBlur);
     // Botones dibujados en PIXI, hit testing DOM: evita rutas de eventos ajenas al renderer de GDevelop.
     GLOMP.input.onPointer = function (event) {
+      if(event.type==='pointerup')GLOMP.input.pointerHeld=null;
       const canvas = document.querySelector('canvas'); if (!canvas) return;
       const rect = canvas.getBoundingClientRect(), ui = GLOMP.config.ui;
       if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) return;
@@ -24,8 +25,10 @@ GLOMP.input = {
       const y = (event.clientY - rect.top - (rect.height - ui.height * scale) / 2) / scale;
       GLOMP.input.mouse = { x: x, y: y, active: true };
       const button = GLOMP.ui.buttons.slice().reverse().find(function (b) { return b.enabled && Math.abs(x-b.x)<=b.width/2 && Math.abs(y-b.y)<=b.height/2; });
+      if(event.type==='pointerdown')GLOMP.input.pointerHeld=button?button.id:null;
       if (button) { GLOMP.ui.focus = button.id; if (event.type === 'pointerup') GLOMP.input.pointerClick = button.id; }
     };
+    window.addEventListener('pointerdown',GLOMP.input.onPointer);
     window.addEventListener('pointermove',GLOMP.input.onPointer);
     window.addEventListener('pointerup',GLOMP.input.onPointer);
   },

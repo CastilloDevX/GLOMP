@@ -157,3 +157,37 @@ GLOMP.config.art.sets = [
 GLOMP.config.art.bodyAsset = 'cartoon-body';
 GLOMP.config.ui.cartoon = { cardPageSize: 6, highlightStart: 0.94, highlightEnd: 0.995, bodyShading: 0.2, gloss: 0.92, countdownPop: 0.22, launchPop: 0.15 };
 // Las skins completas quedan aplazadas; los sets solo combinan piezas sencillas existentes.
+
+// Tiempos y dimensiones de presentación; no alteran el balance de los modos.
+GLOMP.config.ui.polish = { pressOffset: 3, entrySeconds: .65, staggerSeconds: .12, sliceStart: 1.1, sliceSeconds: .36, coinStart: 1.3, coinSeconds: 1.2, confettiSeconds: 4.5, confettiCount: 56, cheerRate: 3.5, cheerHeight: 8 };
+
+GLOMP.config.ui.icons = {
+  "shop": "icon-shop",
+  "shirt": "icon-shirt",
+  "gear": "icon-gear",
+  "gamepad": "icon-gamepad",
+  "trophy": "icon-trophy",
+  "play": "icon-play",
+  "coin": "icon-coin",
+  "credits": "icon-credits",
+  "star": "icon-star",
+  "color": "icon-color",
+  "face": "icon-face",
+  "hat": "icon-hat",
+  "particles": "icon-particles",
+  "trail": "icon-trail",
+  "gift": "icon-gift",
+  "clock": "icon-clock",
+  "people": "icon-people",
+  "back": "icon-back",
+  "plus": "icon-plus",
+  "close": "icon-close",
+  "left": "icon-left",
+  "right": "icon-right",
+  "check": "icon-check",
+  "music": "icon-music",
+  "sound": "icon-sound",
+  "fullscreen": "icon-fullscreen",
+  "keyboard": "icon-keyboard",
+  "crown": "icon-crown"
+};

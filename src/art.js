@@ -482,5 +482,266 @@ GLOMP.art = {
       "width": 1230,
       "height": 940
     }
+  },
+  "reward-cake": {
+    "file": "assets/cartoon/rewards/cake-slice.png",
+    "bounds": {
+      "x": 62,
+      "y": 47,
+      "width": 1214,
+      "height": 1122
+    }
+  },
+  "icon-shop": {
+    "file": "assets/icons/shop.png",
+    "bounds": {
+      "x": 34,
+      "y": 43,
+      "width": 1185,
+      "height": 1168
+    }
+  },
+  "icon-shirt": {
+    "file": "assets/icons/shirt.png",
+    "bounds": {
+      "x": 48,
+      "y": 53,
+      "width": 1157,
+      "height": 1152
+    }
+  },
+  "icon-gear": {
+    "file": "assets/icons/gear.png",
+    "bounds": {
+      "x": 42,
+      "y": 57,
+      "width": 1167,
+      "height": 1148
+    }
+  },
+  "icon-gamepad": {
+    "file": "assets/icons/gamepad.png",
+    "bounds": {
+      "x": 31,
+      "y": 50,
+      "width": 1188,
+      "height": 1172
+    }
+  },
+  "icon-trophy": {
+    "file": "assets/icons/trophy.png",
+    "bounds": {
+      "x": 31,
+      "y": 42,
+      "width": 1191,
+      "height": 1173
+    }
+  },
+  "icon-play": {
+    "file": "assets/icons/play.png",
+    "bounds": {
+      "x": 31,
+      "y": 43,
+      "width": 1192,
+      "height": 1180
+    }
+  },
+  "icon-coin": {
+    "file": "assets/icons/coin.png",
+    "bounds": {
+      "x": 53,
+      "y": 68,
+      "width": 1147,
+      "height": 1144
+    }
+  },
+  "icon-credits": {
+    "file": "assets/icons/credits.png",
+    "bounds": {
+      "x": 36,
+      "y": 45,
+      "width": 1183,
+      "height": 1173
+    }
+  },
+  "icon-star": {
+    "file": "assets/icons/star.png",
+    "bounds": {
+      "x": 49,
+      "y": 55,
+      "width": 1156,
+      "height": 1153
+    }
+  },
+  "icon-color": {
+    "file": "assets/icons/color.png",
+    "bounds": {
+      "x": 59,
+      "y": 79,
+      "width": 1135,
+      "height": 1136
+    }
+  },
+  "icon-face": {
+    "file": "assets/icons/face.png",
+    "bounds": {
+      "x": 72,
+      "y": 88,
+      "width": 1107,
+      "height": 1089
+    }
+  },
+  "icon-hat": {
+    "file": "assets/icons/hat.png",
+    "bounds": {
+      "x": 35,
+      "y": 50,
+      "width": 1185,
+      "height": 1167
+    }
+  },
+  "icon-particles": {
+    "file": "assets/icons/particles.png",
+    "bounds": {
+      "x": 54,
+      "y": 65,
+      "width": 1146,
+      "height": 1131
+    }
+  },
+  "icon-trail": {
+    "file": "assets/icons/trail.png",
+    "bounds": {
+      "x": 40,
+      "y": 52,
+      "width": 1174,
+      "height": 1152
+    }
+  },
+  "icon-gift": {
+    "file": "assets/icons/gift.png",
+    "bounds": {
+      "x": 50,
+      "y": 63,
+      "width": 1151,
+      "height": 1136
+    }
+  },
+  "icon-clock": {
+    "file": "assets/icons/clock.png",
+    "bounds": {
+      "x": 48,
+      "y": 63,
+      "width": 1159,
+      "height": 1149
+    }
+  },
+  "icon-people": {
+    "file": "assets/icons/people.png",
+    "bounds": {
+      "x": 51,
+      "y": 62,
+      "width": 1153,
+      "height": 1138
+    }
+  },
+  "icon-back": {
+    "file": "assets/icons/back.png",
+    "bounds": {
+      "x": 67,
+      "y": 85,
+      "width": 1120,
+      "height": 1088
+    }
+  },
+  "icon-plus": {
+    "file": "assets/icons/plus.png",
+    "bounds": {
+      "x": 48,
+      "y": 61,
+      "width": 1158,
+      "height": 1135
+    }
+  },
+  "icon-close": {
+    "file": "assets/icons/close.png",
+    "bounds": {
+      "x": 54,
+      "y": 63,
+      "width": 1144,
+      "height": 1131
+    }
+  },
+  "icon-left": {
+    "file": "assets/icons/left.png",
+    "bounds": {
+      "x": 59,
+      "y": 69,
+      "width": 1135,
+      "height": 1125
+    }
+  },
+  "icon-right": {
+    "file": "assets/icons/right.png",
+    "bounds": {
+      "x": 77,
+      "y": 91,
+      "width": 1100,
+      "height": 1100
+    }
+  },
+  "icon-check": {
+    "file": "assets/icons/check.png",
+    "bounds": {
+      "x": 83,
+      "y": 97,
+      "width": 1087,
+      "height": 1076
+    }
+  },
+  "icon-music": {
+    "file": "assets/icons/music.png",
+    "bounds": {
+      "x": 60,
+      "y": 79,
+      "width": 1132,
+      "height": 1127
+    }
+  },
+  "icon-sound": {
+    "file": "assets/icons/sound.png",
+    "bounds": {
+      "x": 50,
+      "y": 68,
+      "width": 1155,
+      "height": 1135
+    }
+  },
+  "icon-fullscreen": {
+    "file": "assets/icons/fullscreen.png",
+    "bounds": {
+      "x": 24,
+      "y": 42,
+      "width": 1205,
+      "height": 1185
+    }
+  },
+  "icon-keyboard": {
+    "file": "assets/icons/keyboard.png",
+    "bounds": {
+      "x": 26,
+      "y": 53,
+      "width": 1201,
+      "height": 1174
+    }
+  },
+  "icon-crown": {
+    "file": "assets/icons/crown.png",
+    "bounds": {
+      "x": 48,
+      "y": 67,
+      "width": 1159,
+      "height": 1138
+    }
   }
 };

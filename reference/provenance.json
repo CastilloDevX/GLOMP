@@ -1,10 +1,12 @@
 {
-  "editor": "GDevelop 5.6.283",
-  "method": "Fábrica nativa gd.ProjectHelper.createNewGDJSProject y gd.EventsList.insertNewEvent dentro del editor Electron; guardado mediante gd.Serializer.toJSON",
+  "editor": "GDevelop 5.6.284",
+  "method": "Referencia original 5.6.283 cargada y serializada mediante gd.Project y gd.Serializer.toJSON dentro del editor Electron 5.6.284; JsCode intacto, renderer3DWorldScale nativo verificado",
   "automated": true,
   "humanReviewed": false,
   "files": {
-    "empty.json": "7324b4c029dab37874b37e935f4a33b82dc70e72e3353822faf68b7bedee8286",
-    "templates.json": "da8f27391b1a157f17afc4e209ea402ae3c34120feea71b5fedd1eddd64d4fac"
-  }
+    "empty.json": "de61a7c8db1a567b9640d5b4455ef7d405685111865441d604318cd7f67c4d10",
+    "templates.json": "da8f27391b1a157f17afc4e209ea402ae3c34120feea71b5fedd1eddd64d4fac",
+    "multiline-event.json": "d6a58285bc3146c6b5f30c06b8e1f90799093a108d88f25d72af6dba181af6b1"
+  },
+  "multilineMethod": "Proyecto real abierto con openFromFileMetadataWithStorageProvider y serializado desde currentProject mediante gd.Serializer.toJSON en el editor 5.6.284"
 }

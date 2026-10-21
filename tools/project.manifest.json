@@ -27,6 +27,7 @@
     "src/minigames/buffet.js",
     "src/minigames/war.js",
     "src/match.js",
+    "src/results.js",
     "src/hud.js",
     "src/shop.js",
     "src/ui.js",
@@ -42,41 +43,10 @@
         "v": 19,
         "b": 49
       },
-      "texts": [
-        {
-          "name": "BootTitle",
-          "x": 88,
-          "y": 80,
-          "size": 76,
-          "color": [
-            207,
-            255,
-            103
-          ],
-          "bold": true
-        },
-        {
-          "name": "BootStatus",
-          "x": 92,
-          "y": 210,
-          "size": 28,
-          "color": [
-            255,
-            255,
-            255
-          ]
-        },
-        {
-          "name": "BootHelp",
-          "x": 92,
-          "y": 310,
-          "size": 22,
-          "color": [
-            209,
-            200,
-            232
-          ]
-        }
+      "removeObjects": [
+        "BootTitle",
+        "BootStatus",
+        "BootHelp"
       ]
     },
     {
@@ -210,6 +180,35 @@
     "assets/cartoon/props/slimegarden-block.png",
     "assets/cartoon/props/slimegarden-bush.png",
     "assets/cartoon/props/slimegarden-center.png",
+    "assets/cartoon/rewards/cake-slice.png",
+    "assets/icons/shop.png",
+    "assets/icons/shirt.png",
+    "assets/icons/gear.png",
+    "assets/icons/gamepad.png",
+    "assets/icons/trophy.png",
+    "assets/icons/play.png",
+    "assets/icons/coin.png",
+    "assets/icons/credits.png",
+    "assets/icons/star.png",
+    "assets/icons/color.png",
+    "assets/icons/face.png",
+    "assets/icons/hat.png",
+    "assets/icons/particles.png",
+    "assets/icons/trail.png",
+    "assets/icons/gift.png",
+    "assets/icons/clock.png",
+    "assets/icons/people.png",
+    "assets/icons/back.png",
+    "assets/icons/plus.png",
+    "assets/icons/close.png",
+    "assets/icons/left.png",
+    "assets/icons/right.png",
+    "assets/icons/check.png",
+    "assets/icons/music.png",
+    "assets/icons/sound.png",
+    "assets/icons/fullscreen.png",
+    "assets/icons/keyboard.png",
+    "assets/icons/crown.png",
     "assets/fonts/LilitaOne-Regular.ttf"
   ]
 }

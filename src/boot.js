@@ -11,8 +11,6 @@ GLOMP.boot = {
     if (GLOMP.save && typeof GLOMP.save.load === 'function') GLOMP.save.load();
     GLOMP.boot.pollElapsed = 0;
     GLOMP.boot.gamepadSignature = null;
-    scene.getObjects('BootTitle').forEach(function (object) { object.setString(GLOMP.i18n.text('bootTitle')); });
-    scene.getObjects('BootHelp').forEach(function (object) { object.setString(GLOMP.i18n.text('bootHelp')); });
     GLOMP.boot.scanGamepads(scene);
     if (scene.getGame && GLOMP.ui) GLOMP.ui.startBoot(scene);
   },
@@ -29,7 +27,6 @@ GLOMP.boot = {
     if (signature !== GLOMP.boot.gamepadSignature) {
       GLOMP.boot.gamepadSignature = signature;
       console.info(GLOMP.i18n.text(available ? 'gamepadLog' : 'gamepadUnavailable', { count: pads.length, indices: indices.join(', ') }));
-      scene.getObjects('BootStatus').forEach(function (object) { object.setString(GLOMP.i18n.text(available ? 'bootStatus' : 'bootNoGamepadAPI', { count: pads.length })); });
     }
   },
   onTick: function (scene, dt) {

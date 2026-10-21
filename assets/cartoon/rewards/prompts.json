@@ -1,0 +1,9 @@
+[
+  {
+    "id": "reward-cake",
+    "path": "assets/cartoon/rewards/cake-slice.png",
+    "prompt": "Production 2D cartoon game UI asset for GLOMP, matching glossy cheerful jelly candy party game. ONE SINGLE compact wedge slice of golden sponge cake, creamy white icing on TOP ONLY with a tiny red strawberry on its top back corner. Orange-yellow sponge sides with one pale cream filling stripe. Front-facing slightly elevated three-quarter view, wide wedge silhouette, clean bold navy outline and shiny soft cel shaded highlights, readable at 70 pixels. Whole slice fully visible, centered with generous padding. No plate, no ground, no shadow extending outside, no text, no numerals, no UI, no characters, no multiple slices or sheet. Actual transparent background. This is a reusable single reward slice to be stacked vertically in a scoreboard.",
+    "transparent": true,
+    "references": []
+  }
+]

@@ -2,7 +2,7 @@
 
 ## Antes de trabajar
 
-1. Leer AGENTS.md / CLAUDE.md, incluidas §14–15; ambos deben permanecer idénticos.
+1. Leer AGENTS.md / CLAUDE.md, incluidas §14–17; ambos deben permanecer idénticos.
 2. Revisar cambios de otras sesiones sin descartarlos. Proyecto canónico para
    build/scaffold: `game.json`. No sobrescribir ni borrar `GLOMP!.json` si aparece
    como copia del editor; comparar antes de una futura unificación.

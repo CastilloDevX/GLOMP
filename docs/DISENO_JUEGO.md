@@ -6,6 +6,9 @@ local, con slimes mecánicamente idénticos y dos entradas: Mover y Acción.
 
 ## Sala y accesos
 
+El arranque muestra únicamente el fondo azul oscuro existente, sin título, texto
+de carga ni diagnóstico de mandos en pantalla; estos permanecen en consola.
+
 Menu es la sala principal, con la nueva versión `assets/cartoon/ui/village.png`
 registrada como menu-village, logo aprobado,
 personajes sobre plataformas, accesos laterales y JUGAR abajo. Cabecera y
@@ -18,6 +21,16 @@ WASD + E y flechas + Shift derecho, con Acción remapeable sin duplicados. Desde
 la tercera persona todas las plazas requieren mandos. Cada participante cambia
 su color y confirma Listo por separado. Cambiar color retira Listo. Enter inicia;
 el anfitrión de mando también inicia con A. JUGAR abre Arena, Práctica Sandbox.
+
+Los ocho iconos de Tienda, Armario, Ajustes, Práctica, Copa, Jugar, Glomps y
+Créditos son PNG generados individualmente, con volumen cartoon, contorno oscuro
+y medallones cian/dorados. Las siete categorías, controles, ajustes e indicadores
+comparten esa dirección: 28 imágenes independientes en assets/icons. Los botones
+con texto usan una superficie redondeada coherente; [+], cruz roja y flechas usan
+su imagen completa sin una segunda superficie que duplique sus bordes. Conservan
+foco, pulsación y estado desactivado. Cada cabecera de jugador incluye una cruz
+roja visible de 52×52; al quitar una plaza se conserva el dispositivo de las demás.
+Las cintas centran un único texto y ajustan sus dimensiones al espacio disponible.
 
 Armario/Tienda permiten previsualizar, comprar, equipar y retirar adornos, elegir
 la plaza y combinar piezas. Hay 8 colores, 6 caras, 10 accesorios, 4 partículas y
@@ -66,6 +79,16 @@ cronómetro al centro y sin logo persistente durante el gameplay.
 Sala → presentación 5 s → 3, 2, 1 → GLOMP! → juego → reparto 8 s → otro modo.
 No se repite minijuego consecutivo; los mapas se eligen de su conjunto compatible.
 Al alcanzar cinco rebanadas termina la copa y aparece el regreso a la sala.
+El reparto muestra un panel azul sobre el fondo del tema desenfocado, podios
+para los dos a seis participantes, slimes equipados y pilas de rebanadas reales.
+Entrada del panel, ascenso escalonado de podios, saltos de celebración, caída de
+rebanadas, recuento de Glomps, confeti y barra de espera se animan con acumuladores
+de dt. La vista solo lee los premios ya acreditados; no vuelve a pagar ni cambia
+el balance. En el final de copa, el campeón encabeza el podio aunque haya terminado
+segundo en la última ronda. Se conservan empates de ronda, estadísticas y regreso.
+La pausa también funciona durante el reparto. Se muestran rebanadas que faltan,
+no una predicción del número de rondas necesarias.
+
 Primero +2 rebanadas y segundo +1; los empates comparten posición. Los premios
 se acreditan una sola vez y terminar la copa siempre paga.
 

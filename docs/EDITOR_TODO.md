@@ -11,6 +11,8 @@ scaffold/build mantienen nueve escenas, cada una con un despachador JavaScript.
   cuerpos distintos ni pixel art: esa dirección fue sustituida.
 - Revisar nueva cara cartoon, tarjetas de tienda 3×2 y paginación. Mantener
   accesorios simples; skins completas pendientes para una futura solicitud.
+- Revisar iconos, bordes, títulos y podios animados con dos a seis personas;
+  comprobar lectura de estadísticas, rebanadas y premios durante la celebración.
 - Cumplir las pruebas humanas de TESTING.md: diversión, auras, persecución de
   Bubble POM, empujones y objetos de lava, ghosting y lectura con seis personas.
 - Conectar seis mandos físicos, comprobar sustitución/reconexión e índices.

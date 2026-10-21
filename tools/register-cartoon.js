@@ -4,7 +4,7 @@ const fs=require('node:fs'),vm=require('node:vm'),crypto=require('node:crypto'),
 require('./register-illustrated.js');
 const context={GLOMP:{}};vm.runInNewContext(fs.readFileSync('src/art.js','utf8'),context);
 const art=context.GLOMP.art,manifest=JSON.parse(fs.readFileSync('assets/manifest.json','utf8'));
-const jobs=JSON.parse(fs.readFileSync('assets/cartoon/prompts.json','utf8'));
+const jobs=JSON.parse(fs.readFileSync('assets/cartoon/prompts.json','utf8')).concat(JSON.parse(fs.readFileSync('assets/cartoon/rewards/prompts.json','utf8'))).concat(JSON.parse(fs.readFileSync('assets/icons/prompts.json','utf8')));
 for(const id of ['slime-base-chatgpt-v1','face-eye','mouth-smile','mouth-gasp','mouth-grit','mouth-cheer'])delete art[id];
 const aliases={'cartoon-village':'menu-village','cartoon-podium':'ui-podium','cartoon-button':'ui-button','cartoon-panel':'ui-panel','cartoon-ribbon':'ui-ribbon'};
 for(const job of jobs) {

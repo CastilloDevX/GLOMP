@@ -47,7 +47,7 @@ GLOMP.match = {
       m.winners = eligible.filter(function (r) { return r.place === place; }).map(function (r) { return r.player.playerId; });
       GLOMP.match.payComplete(m);
     }
-    GLOMP.save.write(); m.phase = 'results'; m.phaseElapsed = 0;
+    GLOMP.save.write(); m.phase = 'results'; m.phaseElapsed = 0; m.resultsElapsed = 0;
   },
   payComplete: function (m) {
     if (m.completePaid) return;
@@ -100,6 +100,7 @@ GLOMP.match = {
     const m = GLOMP.match.current, input = GLOMP.input, ui = GLOMP.ui;
     if (!m) return;
     ui.elapsed+=dt;input.update(dt);
+    if(!m.paused&&(m.phase==='results'||m.phase==='final'))m.resultsElapsed=(m.resultsElapsed||0)+dt;
     if (input.back && m.phase !== 'final') { m.paused = !m.paused; ui.focus = 'resume'; }
     if (m.paused || m.phase === 'final') {
       if (input.nav) ui.moveFocus(input.nav);

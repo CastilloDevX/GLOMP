@@ -25,10 +25,21 @@ function setup(pads, available = true) {
   };
   return { context, scene, strings, logs };
 }
-test('esquema real y referencia de versión', () => validateProject(project, reference, manifest));
+test('esquema real y referencia de versión; arranque sin textos', () => {
+  validateProject(project, reference, manifest);
+  const boot=project.layouts.find(scene=>scene.name==='Boot');
+  assert.equal(boot.instances.length,0);
+});
 test('rechazo de formato de evento distinto', () => {
   const invalid = clone(project); invalid.layouts[0].events[0].inlineCode = [];
   assert.throws(() => validateProject(invalid, reference, manifest));
+});
+test('guardado nativo 5.6.284: acepta líneas de texto y rechaza líneas de otro tipo', () => {
+  const native = clone(project);
+  native.layouts[0].events[0].inlineCode = native.layouts[0].events[0].inlineCode.split('\n');
+  validateProject(native, reference, manifest);
+  native.layouts[0].events[0].inlineCode[1] = {};
+  assert.throws(() => validateProject(native, reference, manifest));
 });
 test('rechazo de eventos visuales adicionales', () => {
   const invalid = clone(project); invalid.layouts[0].events.push({ type: 'BuiltinCommonInstructions::Standard' });
@@ -37,11 +48,11 @@ test('rechazo de eventos visuales adicionales', () => {
 for (const count of [2, 6]) {
   test(`diagnóstico con ${count} mandos simulados`, () => {
     const pads = Array.from({ length: count }, (_, index) => ({ index, connected: true }));
-    const { context, scene, strings } = setup(pads);
+    const { context, scene, logs } = setup(pads);
     context.GLOMP.config.maxPlayers = count;
     context.GLOMP.boot.onStart(scene);
     assert.equal(context.GLOMP.boot.diagnostics.connectedCount, count);
-    assert(strings.BootStatus.includes(String(count)));
+    assert(logs.some(message=>message.includes(String(count))));
     assert.equal(context.GLOMP.boot.diagnostics.sixControllersVerified, false);
   });
 }
@@ -58,10 +69,10 @@ test('mandos dispersos, desconectados y hot-plug', () => {
   assert.equal(context.GLOMP.boot.diagnostics.connectedCount, 1);
 });
 test('ausencia y error de la API de mandos', () => {
-  const { context, scene, strings } = setup([], false);
+  const { context, scene, logs } = setup([], false);
   context.GLOMP.boot.onStart(scene);
   assert.equal(context.GLOMP.boot.diagnostics.apiAvailable, false);
-  assert(strings.BootStatus.includes('no está disponible'));
+  assert(logs.some(message=>message.includes('no está disponible')));
   context.navigator = { getGamepads: () => { throw new Error('Prueba'); } };
   assert.doesNotThrow(() => context.GLOMP.boot.scanGamepads(scene));
 });
@@ -386,3 +397,37 @@ test('comida visible: evita también la parte elevada de cada obstáculo',()=>{
   }
 });
 console.log(`${passed} comprobaciones superadas; aceptación humana pendiente.`);
+
+test('resultados animados: progreso monótono, premios reales y sin acreditar de nuevo',()=>{
+  const G=game(),m=G.match.create(participants(2),198);m.world=forceMode(G,'eatEm',2);m.world.players[0].mass=30;m.world.players[1].mass=5;
+  G.match.finishRound(m);const before=JSON.stringify({save:G.save.data,participants:m.participants,rows:m.rows});let lastSlices=0,lastCoins=0;
+  for(let frame=0;frame<=8*144;frame++){
+    const q=G.results.sample(m,m.rows[0],0,frame/144);assert(q.slices>=lastSlices&&q.coins>=lastCoins);assert(q.slices<=G.config.slicesToWin);assert(q.coins<=m.rows[0].coins);lastSlices=q.slices;lastCoins=q.coins;
+  }
+  assert.equal(lastSlices,m.participants[0].slices);assert.equal(lastCoins,m.rows[0].coins);assert.equal(JSON.stringify({save:G.save.data,participants:m.participants,rows:m.rows}),before);
+});
+test('resultados finales: el campeón de copa encabeza los podios aunque fuera segundo en la ronda',()=>{
+  const G=game(),m=G.match.create(participants(2),199);m.world=forceMode(G,'eatEm',2);m.world.players[0].mass=30;m.world.players[1].mass=5;m.participants[0].slices=2;m.participants[1].slices=4;
+  G.match.finishRound(m);m.phase='final';const before=JSON.stringify(m.rows),rows=G.results.rows(m);
+  assert.equal(rows[0].player.playerId,1);assert.equal(rows[0].displayPlace,1);assert.equal(rows[0].place,2);assert.equal(JSON.stringify(m.rows),before);
+});
+test('composición de podios: dos a seis participantes quedan dentro del panel y sin superposición',()=>{
+  const G=game();for(let count=2;count<=6;count++){
+    const columns=G.results.columns(count);assert.equal(columns.length,count);
+    columns.forEach((column,i)=>{assert(column.x-column.width*.46>140);assert(column.x+column.width*.46<1780);if(i)assert(column.x-column.width*.44>columns[i-1].x+columns[i-1].width*.44);});
+  }
+});
+test('iconos individuales: navegación y categorías registran PNG distintos y transparentes',()=>{
+  const G=game(),jobs=readJSON('assets/icons/prompts.json'),ids=Object.values(G.config.ui.icons),hashes=new Set();
+  assert.equal(jobs.length,28);assert.equal(ids.length,28);assert.equal(new Set(ids).size,28);
+  for(const job of jobs){
+    assert(ids.includes(job.id));assert.equal(G.art[job.id].file,job.path);assert(manifest.resources.includes(job.path));
+    const data=fs.readFileSync(job.path),image=png.decode(data),bounds=G.art[job.id].bounds;
+    assert(image.rgba.some((value,index)=>index%4===3&&value===0));
+    assert(bounds.width>0&&bounds.height>0&&bounds.x>=0&&bounds.y>=0);
+    assert(bounds.x+bounds.width<=image.width&&bounds.y+bounds.height<=image.height);
+    hashes.add(crypto.createHash('sha256').update(data).digest('hex'));
+  }
+  assert.equal(hashes.size,28);
+});
+console.log(`${passed} comprobaciones superadas; presentación y diversión se revisan también en pantalla.`);

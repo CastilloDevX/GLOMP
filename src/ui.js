@@ -5,8 +5,7 @@ GLOMP.ui = {
   startBoot: function (scene) { GLOMP.input.bind(); GLOMP.view.load(scene); GLOMP.ui.bootElapsed = 0; },
   tickBoot: function (scene,dt) {
     GLOMP.ui.bootElapsed += dt;
-    if (GLOMP.view.error) scene.getObjects('BootStatus').forEach(function (o) { o.setString(GLOMP.i18n.text('assetError')); });
-    else if (GLOMP.view.ready && GLOMP.ui.bootElapsed >= GLOMP.config.ui.bootSeconds) GLOMP.ui.go(scene,'Menu');
+    if (!GLOMP.view.error && GLOMP.view.ready && GLOMP.ui.bootElapsed >= GLOMP.config.ui.bootSeconds) GLOMP.ui.go(scene,'Menu');
   },
   go: function (scene,name) { GLOMP.input.pointerClick = null; gdjs.evtTools.runtimeScene.replaceScene(scene,name,false); },
   notify: function (key) { GLOMP.ui.toast = GLOMP.i18n.text(key); GLOMP.ui.toastElapsed = GLOMP.config.ui.toastSeconds; },
@@ -167,10 +166,10 @@ GLOMP.ui = {
     const ui=GLOMP.ui,d=GLOMP.view,t=GLOMP.i18n.text,c=GLOMP.config.ui.colors;
     d.panel(view,365,28,685,120,c.blue,35,.97);
     d.text(view,'profile',t('profile'),535,49,26,0xFFFFFF,{outline:4,stroke:0x103B8C});
-    d.title(view,'room',t('localProfile'),770,86,43,c.yellow,{outline:10,stroke:5});
+    d.title(view,'room',t('localProfile'),770,109,43,c.yellow,{middle:true,stroke:5,maxWidth:470,maxHeight:49});
     d.image(view,'brand','title-glomp',247,85,490,164,{z:130});
     d.panel(view,1450,43,435,90,c.blue,38,.98);GLOMP.icons.draw(view,'wallet','coin',1504,89,66,125);
-    d.title(view,'coins',t('coins',{count:GLOMP.save.data.coins}),1695,65,35,c.yellow,{outline:8,stroke:5});
+    d.title(view,'coins',t('coins',{count:GLOMP.save.data.coins}),1695,89,35,c.yellow,{middle:true,stroke:5,maxWidth:310,maxHeight:54});
     d.panel(view,555,173,810,76,c.blue,35,.78);
     d.text(view,'roomSubtitle',t('roomSubtitle'),960,193,27,0xFFFFFF,{center:true,outline:4,stroke:0x103B8C});
     d.button(view,'shop',t('shop'),28,250,350,c.orange,true,110);
@@ -179,7 +178,7 @@ GLOMP.ui = {
     d.button(view,'credits',t('credits'),1550,250,340,c.purple,true,110);
     d.panel(view,1595,379,290,63,c.dark,30,.92);GLOMP.icons.draw(view,'readyPeople','people',1634,410,40,123);
     d.text(view,'readyCount',t('playersReady',{ready:ui.lobby.filter(function(p){return p.ready;}).length,count:ui.lobby.length||GLOMP.save.data.settings.maxPlayers}),1760,392,27,0xFFFFFF,{center:true,outline:3,stroke:0x103B8C});
-    const count=Math.max(1,ui.lobby.length),width=Math.min(480,1260/count),start=960-(count-1)*width/2;
+    const count=Math.max(1,ui.lobby.length),width=Math.min(480,(count>=4?1120:1260)/count),start=960-(count-1)*width/2;
     if(!ui.lobby.length) {
       const equipment=GLOMP.save.equipment(0),size=485;
       d.image(view,'heroPodium','ui-podium',960,791,590,150,{z:22});
@@ -187,7 +186,13 @@ GLOMP.ui = {
     }
     ui.lobby.forEach(function(p,index){
       const x=start+index*width,connected=GLOMP.input.read(p.source).connected,size=Math.min(365,width*.82),equipment=GLOMP.save.equipment(p.playerId);
-      d.text(view,'device'+index,t(p.source.kind==='keyboard'?'keyboardDevice':'gamepadDevice',{number:p.source.index+1}),x,340,count>4?18:22,0xFFFFFF,{center:true,outline:4,stroke:0x103B8C});
+      const headerWidth=Math.min(320,width*.86),headerX=x-headerWidth/2;
+      d.surface(view,'playerHeader'+index,headerX,326,headerWidth,62,0x095AAC,false,104);
+      const device=t('playerShort',{number:index+1})+' · '+t(p.source.kind==='keyboard'?'keyboardDevice':'gamepadDevice',{number:p.source.index+1});
+      const deviceText=d.text(view,'device'+index,device,headerX+(headerWidth-58)/2,357,count>4?18:23,0xFFFFFF,{center:true,middle:true,outline:3,stroke:0x103B8C});
+      if(deviceText.width>headerWidth-64)deviceText.style.fontSize=Math.floor(deviceText.style.fontSize*(headerWidth-64)/deviceText.width);
+      d.button(view,'remove:'+index,'×',headerX+headerWidth-56,331,52,c.red,true,52);
+      if(ui.focus==='remove:'+index)d.text(view,'removeHint'+index,t('removePlayer',{number:index+1}),x,402,count>4?17:21,0xFFFFFF,{center:true,outline:4,stroke:0x103B8C});
       d.image(view,'podium'+index,'ui-podium',x,787,size*1.27,size*.32,{z:22});
       d.slime(view,'roomPlayer'+index,x,740-size*GLOMP.config.animation.bodyAspect/2+Math.sin(ui.elapsed*GLOMP.config.ui.decorationRate+index)*GLOMP.config.ui.decorationBob,size,p.color,Number(equipment.face.slice(4)),1,1,connected?1:.5,30,null,equipment);
       d.text(view,'colorName'+index,t('color'+p.color),x,791,count>4?20:25,0xFFFFFF,{center:true,outline:4,stroke:0x103B8C});
@@ -196,7 +201,6 @@ GLOMP.ui = {
       d.button(view,'right:'+index,'›',x+width*.43-bw,833,bw,c.blue,true,55);
       const label=t('playerShort',{number:index+1})+' · '+t(!connected?'disconnected':p.ready?'readyCompact':'confirmCompact');
       d.button(view,'ready:'+index,label,left+bw+6,833,width*.86-bw*2-12,p.ready?c.green:c.yellow,connected,55);
-      d.button(view,'remove:'+index,'×',x+width*.40-27,369,28,c.red,true,28);
     });
     const canAdd=ui.lobby.length<GLOMP.save.data.settings.maxPlayers,empty=ui.lobby.length===0;
     if(empty) {
@@ -240,7 +244,7 @@ GLOMP.ui = {
     d.slime(view,'shopPreview',337,695-395*GLOMP.config.animation.bodyAspect/2,395,Number(equipment.body.slice(4)),Number(equipment.face.slice(4)),1,1,1,110,null,equipment);
     d.panel(view,130,804,415,64,c.blue,30,.98);d.text(view,'previewName',t(item.nameKey),337,817,29,0xFFFFFF,{center:true,outline:4,stroke:0x103B8C});
     const categories=['featured','body','face','accessory','particles','trail','sets'];
-    categories.forEach(function(category,index){d.button(view,'category:'+category,t('category'+category),682+index*169,242,159,ui.category===category?c.yellow:c.blue,true,76);});
+    categories.forEach(function(category,index){d.button(view,'category:'+category,t('category'+category),682+index*169,229,159,ui.category===category?c.yellow:c.blue,true,96);});
     const list=ui.shopList(),pageSize=GLOMP.config.ui.cartoon.cardPageSize,pages=Math.ceil(list.length/pageSize);
     ui.shopPage=Math.min(ui.shopPage,Math.max(0,pages-1));
     list.slice(ui.shopPage*pageSize,(ui.shopPage+1)*pageSize).forEach(function(e,index){
@@ -285,7 +289,7 @@ GLOMP.ui = {
       draw.graphics(view,'pageShade',2).beginFill(c.dark,name==='Shop'?0.08:0.6).drawRect(0,0,1920,1080).endFill();
       draw.image(view,'smallBrand','title-glomp',190,87,350,125,{z:125});
       draw.heading(view,'heading',t(name.toLowerCase()+'Title'),960,54,770,62);
-      draw.panel(view,1495,51,390,83,c.blue,35,.98);GLOMP.icons.draw(view,'wallet','coin',1538,93,54,124);draw.title(view,'wallet',t('coins',{count:GLOMP.save.data.coins}),1712,73,31,c.yellow,{outline:8,stroke:5});
+      draw.panel(view,1495,51,390,83,c.blue,35,.98);GLOMP.icons.draw(view,'wallet','coin',1538,93,54,124);draw.title(view,'wallet',t('coins',{count:GLOMP.save.data.coins}),1712,93,31,c.yellow,{middle:true,stroke:5,maxWidth:282,maxHeight:52});
       draw.button(view,'back',t('back'),35,930,310,c.red);
       if (name === 'Shop') ui.renderShop(view);
       if (name === 'Settings') ui.renderSettings(view);

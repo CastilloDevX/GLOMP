@@ -3,7 +3,7 @@
 ## Automatización
 
 `node tools/build.js && node tools/check.js` y `node tools/selftest.js`:
-48 comprobaciones. Esquema nativo sin eventos visuales añadidos, idempotencia,
+53 comprobaciones. Esquema nativo sin eventos visuales añadidos, idempotencia,
 PNG, mandos simulados 2/6, física 30/144 fps, límites, recogida exclusiva, tienda
 sin mutación de config, confirmación de teclado/color, guardado, cámara y bloqueo
 antes de GLOMP!, premios únicos, final de copa y rotación sin modo consecutivo.
@@ -22,6 +22,7 @@ antes de GLOMP!, premios únicos, final de copa y rotación sin modo consecutivo
   sets, mezcla, retirada, guardado y equivalencia de velocidad/hitbox.
 - Mapas fuente 16:9, mundo horizontal, cámara cubre el viewport durante la
   presentación y el juego; comida evita el volumen elevado de los props.
+- Arranque sin textos; guardado nativo multilínea válido y rechazo de líneas no string.
 - Galería: paginar o previsualizar no compra ni cambia el equipo guardado.
 - Todos los modos compatibles terminan dentro del máximo de 180 s con 2/6.
 
@@ -31,10 +32,10 @@ al nuevo quema la papa. Las invariantes de avisos de objetos caídos se mantiene
 
 ## Editor y exportación reales
 
-GDevelop instalado 5.6.284; referencia fijada al esquema 5.6.283. Se verificaron
+GDevelop instalado 5.6.284; referencia revalidada al esquema 5.6.284. Se verificaron
 FontResource, SimplePlane, NineSlicePlane y filtro de color del cuerpo en el motor real. Exportación HTML5
 nativa a `.cache/export-web`, servida localmente por `node tools/serve.js`.
-57 imágenes y fuente local cargan sin error. No hay un renderizador alternativo
+86 imágenes y fuente local cargan sin error. No hay un renderizador alternativo
 que sustituya GDevelop en estas comprobaciones.
 
 QA con Chromium y eventos CDP reales, perfil de pruebas aislado:
@@ -56,6 +57,27 @@ rectángulo visible del canvas, las proporciones y los controles.
 
 Capturas y scripts temporales de QA fuera de los archivos entregables. Las
 pruebas automatizadas no representan una partida jugada por dos personas.
+
+## Pulido de iconos, botones y reparto
+
+Comprobaciones nuevas sin render: contadores monótonos que no mutan el saldo,
+campeón final correcto aunque sea segundo en la última ronda, y distribución de
+columnas dentro del panel para dos a seis participantes. Los tiempos de
+presentación viven en config.ui.polish; las recompensas conservan su lógica.
+
+En la exportación nativa se verificaron los 28 PNG individuales, los botones [+], foco,
+controles y títulos con una sola capa de texto. Capturas de podios con dos y seis
+participantes y del final de copa. Pausa sobre el reparto, Continuar y regreso
+final se ejercitaron mediante eventos de teclado/ratón CDP, sin excepciones.
+Los mandos de esta comprobación son simulados; no certifican hardware físico.
+
+Los 28 PNG tienen archivos y hashes distintos, alfa válido y recursos registrados.
+La cruz de quitar jugador mide 52×52 y aparece dentro de su cabecera; se probó
+quitar primero una plaza y después la última sin cambiar el dispositivo restante.
+Los siete iconos de categorías quedan encima de sus títulos, sin superponerse a
+las tarjetas. Se revisaron títulos en Créditos, Ajustes y Tienda y adaptación a
+1366×768. Las capturas de sala/tienda usan el arte generado, sin iconos vectoriales
+sustitutos.
 
 ## Aceptación humana pendiente
 

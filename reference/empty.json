@@ -1,7 +1,7 @@
 {
   "firstLayout": "Boot",
   "gdVersion": {
-    "build": 283,
+    "build": 284,
     "major": 5,
     "minor": 6,
     "revision": 0
@@ -78,6 +78,7 @@
       "mangledName": "Boot",
       "name": "Boot",
       "r": 247,
+      "renderer3DWorldScale": 100,
       "standardSortMethod": true,
       "stopSoundsOnStartup": true,
       "title": "",

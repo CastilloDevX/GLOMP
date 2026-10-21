@@ -7,6 +7,7 @@ const eventType = 'BuiltinCommonInstructions::JsCode';
 const marker = name => `// GLOMP:INJECT scene=${name}`;
 const readJSON = relative => JSON.parse(fs.readFileSync(path.join(root, relative), 'utf8'));
 const clone = object => JSON.parse(JSON.stringify(object));
+const inlineSource = event => Array.isArray(event.inlineCode) ? event.inlineCode.join('\n') : event.inlineCode;
 function assert(condition, message) { if (!condition) throw new Error(message); }
 function compareShape(value, template, label) {
   assert(value !== null && typeof value === 'object' && !Array.isArray(value), `${label}: se esperaba objeto`);
@@ -20,11 +21,14 @@ function loadReference() {
   assert(fs.existsSync(path.join(root, 'reference/empty.json')), 'Falta reference/empty.json guardado desde GDevelop; no se inventará el formato');
   const provenance = readJSON('reference/provenance.json');
   for (const [file, hash] of Object.entries(provenance.files)) {
-    assert(['empty.json', 'templates.json'].includes(file), 'Archivo de referencia no permitido');
+    assert(['empty.json', 'templates.json', 'multiline-event.json'].includes(file), 'Archivo de referencia no permitido');
     const actual = crypto.createHash('sha256').update(fs.readFileSync(path.join(root, 'reference', file))).digest('hex');
     assert(actual === hash, `reference/${file} cambió: detener y verificar el formato en el editor`);
   }
   const reference = readJSON('reference/empty.json');
+  const multiline = readJSON('reference/multiline-event.json');
+  assert(JSON.stringify(multiline.gdVersion) === JSON.stringify(reference.gdVersion), 'La muestra multilínea pertenece a otra versión');
+  assert(multiline.event.type === eventType && Array.isArray(multiline.event.inlineCode) && multiline.event.inlineCode.length > 1 && multiline.event.inlineCode.every(line => typeof line === 'string'), 'La muestra nativa multilínea no es válida');
   assert(reference.gdVersion?.major === 5, 'La referencia no pertenece a GDevelop 5');
   const scene = reference.layouts?.find(scene => scene.name === 'Boot');
   assert(scene && scene.events?.length === 1, 'La referencia debe tener Boot con un único JsCode');
@@ -49,10 +53,12 @@ function validateProject(project, reference, manifest) {
     compareShape(scene, sceneTemplate, `escena ${scene.name}`);
     assert(scene.events.length === 1, `${scene.name}: debe tener exactamente un evento`);
     const event = scene.events[0];
-    compareShape(event, sceneTemplate.events[0], `JsCode de ${scene.name}`);
+    const source = inlineSource(event);
+    assert(!Array.isArray(event.inlineCode) || event.inlineCode.every(line => typeof line === 'string'), `${scene.name}: líneas de código no válidas`);
+    compareShape(Object.assign({}, event, { inlineCode: source }), sceneTemplate.events[0], `JsCode de ${scene.name}`);
     assert(Object.keys(event).every(key => Object.hasOwn(sceneTemplate.events[0], key)), `${scene.name}: campos de evento no verificados`);
     assert(event.type === eventType, `${scene.name}: tipo de evento no permitido`);
-    assert(event.inlineCode.split('\n')[0] === marker(scene.name), `${scene.name}: marcador ausente o incorrecto`);
+    assert(source.split('\n')[0] === marker(scene.name), `${scene.name}: marcador ausente o incorrecto`);
     assert(!event.parameterObjects && event.useStrict === true, `${scene.name}: parámetros JsCode distintos de la referencia`);
     assert(scene.layers.some(layer => layer.name === ''), `${scene.name}: falta capa base`);
     const objects = [...project.objects, ...scene.objects];

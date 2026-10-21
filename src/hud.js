@@ -84,10 +84,10 @@ GLOMP.hud = {
         const radius=(p.radius+GLOMP.config.minigames.war.shoveReach)*s;
         effects.lineStyle(6,0xFFF5C9,0.7).arc(x(p.x),y(p.y),radius,Math.atan2(p.facingY,p.facingX)-0.6,Math.atan2(p.facingY,p.facingX)+0.6).lineStyle(0);
       }
-      if(w.mode==='buffet'&&p.playerId===w.leader)d.text(view,'leader',GLOMP.i18n.text('crown'),x(p.x),y(p.y)-size*0.6-45,36,0xFFDA63,{center:true,outline:3,z:44});
+      if(w.mode==='buffet'&&p.playerId===w.leader)GLOMP.icons.draw(view,'leader','crown',x(p.x),y(p.y)-size*.6-28,46,44);
       if(!p.npc&&p.alive) {
         d.text(view,'worldName'+index,GLOMP.config.art.markerIcons[p.playerId]+' '+GLOMP.i18n.text('playerShort',{number:p.playerId+1}),x(p.x),y(p.y)-size*(p.accessory?0.8:0.52)-22,Math.max(17,22*s),0xFFFFFF,{center:true,outline:4,z:42});
-        if(p.safe)d.text(view,'safe'+index,GLOMP.i18n.text('safe'),x(p.x),y(p.y)-size*0.7-40,28,0xBFFF74,{center:true,outline:4,z:43});
+        if(p.safe)GLOMP.icons.draw(view,'safe'+index,'check',x(p.x),y(p.y)-size*.7-25,38,43);
       }
       if(w.mode==='pom'&&p.playerId===w.holder&&p.alive) {
         const remaining=w.fuse/GLOMP.config.minigames.pom.fuseSeconds;
@@ -123,30 +123,12 @@ GLOMP.hud = {
       view.graphics.beginFill(0x133A83,alpha).drawRoundedRect(textX,y+84,210,7,3).endFill().beginFill(GLOMP.config.art.markerColors[index],alpha).drawRoundedRect(textX,y+84,210*bar,7,3).endFill();
     });
   },
-  results: function (view,m) {
-    const draw = GLOMP.view,t = GLOMP.i18n.text,c = GLOMP.config.ui.colors, final = m.phase === 'final';
-    draw.graphics(view,'resultsShade',180).beginFill(c.dark,0.92).drawRect(0,0,1920,1080).endFill(); view.overlayZ = 100;
-    draw.heading(view,'resultsTitle',t(final?'finalMatch':'results'),960,105,1250,51);
-    if (final) {
-      draw.text(view,'winner',t(m.winners.length > 1 ? 'sharedWinners' : 'matchWinner',{names:m.winners.map(function (id) { return t('player',{number:id + 1}); }).join(', ')}),960,200,36,c.cream,{center:true});
-    }
-    m.rows.forEach(function (row,index) {
-      const p = m.participants[row.player.playerId], y = 285 + index * 92;
-      draw.graphics(view,'resultRow' + index,110).beginFill(row.place === 1 ? 0x76521D : 0x3B3356,0.96).drawRoundedRect(360,y,1200,78,12).endFill();
-      draw.slime(view,'resultSlime' + index,420,y + 38,64,p.color,row.place===1?1:Number(row.player.face.slice(4)),1,1,1,115,null,row.player);
-      draw.text(view,'resultName' + index,String(row.place) + ' · ' + t('player',{number:p.playerId + 1}),475,y + 12,25,c.cream);
-      const key = {eatEm:'resultMass',pom:'resultPom',crazy:'resultCrazy',buffet:'resultBuffet',war:'resultWar'}[m.world.mode];
-      draw.text(view,'resultStat' + index,t(key,{value:Math.floor(['eatEm','buffet'].includes(m.world.mode) ? row.player.mass : m.world.mode === 'pom' ? row.player.stats.passes : m.world.mode === 'war' ? row.player.stats.pushes : row.player.stats.orders),devoured:row.player.stats.devoured,feasts:row.player.stats.feasts,eaten:row.player.stats.eaten}),475,y + 43,18,c.cream);
-      draw.text(view,'resultEarn' + index,final ? t('earned',{coins:p.coins}) : t('roundReward',{slices:row.slices,coins:row.coins}),1030,y + 25,22,c.yellow);
-      draw.text(view,'resultSlice' + index,t('slices',{count:p.slices,goal:GLOMP.config.slicesToWin}),1480,y + 22,28,c.cream,{center:true});
-    });
-    if (final) { GLOMP.ui.focus = 'returnRoom'; draw.button(view,'returnRoom',t('playAgain'),680,920,560,c.yellow); }
-    else draw.text(view,'nextRound',t('nextRound',{seconds:Math.max(0,Math.ceil(GLOMP.config.round.resultsSeconds - m.phaseElapsed))}),960,950,30,c.cream,{center:true});
-    view.overlayZ = 0;
-  },
+  results: function(view,m) { GLOMP.results.render(view,m); },
   render: function (scene,m) {
     const draw = GLOMP.view, view = draw.begin(scene), c = GLOMP.config.ui.colors, t = GLOMP.i18n.text, w = m.world;
-    GLOMP.ui.buttons = []; GLOMP.hud.world(view,m); GLOMP.hud.cards(view,m);
+    GLOMP.ui.buttons = [];
+    if(m.phase==='results'||m.phase==='final'){GLOMP.hud.results(view,m);if(m.paused)GLOMP.hud.pause(view);return;}
+    GLOMP.hud.world(view,m); GLOMP.hud.cards(view,m);
     const duration = Math.min(GLOMP.config.round.maxSeconds,(GLOMP.config.minigames[w.mode] || {}).duration || GLOMP.config.round.maxSeconds), remaining = Math.max(0,Math.ceil(w.mode==='pom'?w.fuse:duration-w.elapsed));
     draw.panel(view,790,14,340,112,c.blue,48,.98);GLOMP.icons.draw(view,'clock','clock',843,69,65,124);
     const timer = draw.title(view,'timer',t('roundTime',{minutes:Math.floor(remaining / 60),seconds:String(remaining % 60).padStart(2,'0')}),987,27,68,remaining<duration/3?0xFF6B85:0xFFFFFF,{outline:12,stroke:7});
@@ -180,11 +162,12 @@ GLOMP.hud = {
     if (w.mode === 'eatEm' && w.sauce && m.phase === 'playing') draw.text(view,'notice',t('sauceWarning'),960,1020,23,c.cream,{center:true,outline:4});
     if (w.finalFeast && m.phase === 'playing') draw.text(view,'notice',t('finalFeast'),960,1020,26,c.yellow,{center:true,outline:4});
     if (w.mode === 'practice') draw.text(view,'practice',t('practiceBadge'),960,1015,25,c.cream,{center:true,outline:4});
-    if (m.phase === 'results' || m.phase === 'final') GLOMP.hud.results(view,m);
-    if (m.paused) {
-      draw.graphics(view,'pauseShade',190).beginFill(c.dark,0.94).drawRect(0,0,1920,1080).endFill(); view.overlayZ = 100;
-      draw.text(view,'pause',t('pauseTitle'),960,300,72,c.yellow,{center:true});
-      draw.button(view,'resume',t('resume'),700,460,520,c.green); draw.button(view,'exit',t('playAgain'),700,590,520,c.blue); view.overlayZ = 0;
-    }
+    if(m.paused)GLOMP.hud.pause(view);
+  },
+  pause: function(view) {
+    const draw=GLOMP.view,t=GLOMP.i18n.text,c=GLOMP.config.ui.colors;
+    GLOMP.ui.buttons=[];draw.graphics(view,'pauseShade',400).beginFill(c.dark,.94).drawRect(0,0,1920,1080).endFill();view.overlayZ=300;
+    draw.title(view,'pause',t('pauseTitle'),960,330,72,c.yellow,{middle:true});
+    draw.button(view,'resume',t('resume'),700,460,520,c.green);draw.button(view,'exit',t('playAgain'),700,590,520,c.blue);view.overlayZ=0;
   },
 };

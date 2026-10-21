@@ -1944,6 +1944,557 @@
       "status": "generated",
       "milestone": "cartoon-panorama",
       "sha256": "8a5818d3fe3992d1c1e59b4042ccd60b0f79fe3c1913fa789820f7326decc31a"
+    },
+    {
+      "id": "reward-cake",
+      "file": "assets/cartoon/rewards/cake-slice.png",
+      "prompt": "Production 2D cartoon game UI asset for GLOMP, matching glossy cheerful jelly candy party game. ONE SINGLE compact wedge slice of golden sponge cake, creamy white icing on TOP ONLY with a tiny red strawberry on its top back corner. Orange-yellow sponge sides with one pale cream filling stripe. Front-facing slightly elevated three-quarter view, wide wedge silhouette, clean bold navy outline and shiny soft cel shaded highlights, readable at 70 pixels. Whole slice fully visible, centered with generous padding. No plate, no ground, no shadow extending outside, no text, no numerals, no UI, no characters, no multiple slices or sheet. Actual transparent background. This is a reusable single reward slice to be stacked vertically in a scoreboard.",
+      "references": [],
+      "width": 1312,
+      "height": 1199,
+      "bounds": {
+        "x": 62,
+        "y": 47,
+        "width": 1214,
+        "height": 1122
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "75a0e21737d7dd6afb5c6c12e15e2b78e45ce1fb9f34f9ae7875174bf9eaac89"
+    },
+    {
+      "id": "icon-shop",
+      "file": "assets/icons/shop.png",
+      "prompt": "Production game UI icon for GLOMP. Style: cheerful polished Roblox pet-simulator interface, soft chunky cartoon volumes, bold clean DARK TEAL outline, gentle 3D beveled shading, broad simple white upper-left shine, saturated candy colors, NO pixel art, NO thin flat vector line-art, NO realism. One separate isolated icon, centered front view, square composition with generous transparent padding; all parts and outline entirely visible. A tiny cheerful shop front with a red and cream striped awning, teal window and warm wooden door, inside a GOLDEN yellow circular badge. Actual transparent background outside the badge/button. ONE icon only, no sheet, no labels or letters, no numbers, no words, no UI screen, no surrounding scene, no watermark. Make it instantly readable at 48 to 80 pixels. The badge is a smooth glossy circular or rounded-square game button as specified, never a hexagon, with one aligned thick outline, not several mismatched borders.",
+      "references": [],
+      "width": 1254,
+      "height": 1254,
+      "bounds": {
+        "x": 34,
+        "y": 43,
+        "width": 1185,
+        "height": 1168
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "689f2ce69fba73bb4559ac7d5876007db822deb710a0bf454dfd606673d9ddaf"
+    },
+    {
+      "id": "icon-shirt",
+      "file": "assets/icons/shirt.png",
+      "prompt": "Production game UI icon for GLOMP. Style: cheerful polished Roblox pet-simulator interface, soft chunky cartoon volumes, bold clean DARK TEAL outline, gentle 3D beveled shading, broad simple white upper-left shine, saturated candy colors, NO pixel art, NO thin flat vector line-art, NO realism. One separate isolated icon, centered front view, square composition with generous transparent padding; all parts and outline entirely visible. A soft bright pink T-shirt on a little blue hanger, with one gold star on the chest, inside a CYAN blue circular badge. Actual transparent background outside the badge/button. ONE icon only, no sheet, no labels or letters, no numbers, no words, no UI screen, no surrounding scene, no watermark. Make it instantly readable at 48 to 80 pixels. The badge is a smooth glossy circular or rounded-square game button as specified, never a hexagon, with one aligned thick outline, not several mismatched borders.",
+      "references": [],
+      "width": 1254,
+      "height": 1254,
+      "bounds": {
+        "x": 48,
+        "y": 53,
+        "width": 1157,
+        "height": 1152
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "257eee9e2a988f8c640b079d7acc45d851eb7ea7885c482b81fd4f7b2cc3d72e"
+    },
+    {
+      "id": "icon-gear",
+      "file": "assets/icons/gear.png",
+      "prompt": "Production game UI icon for GLOMP. Style: cheerful polished Roblox pet-simulator interface, soft chunky cartoon volumes, bold clean DARK TEAL outline, gentle 3D beveled shading, broad simple white upper-left shine, saturated candy colors, NO pixel art, NO thin flat vector line-art, NO realism. One separate isolated icon, centered front view, square composition with generous transparent padding; all parts and outline entirely visible. A chunky silver-blue mechanical gear with rounded teeth and dark teal circular hub, inside a CYAN circular badge. Actual transparent background outside the badge/button. ONE icon only, no sheet, no labels or letters, no numbers, no words, no UI screen, no surrounding scene, no watermark. Make it instantly readable at 48 to 80 pixels. The badge is a smooth glossy circular or rounded-square game button as specified, never a hexagon, with one aligned thick outline, not several mismatched borders.",
+      "references": [],
+      "width": 1254,
+      "height": 1254,
+      "bounds": {
+        "x": 42,
+        "y": 57,
+        "width": 1167,
+        "height": 1148
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "a5e91a3460b6cdedbb87ad72b6215f7b14399c06ca4883c587486f2e6bfa7dbd"
+    },
+    {
+      "id": "icon-gamepad",
+      "file": "assets/icons/gamepad.png",
+      "prompt": "Production game UI icon for GLOMP. Style: cheerful polished Roblox pet-simulator interface, soft chunky cartoon volumes, bold clean DARK TEAL outline, gentle 3D beveled shading, broad simple white upper-left shine, saturated candy colors, NO pixel art, NO thin flat vector line-art, NO realism. One separate isolated icon, centered front view, square composition with generous transparent padding; all parts and outline entirely visible. A cute white game controller with navy cross pad and pink and mint round buttons, inside a CYAN blue circular badge. Actual transparent background outside the badge/button. ONE icon only, no sheet, no labels or letters, no numbers, no words, no UI screen, no surrounding scene, no watermark. Make it instantly readable at 48 to 80 pixels. The badge is a smooth glossy circular or rounded-square game button as specified, never a hexagon, with one aligned thick outline, not several mismatched borders.",
+      "references": [],
+      "width": 1254,
+      "height": 1254,
+      "bounds": {
+        "x": 31,
+        "y": 50,
+        "width": 1188,
+        "height": 1172
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "377cbf2beca27dcb829969fc03640e1b63270847402533ef9f3f620a2b3a8da3"
+    },
+    {
+      "id": "icon-trophy",
+      "file": "assets/icons/trophy.png",
+      "prompt": "Production game UI icon for GLOMP. Style: cheerful polished Roblox pet-simulator interface, soft chunky cartoon volumes, bold clean DARK TEAL outline, gentle 3D beveled shading, broad simple white upper-left shine, saturated candy colors, NO pixel art, NO thin flat vector line-art, NO realism. One separate isolated icon, centered front view, square composition with generous transparent padding; all parts and outline entirely visible. A plump polished gold trophy cup with two handles and a little star embossed in the center, inside a CYAN blue circular badge. Actual transparent background outside the badge/button. ONE icon only, no sheet, no labels or letters, no numbers, no words, no UI screen, no surrounding scene, no watermark. Make it instantly readable at 48 to 80 pixels. The badge is a smooth glossy circular or rounded-square game button as specified, never a hexagon, with one aligned thick outline, not several mismatched borders.",
+      "references": [],
+      "width": 1254,
+      "height": 1254,
+      "bounds": {
+        "x": 31,
+        "y": 42,
+        "width": 1191,
+        "height": 1173
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "2202b88557e3cc768ff39790244a591872dedd01fda727bdb1315b5e82938915"
+    },
+    {
+      "id": "icon-play",
+      "file": "assets/icons/play.png",
+      "prompt": "Production game UI icon for GLOMP. Style: cheerful polished Roblox pet-simulator interface, soft chunky cartoon volumes, bold clean DARK TEAL outline, gentle 3D beveled shading, broad simple white upper-left shine, saturated candy colors, NO pixel art, NO thin flat vector line-art, NO realism. One separate isolated icon, centered front view, square composition with generous transparent padding; all parts and outline entirely visible. A thick white and cream triangular play arrow pointing RIGHT with golden orange side depth, inside a golden yellow circular badge. Actual transparent background outside the badge/button. ONE icon only, no sheet, no labels or letters, no numbers, no words, no UI screen, no surrounding scene, no watermark. Make it instantly readable at 48 to 80 pixels. The badge is a smooth glossy circular or rounded-square game button as specified, never a hexagon, with one aligned thick outline, not several mismatched borders.",
+      "references": [],
+      "width": 1254,
+      "height": 1254,
+      "bounds": {
+        "x": 31,
+        "y": 43,
+        "width": 1192,
+        "height": 1180
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "35f6c4e7a3cb50e8dd63f409fdc78041bde28b6a1721d268c655df71cb510f08"
+    },
+    {
+      "id": "icon-coin",
+      "file": "assets/icons/coin.png",
+      "prompt": "Production game UI icon for GLOMP. Style: cheerful polished Roblox pet-simulator interface, soft chunky cartoon volumes, bold clean DARK TEAL outline, gentle 3D beveled shading, broad simple white upper-left shine, saturated candy colors, NO pixel art, NO thin flat vector line-art, NO realism. One separate isolated icon, centered front view, square composition with generous transparent padding; all parts and outline entirely visible. A chunky wedge of golden yellow cheese with orange round holes, creamy top highlight and orange side depth, inside a CYAN circular badge. Actual transparent background outside the badge/button. ONE icon only, no sheet, no labels or letters, no numbers, no words, no UI screen, no surrounding scene, no watermark. Make it instantly readable at 48 to 80 pixels. The badge is a smooth glossy circular or rounded-square game button as specified, never a hexagon, with one aligned thick outline, not several mismatched borders.",
+      "references": [],
+      "width": 1254,
+      "height": 1254,
+      "bounds": {
+        "x": 53,
+        "y": 68,
+        "width": 1147,
+        "height": 1144
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "0c0f9c149c4a100101cf3cb7400a4f281bcc313179a83178751a55bff2aedf5b"
+    },
+    {
+      "id": "icon-credits",
+      "file": "assets/icons/credits.png",
+      "prompt": "Production game UI icon for GLOMP. Style: cheerful polished Roblox pet-simulator interface, soft chunky cartoon volumes, bold clean DARK TEAL outline, gentle 3D beveled shading, broad simple white upper-left shine, saturated candy colors, NO pixel art, NO thin flat vector line-art, NO realism. One separate isolated icon, centered front view, square composition with generous transparent padding; all parts and outline entirely visible. A cute closed purple and blue book with a gold star emblem, visible pale page edges and pink bookmark ribbon, inside a CYAN circular badge. Actual transparent background outside the badge/button. ONE icon only, no sheet, no labels or letters, no numbers, no words, no UI screen, no surrounding scene, no watermark. Make it instantly readable at 48 to 80 pixels. The badge is a smooth glossy circular or rounded-square game button as specified, never a hexagon, with one aligned thick outline, not several mismatched borders.",
+      "references": [],
+      "width": 1254,
+      "height": 1254,
+      "bounds": {
+        "x": 36,
+        "y": 45,
+        "width": 1183,
+        "height": 1173
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "c944a2c2eb3517cfd4b4ae4a048fc753d138fcfb8c8cfc4557e068e537f14a80"
+    },
+    {
+      "id": "icon-star",
+      "file": "assets/icons/star.png",
+      "prompt": "Production game UI icon for GLOMP. Style: cheerful polished Roblox pet-simulator interface, soft chunky cartoon volumes, bold clean DARK TEAL outline, gentle 3D beveled shading, broad simple white upper-left shine, saturated candy colors, NO pixel art, NO thin flat vector line-art, NO realism. One separate isolated icon, centered front view, square composition with generous transparent padding; all parts and outline entirely visible. One chunky golden yellow five-point star with orange side depth, inside a CYAN circular badge. Actual transparent background outside the badge/button. ONE icon only, no sheet, no labels or letters, no numbers, no words, no UI screen, no surrounding scene, no watermark. Make it instantly readable at 48 to 80 pixels. The badge is a smooth glossy circular or rounded-square game button as specified, never a hexagon, with one aligned thick outline, not several mismatched borders.",
+      "references": [],
+      "width": 1254,
+      "height": 1254,
+      "bounds": {
+        "x": 49,
+        "y": 55,
+        "width": 1156,
+        "height": 1153
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "b24c6166b14e5d2495a2f443ef561b8dfc2ac9d8ed979a278f206f38405d59ae"
+    },
+    {
+      "id": "icon-color",
+      "file": "assets/icons/color.png",
+      "prompt": "Production game UI icon for GLOMP. Style: cheerful polished Roblox pet-simulator interface, soft chunky cartoon volumes, bold clean DARK TEAL outline, gentle 3D beveled shading, broad simple white upper-left shine, saturated candy colors, NO pixel art, NO thin flat vector line-art, NO realism. One separate isolated icon, centered front view, square composition with generous transparent padding; all parts and outline entirely visible. Three chunky overlapping paint drops in mint green, pink and royal blue with white highlights, inside a CYAN circular badge. Actual transparent background outside the badge/button. ONE icon only, no sheet, no labels or letters, no numbers, no words, no UI screen, no surrounding scene, no watermark. Make it instantly readable at 48 to 80 pixels. The badge is a smooth glossy circular or rounded-square game button as specified, never a hexagon, with one aligned thick outline, not several mismatched borders.",
+      "references": [],
+      "width": 1254,
+      "height": 1254,
+      "bounds": {
+        "x": 59,
+        "y": 79,
+        "width": 1135,
+        "height": 1136
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "261e9a4cfee2465b14f50b48e905ba00a8ab15d403f9f2d70acd9fddce4e8be2"
+    },
+    {
+      "id": "icon-face",
+      "file": "assets/icons/face.png",
+      "prompt": "Production game UI icon for GLOMP. Style: cheerful polished Roblox pet-simulator interface, soft chunky cartoon volumes, bold clean DARK TEAL outline, gentle 3D beveled shading, broad simple white upper-left shine, saturated candy colors, NO pixel art, NO thin flat vector line-art, NO realism. One separate isolated icon, centered front view, square composition with generous transparent padding; all parts and outline entirely visible. A friendly round pastel blue cartoon face with two simple dark oval eyes, white glints and a little happy smile, inside a CYAN circular badge. Cute, no teeth, no realism. Actual transparent background outside the badge/button. ONE icon only, no sheet, no labels or letters, no numbers, no words, no UI screen, no surrounding scene, no watermark. Make it instantly readable at 48 to 80 pixels. The badge is a smooth glossy circular or rounded-square game button as specified, never a hexagon, with one aligned thick outline, not several mismatched borders.",
+      "references": [],
+      "width": 1254,
+      "height": 1254,
+      "bounds": {
+        "x": 72,
+        "y": 88,
+        "width": 1107,
+        "height": 1089
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "c5c5537f4e9c604600ed8d40618fd215310699bbd2f215aae0ba13d72f7b6895"
+    },
+    {
+      "id": "icon-hat",
+      "file": "assets/icons/hat.png",
+      "prompt": "Production game UI icon for GLOMP. Style: cheerful polished Roblox pet-simulator interface, soft chunky cartoon volumes, bold clean DARK TEAL outline, gentle 3D beveled shading, broad simple white upper-left shine, saturated candy colors, NO pixel art, NO thin flat vector line-art, NO realism. One separate isolated icon, centered front view, square composition with generous transparent padding; all parts and outline entirely visible. A small jaunty navy and violet top hat with a gold band and rim, inside a CYAN circular badge. Actual transparent background outside the badge/button. ONE icon only, no sheet, no labels or letters, no numbers, no words, no UI screen, no surrounding scene, no watermark. Make it instantly readable at 48 to 80 pixels. The badge is a smooth glossy circular or rounded-square game button as specified, never a hexagon, with one aligned thick outline, not several mismatched borders.",
+      "references": [],
+      "width": 1254,
+      "height": 1254,
+      "bounds": {
+        "x": 35,
+        "y": 50,
+        "width": 1185,
+        "height": 1167
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "10842b67da7815c37a382af909ebca0a20de8629de09de2170f5a74c00c2b59e"
+    },
+    {
+      "id": "icon-particles",
+      "file": "assets/icons/particles.png",
+      "prompt": "Production game UI icon for GLOMP. Style: cheerful polished Roblox pet-simulator interface, soft chunky cartoon volumes, bold clean DARK TEAL outline, gentle 3D beveled shading, broad simple white upper-left shine, saturated candy colors, NO pixel art, NO thin flat vector line-art, NO realism. One separate isolated icon, centered front view, square composition with generous transparent padding; all parts and outline entirely visible. A cluster of three glossy white and pale cyan four-point sparkle stars, inside a CYAN circular badge. Actual transparent background outside the badge/button. ONE icon only, no sheet, no labels or letters, no numbers, no words, no UI screen, no surrounding scene, no watermark. Make it instantly readable at 48 to 80 pixels. The badge is a smooth glossy circular or rounded-square game button as specified, never a hexagon, with one aligned thick outline, not several mismatched borders.",
+      "references": [],
+      "width": 1254,
+      "height": 1254,
+      "bounds": {
+        "x": 54,
+        "y": 65,
+        "width": 1146,
+        "height": 1131
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "e913f6baf680abddcfb53941a88eac0603823e27b95505bd2243d3c08559f08a"
+    },
+    {
+      "id": "icon-trail",
+      "file": "assets/icons/trail.png",
+      "prompt": "Production game UI icon for GLOMP. Style: cheerful polished Roblox pet-simulator interface, soft chunky cartoon volumes, bold clean DARK TEAL outline, gentle 3D beveled shading, broad simple white upper-left shine, saturated candy colors, NO pixel art, NO thin flat vector line-art, NO realism. One separate isolated icon, centered front view, square composition with generous transparent padding; all parts and outline entirely visible. A curled spiraling comet trail, violet center to cyan tail with two tiny stars, inside a CYAN circular badge. Actual transparent background outside the badge/button. ONE icon only, no sheet, no labels or letters, no numbers, no words, no UI screen, no surrounding scene, no watermark. Make it instantly readable at 48 to 80 pixels. The badge is a smooth glossy circular or rounded-square game button as specified, never a hexagon, with one aligned thick outline, not several mismatched borders.",
+      "references": [],
+      "width": 1254,
+      "height": 1254,
+      "bounds": {
+        "x": 40,
+        "y": 52,
+        "width": 1174,
+        "height": 1152
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "7bdbe730557b9a92b96acc51179b226ec1eb525eae0acb15513800343acfb774"
+    },
+    {
+      "id": "icon-gift",
+      "file": "assets/icons/gift.png",
+      "prompt": "Production game UI icon for GLOMP. Style: cheerful polished Roblox pet-simulator interface, soft chunky cartoon volumes, bold clean DARK TEAL outline, gentle 3D beveled shading, broad simple white upper-left shine, saturated candy colors, NO pixel art, NO thin flat vector line-art, NO realism. One separate isolated icon, centered front view, square composition with generous transparent padding; all parts and outline entirely visible. One chunky lavender gift box with a golden yellow ribbon and pink bow, inside a CYAN circular badge. Actual transparent background outside the badge/button. ONE icon only, no sheet, no labels or letters, no numbers, no words, no UI screen, no surrounding scene, no watermark. Make it instantly readable at 48 to 80 pixels. The badge is a smooth glossy circular or rounded-square game button as specified, never a hexagon, with one aligned thick outline, not several mismatched borders.",
+      "references": [],
+      "width": 1254,
+      "height": 1254,
+      "bounds": {
+        "x": 50,
+        "y": 63,
+        "width": 1151,
+        "height": 1136
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "e8ba675bb903bda1a9f1bc1bf7cc46b237a77486a291317ad69f38cfd70f810f"
+    },
+    {
+      "id": "icon-clock",
+      "file": "assets/icons/clock.png",
+      "prompt": "Production game UI icon for GLOMP. Style: cheerful polished Roblox pet-simulator interface, soft chunky cartoon volumes, bold clean DARK TEAL outline, gentle 3D beveled shading, broad simple white upper-left shine, saturated candy colors, NO pixel art, NO thin flat vector line-art, NO realism. One separate isolated icon, centered front view, square composition with generous transparent padding; all parts and outline entirely visible. A cute aqua blue stopwatch with white dial, dark teal hands and gold top knob, inside a CYAN circular badge. NO numbers or text on dial. Actual transparent background outside the badge/button. ONE icon only, no sheet, no labels or letters, no numbers, no words, no UI screen, no surrounding scene, no watermark. Make it instantly readable at 48 to 80 pixels. The badge is a smooth glossy circular or rounded-square game button as specified, never a hexagon, with one aligned thick outline, not several mismatched borders.",
+      "references": [],
+      "width": 1254,
+      "height": 1254,
+      "bounds": {
+        "x": 48,
+        "y": 63,
+        "width": 1159,
+        "height": 1149
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "22756262d0def018b0a6e2a720a3b7610b32d779a356eb02f5ffe8662936d4eb"
+    },
+    {
+      "id": "icon-people",
+      "file": "assets/icons/people.png",
+      "prompt": "Production game UI icon for GLOMP. Style: cheerful polished Roblox pet-simulator interface, soft chunky cartoon volumes, bold clean DARK TEAL outline, gentle 3D beveled shading, broad simple white upper-left shine, saturated candy colors, NO pixel art, NO thin flat vector line-art, NO realism. One separate isolated icon, centered front view, square composition with generous transparent padding; all parts and outline entirely visible. Two friendly simplified jelly bust silhouettes side by side, one pale blue and one creamy white, inside a CYAN circular badge. No letters. Actual transparent background outside the badge/button. ONE icon only, no sheet, no labels or letters, no numbers, no words, no UI screen, no surrounding scene, no watermark. Make it instantly readable at 48 to 80 pixels. The badge is a smooth glossy circular or rounded-square game button as specified, never a hexagon, with one aligned thick outline, not several mismatched borders.",
+      "references": [],
+      "width": 1254,
+      "height": 1254,
+      "bounds": {
+        "x": 51,
+        "y": 62,
+        "width": 1153,
+        "height": 1138
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "5ff9954184d9a3af48722ddcd9da65682630f559723022582c9815e9882ac9d6"
+    },
+    {
+      "id": "icon-back",
+      "file": "assets/icons/back.png",
+      "prompt": "Production game UI icon for GLOMP. Style: cheerful polished Roblox pet-simulator interface, soft chunky cartoon volumes, bold clean DARK TEAL outline, gentle 3D beveled shading, broad simple white upper-left shine, saturated candy colors, NO pixel art, NO thin flat vector line-art, NO realism. One separate isolated icon, centered front view, square composition with generous transparent padding; all parts and outline entirely visible. A thick creamy white arrow pointing LEFT with cyan side depth, inside a red rounded-square button with thick dark teal border. Actual transparent background outside the badge/button. ONE icon only, no sheet, no labels or letters, no numbers, no words, no UI screen, no surrounding scene, no watermark. Make it instantly readable at 48 to 80 pixels. The badge is a smooth glossy circular or rounded-square game button as specified, never a hexagon, with one aligned thick outline, not several mismatched borders.",
+      "references": [],
+      "width": 1254,
+      "height": 1254,
+      "bounds": {
+        "x": 67,
+        "y": 85,
+        "width": 1120,
+        "height": 1088
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "318dc4da62db5cff21db10a3b460c6e9d6144be8b588316b30b24c5cd5d5ee4f"
+    },
+    {
+      "id": "icon-plus",
+      "file": "assets/icons/plus.png",
+      "prompt": "Production game UI icon for GLOMP. Style: cheerful polished Roblox pet-simulator interface, soft chunky cartoon volumes, bold clean DARK TEAL outline, gentle 3D beveled shading, broad simple white upper-left shine, saturated candy colors, NO pixel art, NO thin flat vector line-art, NO realism. One separate isolated icon, centered front view, square composition with generous transparent padding; all parts and outline entirely visible. A large thick WHITE PLUS symbol with pale cyan depth, inside a glossy CYAN BLUE rounded-square button with dark teal border. Symbol must be very large and centered. Actual transparent background outside the badge/button. ONE icon only, no sheet, no labels or letters, no numbers, no words, no UI screen, no surrounding scene, no watermark. Make it instantly readable at 48 to 80 pixels. The badge is a smooth glossy circular or rounded-square game button as specified, never a hexagon, with one aligned thick outline, not several mismatched borders.",
+      "references": [],
+      "width": 1254,
+      "height": 1254,
+      "bounds": {
+        "x": 48,
+        "y": 61,
+        "width": 1158,
+        "height": 1135
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "367116b81589bdd941033c71ad202fcf58a9adbfc4a3a3ecec9a931bcdcfbc06"
+    },
+    {
+      "id": "icon-close",
+      "file": "assets/icons/close.png",
+      "prompt": "Production game UI icon for GLOMP. Style: cheerful polished Roblox pet-simulator interface, soft chunky cartoon volumes, bold clean DARK TEAL outline, gentle 3D beveled shading, broad simple white upper-left shine, saturated candy colors, NO pixel art, NO thin flat vector line-art, NO realism. One separate isolated icon, centered front view, square composition with generous transparent padding; all parts and outline entirely visible. A large thick WHITE X CROSS symbol with cream highlight, inside a glossy vivid RED rounded-square button with dark teal border. Large clear X fills the button center, no other mark. Actual transparent background outside the badge/button. ONE icon only, no sheet, no labels or letters, no numbers, no words, no UI screen, no surrounding scene, no watermark. Make it instantly readable at 48 to 80 pixels. The badge is a smooth glossy circular or rounded-square game button as specified, never a hexagon, with one aligned thick outline, not several mismatched borders.",
+      "references": [],
+      "width": 1254,
+      "height": 1254,
+      "bounds": {
+        "x": 54,
+        "y": 63,
+        "width": 1144,
+        "height": 1131
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "a5f982a79913cbf94a654158773df0f93af333ee5ff1671c98d5c3230a245c76"
+    },
+    {
+      "id": "icon-left",
+      "file": "assets/icons/left.png",
+      "prompt": "Production game UI icon for GLOMP. Style: cheerful polished Roblox pet-simulator interface, soft chunky cartoon volumes, bold clean DARK TEAL outline, gentle 3D beveled shading, broad simple white upper-left shine, saturated candy colors, NO pixel art, NO thin flat vector line-art, NO realism. One separate isolated icon, centered front view, square composition with generous transparent padding; all parts and outline entirely visible. A thick white chevron pointing LEFT, inside a glossy cyan circular button with dark teal outline. Actual transparent background outside the badge/button. ONE icon only, no sheet, no labels or letters, no numbers, no words, no UI screen, no surrounding scene, no watermark. Make it instantly readable at 48 to 80 pixels. The badge is a smooth glossy circular or rounded-square game button as specified, never a hexagon, with one aligned thick outline, not several mismatched borders.",
+      "references": [],
+      "width": 1254,
+      "height": 1254,
+      "bounds": {
+        "x": 59,
+        "y": 69,
+        "width": 1135,
+        "height": 1125
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "9ee63a324bd18e248d6c0c740a7976f6c38f69ca07334adc62d46264e2594621"
+    },
+    {
+      "id": "icon-right",
+      "file": "assets/icons/right.png",
+      "prompt": "Production game UI icon for GLOMP. Style: cheerful polished Roblox pet-simulator interface, soft chunky cartoon volumes, bold clean DARK TEAL outline, gentle 3D beveled shading, broad simple white upper-left shine, saturated candy colors, NO pixel art, NO thin flat vector line-art, NO realism. One separate isolated icon, centered front view, square composition with generous transparent padding; all parts and outline entirely visible. A thick white chevron pointing RIGHT, inside a glossy cyan circular button with dark teal outline. Actual transparent background outside the badge/button. ONE icon only, no sheet, no labels or letters, no numbers, no words, no UI screen, no surrounding scene, no watermark. Make it instantly readable at 48 to 80 pixels. The badge is a smooth glossy circular or rounded-square game button as specified, never a hexagon, with one aligned thick outline, not several mismatched borders.",
+      "references": [],
+      "width": 1254,
+      "height": 1254,
+      "bounds": {
+        "x": 77,
+        "y": 91,
+        "width": 1100,
+        "height": 1100
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "1322f68cf0fa90baf67fce55b1cf844ee2269b8b1efe228eaff9637bc96f4750"
+    },
+    {
+      "id": "icon-check",
+      "file": "assets/icons/check.png",
+      "prompt": "Production game UI icon for GLOMP. Style: cheerful polished Roblox pet-simulator interface, soft chunky cartoon volumes, bold clean DARK TEAL outline, gentle 3D beveled shading, broad simple white upper-left shine, saturated candy colors, NO pixel art, NO thin flat vector line-art, NO realism. One separate isolated icon, centered front view, square composition with generous transparent padding; all parts and outline entirely visible. A large chunky white check mark tilted slightly upward, inside a glossy lime GREEN circular badge with dark teal outline. Actual transparent background outside the badge/button. ONE icon only, no sheet, no labels or letters, no numbers, no words, no UI screen, no surrounding scene, no watermark. Make it instantly readable at 48 to 80 pixels. The badge is a smooth glossy circular or rounded-square game button as specified, never a hexagon, with one aligned thick outline, not several mismatched borders.",
+      "references": [],
+      "width": 1254,
+      "height": 1254,
+      "bounds": {
+        "x": 83,
+        "y": 97,
+        "width": 1087,
+        "height": 1076
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "7e90aa72f20d40788d94dd258f0f1696d00a9c0db07472b528ac25702d332fda"
+    },
+    {
+      "id": "icon-music",
+      "file": "assets/icons/music.png",
+      "prompt": "Production game UI icon for GLOMP. Style: cheerful polished Roblox pet-simulator interface, soft chunky cartoon volumes, bold clean DARK TEAL outline, gentle 3D beveled shading, broad simple white upper-left shine, saturated candy colors, NO pixel art, NO thin flat vector line-art, NO realism. One separate isolated icon, centered front view, square composition with generous transparent padding; all parts and outline entirely visible. A cheerful lavender and white pair of musical notes, inside a CYAN circular badge. Actual transparent background outside the badge/button. ONE icon only, no sheet, no labels or letters, no numbers, no words, no UI screen, no surrounding scene, no watermark. Make it instantly readable at 48 to 80 pixels. The badge is a smooth glossy circular or rounded-square game button as specified, never a hexagon, with one aligned thick outline, not several mismatched borders.",
+      "references": [],
+      "width": 1254,
+      "height": 1254,
+      "bounds": {
+        "x": 60,
+        "y": 79,
+        "width": 1132,
+        "height": 1127
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "4e03abeffc923a5ed839bb00ee14c1d02247a648b89bb3c65d158c72f9432bb3"
+    },
+    {
+      "id": "icon-sound",
+      "file": "assets/icons/sound.png",
+      "prompt": "Production game UI icon for GLOMP. Style: cheerful polished Roblox pet-simulator interface, soft chunky cartoon volumes, bold clean DARK TEAL outline, gentle 3D beveled shading, broad simple white upper-left shine, saturated candy colors, NO pixel art, NO thin flat vector line-art, NO realism. One separate isolated icon, centered front view, square composition with generous transparent padding; all parts and outline entirely visible. A gold speaker cone and two rounded white sound-wave arcs, inside a CYAN circular badge. Actual transparent background outside the badge/button. ONE icon only, no sheet, no labels or letters, no numbers, no words, no UI screen, no surrounding scene, no watermark. Make it instantly readable at 48 to 80 pixels. The badge is a smooth glossy circular or rounded-square game button as specified, never a hexagon, with one aligned thick outline, not several mismatched borders.",
+      "references": [],
+      "width": 1254,
+      "height": 1254,
+      "bounds": {
+        "x": 50,
+        "y": 68,
+        "width": 1155,
+        "height": 1135
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "60e6c57d87b376ac310bbb1c8804bc30ffd4554c70ce2c8e757b075c8365e656"
+    },
+    {
+      "id": "icon-fullscreen",
+      "file": "assets/icons/fullscreen.png",
+      "prompt": "Production game UI icon for GLOMP. Style: cheerful polished Roblox pet-simulator interface, soft chunky cartoon volumes, bold clean DARK TEAL outline, gentle 3D beveled shading, broad simple white upper-left shine, saturated candy colors, NO pixel art, NO thin flat vector line-art, NO realism. One separate isolated icon, centered front view, square composition with generous transparent padding; all parts and outline entirely visible. Four chunky white corner brackets facing outward to indicate expand screen, inside a CYAN circular badge. Actual transparent background outside the badge/button. ONE icon only, no sheet, no labels or letters, no numbers, no words, no UI screen, no surrounding scene, no watermark. Make it instantly readable at 48 to 80 pixels. The badge is a smooth glossy circular or rounded-square game button as specified, never a hexagon, with one aligned thick outline, not several mismatched borders.",
+      "references": [],
+      "width": 1254,
+      "height": 1254,
+      "bounds": {
+        "x": 24,
+        "y": 42,
+        "width": 1205,
+        "height": 1185
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "e3cf99ef5d305c9808f610cea142d951f15bf5c09e20d2d19c4ce9f7bc7502a9"
+    },
+    {
+      "id": "icon-keyboard",
+      "file": "assets/icons/keyboard.png",
+      "prompt": "Production game UI icon for GLOMP. Style: cheerful polished Roblox pet-simulator interface, soft chunky cartoon volumes, bold clean DARK TEAL outline, gentle 3D beveled shading, broad simple white upper-left shine, saturated candy colors, NO pixel art, NO thin flat vector line-art, NO realism. One separate isolated icon, centered front view, square composition with generous transparent padding; all parts and outline entirely visible. A compact cute white keyboard with clearly separated blue rounded key shapes, inside a CYAN circular badge. NO letters, numerals or text on the keys. Actual transparent background outside the badge/button. ONE icon only, no sheet, no labels or letters, no numbers, no words, no UI screen, no surrounding scene, no watermark. Make it instantly readable at 48 to 80 pixels. The badge is a smooth glossy circular or rounded-square game button as specified, never a hexagon, with one aligned thick outline, not several mismatched borders.",
+      "references": [],
+      "width": 1254,
+      "height": 1254,
+      "bounds": {
+        "x": 26,
+        "y": 53,
+        "width": 1201,
+        "height": 1174
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "78c94c5cf6fef3f497878c1deeafd5dae1e295a0a299c20aaffd5de451db36ce"
+    },
+    {
+      "id": "icon-crown",
+      "file": "assets/icons/crown.png",
+      "prompt": "Production game UI icon for GLOMP. Style: cheerful polished Roblox pet-simulator interface, soft chunky cartoon volumes, bold clean DARK TEAL outline, gentle 3D beveled shading, broad simple white upper-left shine, saturated candy colors, NO pixel art, NO thin flat vector line-art, NO realism. One separate isolated icon, centered front view, square composition with generous transparent padding; all parts and outline entirely visible. A plump polished gold crown with three rounded points, red and blue tiny gems and a white shine, inside a CYAN circular badge. Actual transparent background outside the badge/button. ONE icon only, no sheet, no labels or letters, no numbers, no words, no UI screen, no surrounding scene, no watermark. Make it instantly readable at 48 to 80 pixels. The badge is a smooth glossy circular or rounded-square game button as specified, never a hexagon, with one aligned thick outline, not several mismatched borders.",
+      "references": [],
+      "width": 1254,
+      "height": 1254,
+      "bounds": {
+        "x": 48,
+        "y": 67,
+        "width": 1159,
+        "height": 1138
+      },
+      "provider": "openai-built-in",
+      "model": "image_gen",
+      "status": "generated",
+      "milestone": "cartoon-panorama",
+      "sha256": "cbafee624a9a56b6bff886820d13de0763dd73105cb097263073bde14b685eef"
     }
   ],
   "artProvider": {
